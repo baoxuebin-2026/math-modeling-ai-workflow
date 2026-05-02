@@ -1,0 +1,17 @@
+[
+  {
+    "id": "q1",
+    "solve": "code/q1/solve_q1.py",
+    "visualize": "code/q1/visualize_q1.py"
+  },
+  {
+    "id": "q2",
+    "solve": "code/q2/solve_q2.py",
+    "visualize": "code/q2/visualize_q2.py"
+  },
+  {
+    "id": "q3",
+    "solve": "code/q3/solve_q3.py",
+    "visualize": "code/q3/visualize_q3.py"
+  }
+]

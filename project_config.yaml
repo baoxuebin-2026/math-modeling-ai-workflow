@@ -1,0 +1,40 @@
+project:
+  name: "数学建模工作流"
+  language: "zh-CN"
+  target: "pre_paper_materials"
+
+competition:
+  name: ""
+  year: ""
+  problem_id: ""
+  question_count: 3
+
+paths:
+  raw_data: "data/raw"
+  external_data: "data/external"
+  processed_data: "data/processed"
+  metadata: "data/metadata"
+  code: "code"
+  figures: "figures"
+  docs: "docs"
+  results: "docs/results"
+  figure_docs: "docs/figures"
+
+workflow:
+  enabled_questions: ["q1", "q2", "q3"]
+  stop_before_final_paper: true
+  require_user_decision_points: true
+  mode: "ai_decision_gated"
+  auto_run_is_not_decision_flow: true
+
+visualization:
+  dpi: 300
+  style: "whitegrid"
+  title_inside_figure: false
+  max_subplots_per_png: 2
+  palette: "tableau_colorblind"
+  filename_pattern: "q{question}_fig{index:02d}_{description}.png"
+
+outputs:
+  final_materials: "docs/paper_materials.md"
+  validation_report: "docs/06_validation_report.md"

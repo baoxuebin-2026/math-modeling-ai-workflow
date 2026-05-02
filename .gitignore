@@ -1,0 +1,52 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments and local env
+.env
+.venv/
+venv/
+env/
+
+# IDE / OS noise
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Competition data should not be committed
+data/raw/*
+data/external/*
+data/processed/*
+data/metadata/*
+!data/raw/.gitkeep
+!data/external/.gitkeep
+!data/processed/.gitkeep
+!data/metadata/.gitkeep
+
+# Generated figures and outputs
+figures/**/*.png
+figures/**/*.jpg
+figures/**/*.jpeg
+figures/**/*.svg
+figures/**/*.pdf
+!figures/**/.gitkeep
+
+docs/results/*
+docs/figures/*
+!docs/results/.gitkeep
+!docs/figures/.gitkeep
+docs/paper_materials.md
+docs/03_data_report.md
+docs/04_result_summary.md
+docs/05_visualization_plan.md
+docs/06_validation_report.md
+
+# Spreadsheet/editor lock files
+~$*
