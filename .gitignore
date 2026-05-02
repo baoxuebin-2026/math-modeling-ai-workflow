@@ -50,3 +50,9 @@ docs/06_validation_report.md
 
 # Spreadsheet/editor lock files
 ~$*
+
+# Local knowledge base / source materials kept outside the public workflow template
+prompt/
+skills/
+问题求解.md
+可视化计划.md
