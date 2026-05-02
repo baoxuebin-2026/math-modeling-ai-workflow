@@ -35,6 +35,7 @@ AI 必须按以下模式工作：
 - 结果 JSON：`docs/results/`
 - 图表说明：`docs/figures/`
 - 阶段文档：`docs/00_*.md` 至 `docs/06_*.md`
+- 工作流门控清单：`docs/workflow/*_gate.md`
 
 禁止新增 `problem_files/`、`crawled_data/`、`paper_output/` 作为主流程目录。旧资料中出现这些名称时，必须映射到本协议：
 
@@ -69,6 +70,18 @@ AI 必须按以下模式工作：
 9. AI 解读运行结果，说明结果是否合理、是否需要换模型或补实验，确认后生成 `docs/04_result_summary.md`。
 10. AI 设计验证与敏感性分析，等待用户确认，确认后执行并生成 `docs/06_validation_report.md`。
 11. AI 汇总已经确认的全部内容，生成 `docs/paper_materials.md`。
+
+## 阶段门控清单
+
+AI 在对应阶段必须读取并遵守以下 checklist：
+
+| 阶段 | 门控文件 | 用途 |
+|---|---|---|
+| 数据预处理 | `docs/workflow/data_preprocessing_gate.md` | 判断是否需要预处理、选择方法、记录前后对比 |
+| 模型选择 | `docs/workflow/modeling_decision_gate.md` | 给出基础方案/创新方案、评分、推荐与用户确认点 |
+| 模型检验 | `docs/workflow/validation_gate.md` | 判断检验必要性、选择检验方法、输出通过/未通过和改进建议 |
+| 可视化 | `docs/workflow/05_visualization_rules.md` | 约束图表用途、命名、说明文字和论文位置 |
+| 代码结构 | `docs/workflow/code_contract.md` | 保证每问求解代码与可视化代码职责分离 |
 
 ## 自动脚本的定位
 

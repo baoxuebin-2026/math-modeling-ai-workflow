@@ -37,6 +37,16 @@ python code/run_all.py
 - `data/`：本地赛题和数据放置位置，仓库只保留空目录占位。
 - `figures/`：本地图表输出位置，仓库只保留空目录占位。
 
+## 阶段门控文件
+
+`docs/workflow/` 中的文件是 AI 做阶段判断时必须遵守的 checklist：
+
+- `data_preprocessing_gate.md`：数据预处理是否必要、如何处理、如何对比。
+- `modeling_decision_gate.md`：每问基础模型、创新模型、评分和用户确认。
+- `validation_gate.md`：模型是否需要检验、检验方法、通过标准和改进建议。
+- `05_visualization_rules.md`：图表选择、命名、说明文字和论文位置。
+- `code_contract.md`：`solve_qx.py` 与 `visualize_qx.py` 的职责边界。
+
 
 
 ## 目录原则
