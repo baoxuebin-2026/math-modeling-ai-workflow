@@ -4,11 +4,13 @@
 
 ## 总目标
 
-最终必须生成：
+建模阶段最终必须生成：
 
 - `docs/paper_materials.md`
 
 该文件应汇总题意、数据、模型、公式、算法、结果、图表说明、模型检验、敏感性分析和结论要点，为后续论文写作提供完整素材。
+
+论文写作阶段从 `paper/README.md` 开始，目标是把 `docs/paper_materials.md` 转化为可反复修改的论文草稿。
 
 ## 核心原则：AI 决策门控
 
@@ -36,6 +38,10 @@ AI 必须按以下模式工作：
 - 图表说明：`docs/figures/`
 - 阶段文档：`docs/00_*.md` 至 `docs/06_*.md`
 - 工作流门控清单：`docs/workflow/*_gate.md`
+- 论文写作工作流：`paper/`
+- 分章节论文草稿：`paper/sections/`
+- 合并后论文草稿：`paper/drafts/`
+- 论文核对记录：`paper/reviews/`
 
 禁止新增 `problem_files/`、`crawled_data/`、`paper_output/` 作为主流程目录。旧资料中出现这些名称时，必须映射到本协议：
 
@@ -70,6 +76,7 @@ AI 必须按以下模式工作：
 9. AI 解读运行结果，说明结果是否合理、是否需要换模型或补实验，确认后生成 `docs/04_result_summary.md`。
 10. AI 设计验证与敏感性分析，等待用户确认，确认后执行并生成 `docs/06_validation_report.md`。
 11. AI 汇总已经确认的全部内容，生成 `docs/paper_materials.md`。
+12. 若用户进入论文写作阶段，读取 `paper/README.md` 和 `paper/workflow/paper_writing_workflow.md`，先生成章节队列，再逐章生成 `paper/sections/` 下的章节草稿。每章确认后才能进入下一章，全部章节确认后才合并为 `paper/drafts/final_paper_draft.md`。
 
 ## 阶段门控清单
 
@@ -78,16 +85,28 @@ AI 在对应阶段必须读取并遵守以下 checklist：
 | 阶段 | 门控文件 | 用途 |
 |---|---|---|
 | 数据预处理 | `docs/workflow/data_preprocessing_gate.md` | 判断是否需要预处理、选择方法、记录前后对比 |
+| 获奖论文启发 | `docs/workflow/award_paper_insights.md` | 提炼基线、递进、风险、对比和证据链思路 |
 | 模型选择 | `docs/workflow/modeling_decision_gate.md` | 给出基础方案/创新方案、评分、推荐与用户确认点 |
 | 模型检验 | `docs/workflow/validation_gate.md` | 判断检验必要性、选择检验方法、输出通过/未通过和改进建议 |
+| 素材包生成 | `docs/workflow/materials_gate.md` | 确认结果、图表、检验和用户决策足够进入论文阶段 |
 | 可视化 | `docs/workflow/05_visualization_rules.md` | 约束图表用途、命名、说明文字和论文位置 |
 | 代码结构 | `docs/workflow/code_contract.md` | 保证每问求解代码与可视化代码职责分离 |
+| 论文写作 | `paper/workflow/paper_writing_workflow.md` | 将建模素材包转为论文草稿 |
+| 章节队列 | `paper/templates/section_queue.md` | 先确认每个章节文件的顺序、职责和素材来源 |
+| 单章验收 | `paper/workflow/section_gate.md` | 每章生成后做来源追溯和用户确认 |
+| 章节合并 | `paper/workflow/merge_gate.md` | 将已确认章节合并为整篇草稿 |
+| 摘要优化 | `paper/workflow/abstract_gate.md` | 摘要、标题、关键词二次优化 |
+| 终稿检查 | `paper/workflow/final_review_gate.md` | 全文一致性、格式和逻辑检查 |
 
 ## 自动脚本的定位
 
 `python code/run_all.py` 只用于快速检查目录、占位文件和已确认代码是否能跑通。它不是主决策流程。
 
 主流程应由 AI 对话推进，阶段文档应记录 AI 的判断和用户确认。代码只有在方案确认后才负责复现计算与出图。
+
+`code/01_initialize_docs.py` 默认只补齐缺失的初始模板，不覆盖已经确认的阶段文档。只有明确需要重置模板时，才使用 `--force`。
+
+`docs/paper_materials.md` 生成前必须读取 `docs/workflow/materials_gate.md`。如果素材包仍包含大量 `待确认`、`待补充` 或 `待用户决策`，它只能作为过程草稿，不能进入论文阶段。
 
 ## 用户决策点
 
@@ -100,6 +119,8 @@ AI 必须显式暴露以下决策，不能擅自隐藏：
 - 结果单位、精度和统计口径。
 - 验证方法是否足够。
 - 论文主创新点应放在哪里。
+- 论文每个章节是否通过单章验收。
+- 摘要二次优化后是否接受全文第二轮核对建议。
 
 每一次关键决策都应记录到：
 

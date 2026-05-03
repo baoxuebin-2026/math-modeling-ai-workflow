@@ -17,6 +17,7 @@ paths:
   code: "code"
   figures: "figures"
   docs: "docs"
+  paper: "paper"
   results: "docs/results"
   figure_docs: "docs/figures"
 
@@ -38,3 +39,13 @@ visualization:
 outputs:
   final_materials: "docs/paper_materials.md"
   validation_report: "docs/06_validation_report.md"
+  paper_sections: "paper/sections"
+  paper_drafts: "paper/drafts"
+  paper_reviews: "paper/reviews"
+
+paper_workflow:
+  section_by_section: true
+  require_section_approval: true
+  require_merge_gate: true
+  require_second_pass_review: true
+  final_draft: "paper/drafts/final_paper_draft.md"

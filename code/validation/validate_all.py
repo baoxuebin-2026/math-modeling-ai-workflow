@@ -9,8 +9,13 @@ from code.common.io_utils import project_path, read_json, write_text
 
 
 def main() -> int:
+    tasks = read_json("docs/workflow/tasks.json", {}).get("questions", [])
+    question_ids = [item.get("id") for item in tasks if item.get("id")]
+    if not question_ids:
+        question_ids = ["q1", "q2", "q3"]
+
     checks = []
-    for q in ("q1", "q2", "q3"):
+    for q in question_ids:
         result_path = project_path(f"docs/results/{q}_results.json")
         figure_doc_path = project_path(f"docs/figures/{q}_figures.md")
         figure_dir = project_path(f"figures/{q}")

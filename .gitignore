@@ -57,3 +57,14 @@ skills/
 问题求解.md
 可视化计划.md
 MinerU_markdown_*.md
+
+# Paper drafts are generated locally
+paper/sections/*
+!paper/sections/.gitkeep
+paper/drafts/*
+!paper/drafts/.gitkeep
+paper/reviews/*
+!paper/reviews/.gitkeep
+
+# Local reference papers / extracted markdowns should not be committed
+论文撰写.md

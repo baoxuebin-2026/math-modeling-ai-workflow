@@ -5,10 +5,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from code.common.io_utils import list_data_files, write_json, write_text
+from code.common.io_utils import list_data_files, write_json, write_json_if_missing, write_text, write_text_if_missing
 
 
 def main() -> int:
+    force = "--force" in sys.argv
     data_files = list_data_files()
     problem_lines = [
         "# 题目信息提取",
@@ -24,7 +25,10 @@ def main() -> int:
         problem_lines.extend([f"- `{p}`" for p in data_files])
     else:
         problem_lines.append("- 未发现数据文件。请将赛题附件放入 `data/raw/`。")
-    write_text("docs/00_problem_extracted.md", "\n".join(problem_lines) + "\n")
+    writer_text = write_text if force else write_text_if_missing
+    writer_json = write_json if force else write_json_if_missing
+
+    writer_text("docs/00_problem_extracted.md", "\n".join(problem_lines) + "\n")
 
     alignment = [
         "# 逐问任务对齐",
@@ -36,7 +40,7 @@ def main() -> int:
         "| 问题三 | 待确认 | 待确认 | 待确认 | 待确认 | 待确认 | 是否承担综合评价/推广/鲁棒性 |",
         "",
     ]
-    write_text("docs/01_task_alignment.md", "\n".join(alignment))
+    writer_text("docs/01_task_alignment.md", "\n".join(alignment))
 
     model_plan = [
         "# 模型路线",
@@ -57,9 +61,9 @@ def main() -> int:
         "| 问题三 | 待确认 | 待确认 | 待用户决策 | 待题意解析后确认 | 待确认 |",
         "",
     ]
-    write_text("docs/02_model_plan.md", "\n".join(model_plan))
+    writer_text("docs/02_model_plan.md", "\n".join(model_plan))
 
-    write_json(
+    writer_json(
         "docs/workflow/tasks.json",
         [
             {"id": "q1", "solve": "code/q1/solve_q1.py", "visualize": "code/q1/visualize_q1.py"},

@@ -11,6 +11,8 @@ code/q3/solve_q3.py
 code/q3/visualize_q3.py
 ```
 
+如果赛题不是三问，AI 必须先更新 `project_config.yaml` 和 `docs/workflow/tasks.json`，再按同样规则新增或删减 `code/q*/`、`figures/q*/`、`docs/results/q*_results.json` 和 `docs/figures/q*_figures.md`。
+
 ## solve_qx.py 负责
 
 - 读取 `data/processed/` 中的数据。

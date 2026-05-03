@@ -34,6 +34,7 @@ python code/run_all.py
 - `project_config.yaml`：路径和流程配置。
 - `code/`：确认方案后的求解、可视化和验证代码骨架。
 - `docs/`：题意、模型路线、决策日志、结果和论文素材模板。
+- `paper/`：把 `docs/paper_materials.md` 转化为论文草稿的逐章写作工作流。
 - `data/`：本地赛题和数据放置位置，仓库只保留空目录占位。
 - `figures/`：本地图表输出位置，仓库只保留空目录占位。
 
@@ -42,8 +43,10 @@ python code/run_all.py
 `docs/workflow/` 中的文件是 AI 做阶段判断时必须遵守的 checklist：
 
 - `data_preprocessing_gate.md`：数据预处理是否必要、如何处理、如何对比。
+- `award_paper_insights.md`：获奖论文中可复用的建模递进、风险情景、对比验证和证据链思路。
 - `modeling_decision_gate.md`：每问基础模型、创新模型、评分和用户确认。
 - `validation_gate.md`：模型是否需要检验、检验方法、通过标准和改进建议。
+- `materials_gate.md`：确认模型、结果、图表和检验足够汇总为论文素材包。
 - `05_visualization_rules.md`：图表选择、命名、说明文字和论文位置。
 - `code_contract.md`：`solve_qx.py` 与 `visualize_qx.py` 的职责边界。
 
@@ -55,8 +58,19 @@ python code/run_all.py
 - `code/` 只放可运行代码。
 - `figures/` 只放论文图表。
 - `docs/` 放题意、模型、结果、验证和论文素材。
+- `paper/` 放论文撰写流程、模板和草稿。
 
 工作流主入口统一使用 `AI_WORKFLOW.md`。
+
+建模阶段完成后，论文写作阶段从 `paper/README.md` 开始。
+
+论文阶段不是一次性生成整篇，而是：
+
+```text
+章节队列确认 → 单章生成 → 单章核对 → 用户确认 → 下一章 → 合并全文 → 摘要二次优化 → 全文二次核对
+```
+
+分章节草稿放在 `paper/sections/`，合并后的整篇草稿放在 `paper/drafts/`，核对记录放在 `paper/reviews/`。
 
 每一问固定使用一组代码：
 

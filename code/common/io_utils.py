@@ -39,6 +39,22 @@ def write_text(path: str | Path, text: str) -> Path:
     return p
 
 
+def write_text_if_missing(path: str | Path, text: str) -> Path:
+    p = project_path(path) if not Path(path).is_absolute() else Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    if not p.exists():
+        p.write_text(text, encoding="utf-8")
+    return p
+
+
+def write_json_if_missing(path: str | Path, data: Any) -> Path:
+    p = project_path(path) if not Path(path).is_absolute() else Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    if not p.exists():
+        p.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    return p
+
+
 def list_data_files() -> list[Path]:
     exts = {".csv", ".xlsx", ".xls", ".txt"}
     roots = [project_path("data/raw"), project_path("data/external")]

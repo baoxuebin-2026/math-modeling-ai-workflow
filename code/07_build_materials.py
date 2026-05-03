@@ -14,6 +14,11 @@ def read_text_if_exists(path: str) -> str:
 
 
 def main() -> int:
+    tasks = read_json("docs/workflow/tasks.json", {}).get("questions", [])
+    question_ids = [item.get("id") for item in tasks if item.get("id")]
+    if not question_ids:
+        question_ids = ["q1", "q2", "q3"]
+
     sections = [
         ("题目信息提取", read_text_if_exists("docs/00_problem_extracted.md")),
         ("逐问任务对齐", read_text_if_exists("docs/01_task_alignment.md")),
@@ -33,15 +38,16 @@ def main() -> int:
         "",
         "| 问题 | 求解代码 | 可视化代码 | 结果文件 | 图表说明 |",
         "|---|---|---|---|---|",
-        "| 问题一 | `code/q1/solve_q1.py` | `code/q1/visualize_q1.py` | `docs/results/q1_results.json` | `docs/figures/q1_figures.md` |",
-        "| 问题二 | `code/q2/solve_q2.py` | `code/q2/visualize_q2.py` | `docs/results/q2_results.json` | `docs/figures/q2_figures.md` |",
-        "| 问题三 | `code/q3/solve_q3.py` | `code/q3/visualize_q3.py` | `docs/results/q3_results.json` | `docs/figures/q3_figures.md` |",
-        "",
-        "## 分问结果索引",
-        "",
     ]
 
-    for q in ("q1", "q2", "q3"):
+    for q in question_ids:
+        chunks.append(
+            f"| {q.upper()} | `code/{q}/solve_{q}.py` | `code/{q}/visualize_{q}.py` | "
+            f"`docs/results/{q}_results.json` | `docs/figures/{q}_figures.md` |"
+        )
+    chunks.extend(["", "## 分问结果索引", ""])
+
+    for q in question_ids:
         result = read_json(f"docs/results/{q}_results.json", {})
         chunks.append(f"### {q.upper()}")
         chunks.append("")
@@ -58,6 +64,14 @@ def main() -> int:
             body = "\n".join(body.splitlines()[1:]).strip()
         chunks.append(body or "待补充。")
         chunks.append("")
+
+    full_text = "\n".join(chunks)
+    if "待确认" in full_text or "待补充" in full_text or "待用户决策" in full_text:
+        chunks.insert(
+            4,
+            "> 注意：本素材包仍包含 `待确认`、`待补充` 或 `待用户决策` 内容，只能作为过程草稿，不能直接进入论文写作阶段。",
+        )
+        chunks.insert(5, "")
 
     write_text("docs/paper_materials.md", "\n".join(chunks).strip() + "\n")
     return 0
