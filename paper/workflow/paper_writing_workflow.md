@@ -37,9 +37,10 @@
 - `paper/sections/05_q2_modeling_solution.md`
 - `paper/sections/06_q3_modeling_solution.md`
 - `paper/sections/07_q4_modeling_solution.md`，仅在题目有第四问时保留。
-- `paper/sections/90_model_evaluation_optimization.md`
-- `paper/sections/91_references.md`
-- `paper/sections/92_appendix.md`
+- `paper/sections/90_model_validation.md`
+- `paper/sections/91_model_evaluation_improvement.md`
+- `paper/sections/92_references.md`
+- `paper/sections/93_appendix.md`
 
 核对与合并输出：
 
@@ -88,7 +89,7 @@ AI 在以下位置必须停下来让用户决策：
 已上传的旧论文只作为格式参考，主要参考：
 
 - 标题、摘要、关键词的位置。
-- 问题重述、问题分析、假设、符号、模型建立与求解、模型评价及优化、参考文献、附录的章节顺序。
+- 问题重述、问题分析、假设、符号、模型建立与求解、模型检验、模型优缺点与改进、参考文献、附录的章节顺序。
 - 图表编号和正文引用方式。
 - 附录代码说明方式。
 

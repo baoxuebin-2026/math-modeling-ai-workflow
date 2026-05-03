@@ -28,9 +28,10 @@ paper/reviews/section_queue.md
 | 04 | `paper/sections/04_q1_modeling_solution.md` | 5.1 问题一模型的建立与求解 | 写问题一的基线模型、改进模型、求解、结果和检验 | `docs/results/q1_results.json`、`docs/figures/q1_figures.md`、`code/q1/` | Q1 图表和结果 | 待确认 |
 | 05 | `paper/sections/05_q2_modeling_solution.md` | 5.2 问题二模型的建立与求解 | 写问题二如何继承问题一，并加入风险、误差、情景或约束变化 | `docs/results/q2_results.json`、`docs/figures/q2_figures.md`、`code/q2/` | Q2 图表和结果、与Q1对比 | 待确认 |
 | 06 | `paper/sections/06_q3_modeling_solution.md` | 5.3 问题三模型的建立与求解 | 写问题三如何加入现实因素、多因素、相关性、替代互补或综合评价 | `docs/results/q3_results.json`、`docs/figures/q3_figures.md`、`code/q3/` | Q3 图表和结果、与Q2对比 | 待确认 |
-| 90 | `paper/sections/90_model_evaluation_optimization.md` | 六、模型的评价及优化 | 写优点、缺点、推广和优化 | `docs/06_validation_report.md`、`docs/paper_materials.md` | 验证结果、敏感性分析 | 待确认 |
-| 91 | `paper/sections/91_references.md` | 参考文献 | 整理真实引用 | 已确认参考资料 | 无 | 待确认 |
-| 92 | `paper/sections/92_appendix.md` | 附录 | 列数据说明、补充图表和核心代码文件 | `code/`、`data/metadata/`、`docs/figures/` | 附录图表和代码列表 | 待确认 |
+| 90 | `paper/sections/90_model_validation.md` | 六、模型检验 | 汇总各问检验、对比、敏感性和鲁棒性分析 | `docs/06_validation_report.md`、`docs/paper_materials.md` | 验证结果、敏感性分析、对比图表 | 待确认 |
+| 91 | `paper/sections/91_model_evaluation_improvement.md` | 七、模型的优缺点、改进与推广 | 写优点、缺点、改进方向和推广价值 | `docs/06_validation_report.md`、`docs/paper_materials.md` | 检验结论和局限性 | 待确认 |
+| 92 | `paper/sections/92_references.md` | 参考文献 | 整理真实引用 | 已确认参考资料 | 无 | 待确认 |
+| 93 | `paper/sections/93_appendix.md` | 附录 | 列数据说明、补充图表和核心代码文件 | `code/`、`data/metadata/`、`docs/figures/` | 附录图表和代码列表 | 待确认 |
 
 ## 用户确认格式
 

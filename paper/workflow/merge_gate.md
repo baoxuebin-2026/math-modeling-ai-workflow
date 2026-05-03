@@ -10,6 +10,7 @@ AI 合并前必须确认：
 - 每个章节都有对应的 `paper/reviews/section_review_*.md`。
 - 没有未经用户确认的章节进入合并稿。
 - 章节顺序符合 `paper/templates/paper_outline.md` 和本题实际问题数量。
+- 第六章必须是 `paper/sections/90_model_validation.md`，第七章必须是 `paper/sections/91_model_evaluation_improvement.md`。
 - 如果题目没有第四问，所有第四问章节和引用都已删除。
 
 ## 合并输出
