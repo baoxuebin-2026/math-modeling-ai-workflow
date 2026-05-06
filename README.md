@@ -17,6 +17,9 @@ python code/run_all.py
 4. 查看核心产物：
    - `docs/01_task_alignment.md`：逐问任务对齐
    - `docs/02_model_plan.md`：模型路线
+   - `docs/active_solution_contract.md`：当前确认方案
+   - `docs/experiment_log.md`：模型运行与检验记录
+   - `docs/claim_evidence_map.md`：论文结论与证据映射
    - `docs/results/q1_results.json` 等：分问结果
    - `figures/q1/` 等：分问图表
    - `docs/06_validation_report.md`：检验报告
@@ -84,3 +87,11 @@ code/q3/visualize_q3.py
 ```
 
 论文中引用代码、图表和结果时，应优先按问题编号定位。
+
+比赛推进过程中还应维护：
+
+- `docs/checkpoints.md`：每个等待用户确认的检查点。
+- `docs/findings.md`：跨阶段发现和避坑记录。
+- `docs/experiment_log.md`：每次运行、实验、检验和图表生成记录。
+- `docs/active_solution_contract.md`：当前已经确认的模型主线。
+- `docs/claim_evidence_map.md`：论文结论、结果、图表和检验之间的证据链。

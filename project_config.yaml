@@ -39,6 +39,11 @@ visualization:
 outputs:
   final_materials: "docs/paper_materials.md"
   validation_report: "docs/06_validation_report.md"
+  checkpoints: "docs/checkpoints.md"
+  findings: "docs/findings.md"
+  experiment_log: "docs/experiment_log.md"
+  active_solution_contract: "docs/active_solution_contract.md"
+  claim_evidence_map: "docs/claim_evidence_map.md"
   paper_sections: "paper/sections"
   paper_drafts: "paper/drafts"
   paper_reviews: "paper/reviews"

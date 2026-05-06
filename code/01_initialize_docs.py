@@ -63,6 +63,27 @@ def main() -> int:
     ]
     writer_text("docs/02_model_plan.md", "\n".join(model_plan))
 
+    writer_text(
+        "docs/checkpoints.md",
+        "# 工作流检查点\n\n用于记录每个等待用户确认的阶段。详见仓库模板中的默认表格。\n",
+    )
+    writer_text(
+        "docs/findings.md",
+        "# 跨阶段发现记录\n\n用于记录模型、数据、工程和论文写作中的关键发现。\n",
+    )
+    writer_text(
+        "docs/experiment_log.md",
+        "# 实验日志\n\n用于记录每次模型运行、参数扰动、图表生成或检验实验。\n",
+    )
+    writer_text(
+        "docs/active_solution_contract.md",
+        "# 当前确认方案契约\n\n用于记录当前已确认的主模型、假设、结果和论文主线。\n",
+    )
+    writer_text(
+        "docs/claim_evidence_map.md",
+        "# 论文结论证据映射表\n\n用于连接论文结论与模型、结果、图表和检验证据。\n",
+    )
+
     writer_json(
         "docs/workflow/tasks.json",
         [

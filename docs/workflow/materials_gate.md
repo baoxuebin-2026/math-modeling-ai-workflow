@@ -13,6 +13,10 @@ AI 生成 `docs/paper_materials.md` 前必须确认：
 - `docs/05_visualization_plan.md` 已说明每张图服务哪个论文结论。
 - `docs/06_validation_report.md` 已包含模型检验、敏感性分析或不适用理由。
 - `docs/decision_log.md` 已记录关键决策。
+- `docs/checkpoints.md` 已显示关键检查点均已确认或说明未完成原因。
+- `docs/experiment_log.md` 已记录主要模型运行、图表生成和检验实验。
+- `docs/active_solution_contract.md` 已更新当前确认方案。
+- `docs/claim_evidence_map.md` 已建立论文结论与证据的对应关系。
 
 如果上述文件中仍大量存在 `待确认`、`待补充` 或 `待用户决策`，AI 必须先提示缺口，不能把素材包称为最终论文素材。
 
@@ -25,6 +29,7 @@ AI 生成 `docs/paper_materials.md` 前必须确认：
 - 每问结果文件与图表说明。
 - 模型检验、敏感性分析和局限性。
 - 论文中建议使用的核心结论。
+- 可以写入摘要的结论及其证据来源。
 - 仍需用户确认的问题。
 
 ## 获奖论文启发核对
@@ -36,6 +41,7 @@ AI 生成 `docs/paper_materials.md` 前必须确认：
 - 是否有风险、情景、误差或鲁棒性处理。
 - 是否有能写进论文的对比结果。
 - 是否解释了结果差异，而不是只堆数值。
+- `docs/claim_evidence_map.md` 中是否仍存在证据不足但准备写入摘要的结论。
 
 ## 进入论文阶段条件
 

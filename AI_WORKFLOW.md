@@ -37,6 +37,11 @@ AI 必须按以下模式工作：
 - 结果 JSON：`docs/results/`
 - 图表说明：`docs/figures/`
 - 阶段文档：`docs/00_*.md` 至 `docs/06_*.md`
+- 工作流状态记录：`docs/checkpoints.md`
+- 跨阶段发现记录：`docs/findings.md`
+- 实验与运行记录：`docs/experiment_log.md`
+- 当前确认方案契约：`docs/active_solution_contract.md`
+- 论文结论证据映射：`docs/claim_evidence_map.md`
 - 工作流门控清单：`docs/workflow/*_gate.md`
 - 论文写作工作流：`paper/`
 - 分章节论文草稿：`paper/sections/`
@@ -56,7 +61,7 @@ AI 必须按以下模式工作：
 
 ## 标准交互顺序
 
-1. 读取 `project_config.yaml` 与赛题/附件。
+1. 读取 `project_config.yaml`、`docs/checkpoints.md`、`docs/findings.md`、`docs/active_solution_contract.md` 与赛题/附件。
 2. AI 解析题意，说明每一问可能的理解，生成 `docs/00_problem_extracted.md` 草稿。
 3. AI 给出逐问任务对齐表，指出不确定点，等待用户确认，确认后生成 `docs/01_task_alignment.md`。
 4. AI 对每一问提出模型候选、优缺点、适配性评分和推荐主线，等待用户确认，确认后生成 `docs/02_model_plan.md`。
@@ -73,9 +78,9 @@ AI 必须按以下模式工作：
    - `code/q1/solve_q1.py` → `docs/results/q1_results.json`
    - `code/q1/visualize_q1.py` → `figures/q1/` 与 `docs/figures/q1_figures.md`
    - Q2、Q3 同理。
-9. AI 解读运行结果，说明结果是否合理、是否需要换模型或补实验，确认后生成 `docs/04_result_summary.md`。
-10. AI 设计验证与敏感性分析，等待用户确认，确认后执行并生成 `docs/06_validation_report.md`。
-11. AI 汇总已经确认的全部内容，生成 `docs/paper_materials.md`。
+9. AI 解读运行结果，说明结果是否合理、是否需要换模型或补实验，确认后生成 `docs/04_result_summary.md`，并更新 `docs/experiment_log.md` 与 `docs/findings.md`。
+10. AI 设计验证与敏感性分析，等待用户确认，确认后执行并生成 `docs/06_validation_report.md`，并更新 `docs/claim_evidence_map.md`。
+11. AI 汇总已经确认的全部内容，生成 `docs/paper_materials.md`。生成前必须确认 `docs/active_solution_contract.md` 与 `docs/claim_evidence_map.md` 已更新。
 12. 若用户进入论文写作阶段，读取 `paper/README.md` 和 `paper/workflow/paper_writing_workflow.md`，先生成章节队列，再逐章生成 `paper/sections/` 下的章节草稿。每章确认后才能进入下一章，全部章节确认后才合并为 `paper/drafts/final_paper_draft.md`。
 
 ## 阶段门控清单
@@ -125,6 +130,19 @@ AI 必须显式暴露以下决策，不能擅自隐藏：
 每一次关键决策都应记录到：
 
 - `docs/decision_log.md`
+- `docs/checkpoints.md`
+
+每一次模型运行、参数扰动、图表生成或检验实验都应记录到：
+
+- `docs/experiment_log.md`
+
+每一个会影响后续判断的发现都应记录到：
+
+- `docs/findings.md`
+
+每一个准备写入论文摘要或核心结论的说法都应记录到：
+
+- `docs/claim_evidence_map.md`
 
 ## 代码命名规则
 
@@ -145,6 +163,11 @@ AI 必须显式暴露以下决策，不能擅自隐藏：
 - `docs/04_result_summary.md`
 - `docs/05_visualization_plan.md`
 - `docs/06_validation_report.md`
+- `docs/checkpoints.md`
+- `docs/findings.md`
+- `docs/experiment_log.md`
+- `docs/active_solution_contract.md`
+- `docs/claim_evidence_map.md`
 - `docs/paper_materials.md`
 - 每个已启用问题的 `docs/results/qx_results.json`
 - 每个已启用问题的 `docs/figures/qx_figures.md`
