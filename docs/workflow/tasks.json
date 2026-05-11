@@ -22,6 +22,11 @@
       "id": "q3",
       "solve": "code/q3/solve_q3.py",
       "visualize": "code/q3/visualize_q3.py"
+    },
+    {
+      "id": "q4",
+      "solve": "code/q4/solve_q4.py",
+      "visualize": "code/q4/visualize_q4.py"
     }
   ]
 }

@@ -7,7 +7,7 @@ competition:
   name: ""
   year: ""
   problem_id: ""
-  question_count: 3
+  question_count: 4
 
 paths:
   raw_data: "data/raw"
@@ -22,7 +22,7 @@ paths:
   figure_docs: "docs/figures"
 
 workflow:
-  enabled_questions: ["q1", "q2", "q3"]
+  enabled_questions: ["q1", "q2", "q3", "q4"]
   stop_before_final_paper: true
   require_user_decision_points: true
   mode: "ai_decision_gated"
