@@ -78,10 +78,11 @@ AI 必须按以下模式工作：
    - `code/q1/solve_q1.py` → `docs/results/q1_results.json`
    - `code/q1/visualize_q1.py` → `figures/q1/` 与 `docs/figures/q1_figures.md`
    - Q2、Q3 同理。
-9. AI 解读运行结果，说明结果是否合理、是否需要换模型或补实验，确认后生成 `docs/04_result_summary.md`，并更新 `docs/experiment_log.md` 与 `docs/findings.md`。
-10. AI 设计验证与敏感性分析，等待用户确认，确认后执行并生成 `docs/06_validation_report.md`，并更新 `docs/claim_evidence_map.md`。
-11. AI 汇总已经确认的全部内容，生成 `docs/paper_materials.md`。生成前必须确认 `docs/active_solution_contract.md` 与 `docs/claim_evidence_map.md` 已更新。
-12. 若用户进入论文写作阶段，读取 `paper/README.md` 和 `paper/workflow/paper_writing_workflow.md`，先生成章节队列，再逐章生成 `paper/sections/` 下的章节草稿。每章确认后才能进入下一章，全部章节确认后才合并为 `paper/drafts/final_paper_draft.md`。
+9. Python 生成图片后，AI 必须调用图片查看功能逐张打开 PNG，不得只看文件是否存在或代码是否运行成功。若发现空图、文字重叠、图例遮挡、标签越界、默认风格粗糙、数据缺失或结论不清，应优先修改 `code/q*/visualize_q*.py`，重新运行生成图片，并再次查看，直到达到论文可用质量。
+10. AI 解读运行结果，说明结果是否合理、是否需要换模型、补实验或重画图，确认后生成 `docs/04_result_summary.md`，并更新 `docs/experiment_log.md` 与 `docs/findings.md`。
+11. AI 设计验证与敏感性分析，等待用户确认，确认后执行并生成 `docs/06_validation_report.md`，并更新 `docs/claim_evidence_map.md`。
+12. AI 汇总已经确认的全部内容，生成 `docs/paper_materials.md`。生成前必须确认 `docs/active_solution_contract.md` 与 `docs/claim_evidence_map.md` 已更新。
+13. 若用户进入论文写作阶段，读取 `paper/README.md` 和 `paper/workflow/paper_writing_workflow.md`，先生成章节队列，再逐章生成 `paper/sections/` 下的章节草稿。每章确认后才能进入下一章，全部章节确认后才合并为 `paper/drafts/final_paper_draft.md`。
 
 ## 阶段门控清单
 
@@ -95,6 +96,7 @@ AI 在对应阶段必须读取并遵守以下 checklist：
 | 模型检验 | `docs/workflow/validation_gate.md` | 判断检验必要性、选择检验方法、输出通过/未通过和改进建议 |
 | 素材包生成 | `docs/workflow/materials_gate.md` | 确认结果、图表、检验和用户决策足够进入论文阶段 |
 | 可视化 | `docs/workflow/05_visualization_rules.md` | 约束图表用途、命名、说明文字和论文位置 |
+| 图片质量 | `paper/workflow/figure_quality_gate.md` | 要求 Python 出图后逐张查看，发现问题回改代码并重生成 |
 | 代码结构 | `docs/workflow/code_contract.md` | 保证每问求解代码与可视化代码职责分离 |
 | 论文写作 | `paper/workflow/paper_writing_workflow.md` | 将建模素材包转为论文草稿 |
 | 章节队列 | `paper/templates/section_queue.md` | 先确认每个章节文件的顺序、职责和素材来源 |
