@@ -47,6 +47,7 @@ outputs:
   paper_sections: "paper/sections"
   paper_drafts: "paper/drafts"
   paper_reviews: "paper/reviews"
+  skills: "skills"
 
 paper_workflow:
   section_by_section: true
@@ -54,3 +55,5 @@ paper_workflow:
   require_merge_gate: true
   require_second_pass_review: true
   final_draft: "paper/drafts/final_paper_draft.md"
+  stop_after_markdown: true
+  formatting_outputs: false

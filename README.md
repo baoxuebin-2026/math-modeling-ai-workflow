@@ -20,6 +20,7 @@
    - `figures/q*/`：分问图表
    - `docs/06_validation_report.md`：检验报告
    - `docs/paper_materials.md`：写论文前素材包
+   - `paper/drafts/final_paper_draft.md`：最终 Markdown 论文草稿
 
 注意：自动脚本只能复现已经确认的模型与图表，不能替代 AI 的建模判断和用户决策。
 
@@ -33,7 +34,7 @@
 - `project_config.yaml`：路径和流程配置。
 - `code/`：确认方案后的求解、可视化和验证代码骨架。
 - `docs/`：题意、模型路线、决策日志、结果和论文素材模板。
-- `paper/`：把 `docs/paper_materials.md` 转化为论文草稿的逐章写作工作流。
+   - `paper/`：把 `docs/paper_materials.md` 转化为 Markdown 论文草稿的逐章写作工作流；写作完成后停止，不负责排版。
 - `data/`：本地赛题和数据放置位置，仓库只保留空目录占位。
 - `figures/`：本地图表输出位置，仓库只保留空目录占位。
 

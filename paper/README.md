@@ -12,7 +12,7 @@
 4. 每生成一个章节，AI 必须使用 `paper/workflow/section_gate.md` 做本章核对，并等待用户确认。
 5. 所有章节确认后，AI 使用 `paper/workflow/merge_gate.md` 合并为 `paper/drafts/final_paper_draft.md`。
 6. AI 使用 `paper/workflow/abstract_gate.md` 回收全文结果，二次优化标题、摘要和关键词。
-7. AI 使用 `paper/workflow/final_review_gate.md` 做全文二次一致性检查，检查记录输出到 `paper/reviews/`。
+7. AI 使用 `paper/workflow/final_review_gate.md` 做 Markdown 全文一致性检查，输出最终 Markdown 草稿后停止；Word/PDF 排版由用户自行完成。
 
 ## 目录职责
 
@@ -21,7 +21,7 @@
 - `paper/sections/`：比赛时生成的分章节草稿，一章一个 `.md`。
 - `paper/drafts/`：由已确认章节合并出的整篇草稿。
 - `paper/reviews/`：逐章核对记录和全文二次核对记录。
-- `paper/reference_format/`：从参考论文中提炼出的格式注意事项。
+- `paper/reference_format/`：从参考论文中提炼出的写作和引用注意事项，不负责排版。
 
 ## 重要原则
 

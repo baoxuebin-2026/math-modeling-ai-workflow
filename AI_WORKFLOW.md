@@ -1,6 +1,8 @@
 # AI 工作流总入口
 
-当 AI 接手本工程时，必须把本文件作为唯一总入口读取。本工程目标是完成“写论文之前的所有工作”，即通过 AI 分阶段判断、解释、推荐和执行，产出可复核、可修改、可写入论文的建模素材包，而不是让 Python 流水线替代 AI 的建模决策。
+当 AI 接手本工程时，必须把本文件作为唯一总入口读取。本工程目标是完成“写论文之前的所有工作”，即通过 AI 分阶段判断、解释、推荐和执行，产出可复核、可修改、可写入论文的建模素材包，而不是让 Python 流水线替代 AI 的建模决策。各阶段 skill 的职责和调用顺序以 `docs/workflow/skill_routing.md` 为准。
+
+正式使用的 skill 位于 `skills/`；先读取 `skills/README.md`，再按路由加载最小必要模块。
 
 ## 总目标
 
@@ -62,7 +64,8 @@ AI 必须按以下模式工作：
 ## 标准交互顺序
 
 1. 读取 `project_config.yaml`、`docs/checkpoints.md`、`docs/findings.md`、`docs/active_solution_contract.md` 与赛题/附件。
-2. AI 必须读取 `docs/workflow/national_prize_gate.md`，先从最终论文倒推题目主线、各问递进关系、隐含评分点、可创新位置和主要风险。
+2. 读取 `docs/workflow/skill_routing.md`，锁定当前阶段的主 skill 和允许协作 skill，不得同时启动多个总流程。
+3. AI 必须读取 `docs/workflow/national_prize_gate.md`，先从最终论文倒推题目主线、各问递进关系、隐含评分点、可创新位置和主要风险。
 3. AI 解析题意，说明每一问可能的理解，生成 `docs/00_problem_extracted.md` 草稿。
 4. AI 给出逐问任务对齐表，指出不确定点、前后问继承关系和论文主线位置，等待用户确认，确认后生成 `docs/01_task_alignment.md`。
 5. AI 对每一问提出模型候选、优缺点、适配性评分、基线-改进-防守结构和推荐主线，等待用户确认，确认后生成 `docs/02_model_plan.md`。
@@ -84,7 +87,7 @@ AI 必须按以下模式工作：
 12. AI 解读运行结果，说明结果是否合理、是否支撑论文主线、是否需要换模型、补实验或重画图，确认后生成 `docs/04_result_summary.md`，并更新 `docs/experiment_log.md` 与 `docs/findings.md`。
 13. AI 设计验证与敏感性分析，等待用户确认，确认后执行并生成 `docs/06_validation_report.md`，并更新 `docs/claim_evidence_map.md`。
 14. AI 汇总已经确认的全部内容，生成 `docs/paper_materials.md`。生成前必须确认 `docs/active_solution_contract.md` 与 `docs/claim_evidence_map.md` 已更新，并按 `docs/workflow/national_prize_gate.md` 检查论文主线、创新点和证据链是否足够。
-15. 若用户进入论文写作阶段，读取 `paper/README.md` 和 `paper/workflow/paper_writing_workflow.md`，先生成章节队列，再逐章生成 `paper/sections/` 下的章节草稿。每章确认后才能进入下一章，全部章节确认后才合并为 `paper/drafts/final_paper_draft.md`。
+15. 若用户进入论文写作阶段，读取 `paper/README.md` 和 `paper/workflow/paper_writing_workflow.md`，先生成章节队列，再逐章生成 `paper/sections/` 下的 Markdown 草稿。每章确认后才能进入下一章，全部章节确认后合并为 `paper/drafts/final_paper_draft.md`；生成该 Markdown 论文草稿后停止，不生成 Word、PDF 或其他排版文件。
 
 ## 阶段门控清单
 
@@ -107,7 +110,7 @@ AI 在对应阶段必须读取并遵守以下 checklist：
 | 单章验收 | `paper/workflow/section_gate.md` | 每章生成后做来源追溯和用户确认 |
 | 章节合并 | `paper/workflow/merge_gate.md` | 将已确认章节合并为整篇草稿 |
 | 摘要优化 | `paper/workflow/abstract_gate.md` | 摘要、标题、关键词二次优化 |
-| 终稿检查 | `paper/workflow/final_review_gate.md` | 全文一致性、格式和逻辑检查 |
+| 论文草稿检查 | `paper/workflow/final_review_gate.md` | Markdown 全文一致性和逻辑检查；不执行排版验收 |
 
 ## 自动脚本的定位
 
@@ -176,6 +179,7 @@ AI 必须显式暴露以下决策，不能擅自隐藏：
 - `docs/active_solution_contract.md`
 - `docs/claim_evidence_map.md`
 - `docs/paper_materials.md`
+- `paper/drafts/final_paper_draft.md`
 - 每个已启用问题的 `docs/results/qx_results.json`
 - 每个已启用问题的 `docs/figures/qx_figures.md`
 
