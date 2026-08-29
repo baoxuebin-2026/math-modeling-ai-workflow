@@ -8,11 +8,7 @@
 
 1. 将赛题、附件和原始数据放入 `data/raw/`。
 2. 如有外部补充数据，放入 `data/external/`，并在 `data/metadata/sources.json` 中记录来源。
-3. 与 AI 按 `AI_WORKFLOW.md` 分阶段推进。需要检查骨架或运行已确认代码时，可以运行：
-
-```bash
-python code/run_all.py
-```
+3. 打开 `project_config.yaml`，填写比赛信息和问题数量；再与 AI 按 `AI_WORKFLOW.md` 分阶段推进。
 
 4. 查看核心产物：
    - `docs/01_task_alignment.md`：逐问任务对齐
@@ -20,12 +16,12 @@ python code/run_all.py
    - `docs/active_solution_contract.md`：当前确认方案
    - `docs/experiment_log.md`：模型运行与检验记录
    - `docs/claim_evidence_map.md`：论文结论与证据映射
-   - `docs/results/q1_results.json` 等：分问结果
-   - `figures/q1/` 等：分问图表
+   - `docs/results/q*_results.json`：分问结果
+   - `figures/q*/`：分问图表
    - `docs/06_validation_report.md`：检验报告
    - `docs/paper_materials.md`：写论文前素材包
 
-注意：`python code/run_all.py` 是检查与执行工具，不是替代 AI 决策的主流程。
+注意：自动脚本只能复现已经确认的模型与图表，不能替代 AI 的建模判断和用户决策。
 
 ## 这个仓库需要哪些东西
 
@@ -75,7 +71,7 @@ python code/run_all.py
 
 分章节草稿放在 `paper/sections/`，合并后的整篇草稿放在 `paper/drafts/`，核对记录放在 `paper/reviews/`。
 
-每一问固定使用一组代码：
+每一问按配置生成一组代码：
 
 ```text
 code/q1/solve_q1.py

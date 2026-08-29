@@ -5,13 +5,10 @@
 ```text
 code/q1/solve_q1.py
 code/q1/visualize_q1.py
-code/q2/solve_q2.py
-code/q2/visualize_q2.py
-code/q3/solve_q3.py
-code/q3/visualize_q3.py
+...
 ```
 
-如果赛题不是三问，AI 必须先更新 `project_config.yaml` 和 `docs/workflow/tasks.json`，再按同样规则新增或删减 `code/q*/`、`figures/q*/`、`docs/results/q*_results.json` 和 `docs/figures/q*_figures.md`。
+问题数量和启用的问题由 `project_config.yaml` 与 `docs/workflow/tasks.json` 配置。AI 应先完成用户确认，再按配置新增或删减 `code/q*/`、`figures/q*/`、`docs/results/q*_results.json` 和 `docs/figures/q*_figures.md`。
 
 ## solve_qx.py 负责
 
@@ -26,9 +23,10 @@ code/q3/visualize_q3.py
 
 - 读取 `docs/results/qx_results.json` 和必要数据。
 - 生成该问所有图表到 `figures/qx/`。
-- 写出图表说明到 `docs/figures/qx_figures.md`。
 - 不重复实现核心求解逻辑。
 - 只生成已经由 AI 说明用途并经用户确认保留的图表。
+- 严格遵守 `docs/workflow/05_visualization_rules.md` 中的默认论文图风格。
+- 不写入或覆盖 `docs/*.md`；图表说明由 AI 使用人工式 patch 更新。
 
 ## JSON 最低字段
 

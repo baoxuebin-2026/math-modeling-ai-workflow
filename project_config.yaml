@@ -7,7 +7,7 @@ competition:
   name: ""
   year: ""
   problem_id: ""
-  question_count: 4
+  question_count: null
 
 paths:
   raw_data: "data/raw"
@@ -22,7 +22,7 @@ paths:
   figure_docs: "docs/figures"
 
 workflow:
-  enabled_questions: ["q1", "q2", "q3", "q4"]
+  enabled_questions: []
   stop_before_final_paper: true
   require_user_decision_points: true
   mode: "ai_decision_gated"
@@ -30,10 +30,10 @@ workflow:
 
 visualization:
   dpi: 300
-  style: "whitegrid"
+  style: "low_saturation_evidence"
   title_inside_figure: false
   max_subplots_per_png: 2
-  palette: "tableau_colorblind"
+  palette: "workflow_default"
   filename_pattern: "q{question}_fig{index:02d}_{description}.png"
 
 outputs:

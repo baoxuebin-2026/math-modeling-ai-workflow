@@ -9,26 +9,5 @@
     "visualization": "docs/workflow/05_visualization_rules.md",
     "code_contract": "docs/workflow/code_contract.md"
   },
-  "questions": [
-    {
-      "id": "q1",
-      "solve": "code/q1/solve_q1.py",
-      "visualize": "code/q1/visualize_q1.py"
-    },
-    {
-      "id": "q2",
-      "solve": "code/q2/solve_q2.py",
-      "visualize": "code/q2/visualize_q2.py"
-    },
-    {
-      "id": "q3",
-      "solve": "code/q3/solve_q3.py",
-      "visualize": "code/q3/visualize_q3.py"
-    },
-    {
-      "id": "q4",
-      "solve": "code/q4/solve_q4.py",
-      "visualize": "code/q4/visualize_q4.py"
-    }
-  ]
+  "questions": []
 }
