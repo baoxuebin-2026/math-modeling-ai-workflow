@@ -1,0 +1,6 @@
+check_id,subquestion,artifact,location,claim_id,check_type,input_ref,expected_relation,observed,status,severity,minimum_fix,owner
+MV-001,Q1,docs/02_model_plan.md,Section 3,,unit,data/raw/附件/附件1.xlsx,kW multiplied by 1/6 h equals kWh,,blocked,P1,CP-02后执行单位抽查,math-verifier
+MV-002,Q1,docs/02_model_plan.md,Section 3,,balance,docs/results/q1_results.json,per-slot balance residual <= 1e-5 kWh,,blocked,P1,求解后逐格复算,math-verifier
+MV-003,Q2-Q4,docs/02_model_plan.md,Sections 5-9,,information-set,feature audit,no feature timestamp later than decision timestamp,,blocked,P1,代码后审计特征截止,math-verifier
+MV-004,Q2-Q4,docs/02_model_plan.md,Section 9,,boundary,docs/results/q*_results.json,1200 <= SoC <= 10800 and cross-day continuity,,blocked,P1,求解后检查边界与日间衔接,math-verifier
+MV-005,Q3-Q4,docs/02_model_plan.md,Section 6,,accounting,docs/results/q*_results.json,total equals plan + adjustment + emergency components,,blocked,P1,结果后独立复算,math-verifier
