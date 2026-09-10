@@ -1,7 +1,7 @@
 # 模型—代码交接
 
 模型版本：`C-M1-v1`  
-状态：`blocked-by-CP-02`  
+状态：`ready-for-CP-03`
 适用分问：Q1–Q4
 
 ## 已锁定路线
@@ -16,7 +16,7 @@
 - `data/raw/附件/附件4.xlsx`：全年10分钟波动电价。
 - `data/raw/附件/附件5/result*.xlsx`：结果输出模板。
 
-可信字段、工作表名、时间解析和加工后 schema 待 CP-02 写入 `docs/03_data_report.md`。
+可信字段、工作表名、时间解析和加工后 schema 已由 `docs/03_data_report.md` 锁定。求解代码统一读取 `data/processed/`，附件3十分钟预报统一调用 `code/common/prepare_data.py` 中的线性插值函数。
 
 ## 求解路线
 
@@ -35,7 +35,7 @@
 
 ## PoC 与验证阻塞
 
-每个将用于正文的 B1/M1 候选都必须在真实附件切片上通过不超过30行的 PoC，并登记到 `docs/poc_registry.csv`。至少检查单位换算、能量平衡、状态边界、费用复算、无前视特征截止和求解最优状态。当前未执行，故模型仍为 `diagnostic-only`，不能形成论文数值结论。
+每个将用于正文的 B1/M1 候选都必须在真实附件切片上通过不超过30行的 PoC，并登记到 `docs/poc_registry.csv`。至少检查单位换算、能量平衡、状态边界、费用复算、无前视特征截止和求解最优状态。预处理结构检查已通过，但优化PoC尚未执行，故模型仍为 `diagnostic-only`，不能形成论文数值结论。
 
 ## 修订记录
 
