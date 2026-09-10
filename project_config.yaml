@@ -1,13 +1,13 @@
 project:
-  name: "数学建模工作流"
+  name: "2026 CUMCM C题：微网与外部电网电力调控策略"
   language: "zh-CN"
   target: "pre_paper_materials"
 
 competition:
-  name: ""
-  year: ""
-  problem_id: ""
-  question_count: null
+  name: "2026年高教社杯全国大学生数学建模竞赛"
+  year: "2026"
+  problem_id: "C"
+  question_count: 4
 
 paths:
   raw_data: "data/raw"
@@ -22,7 +22,7 @@ paths:
   figure_docs: "docs/figures"
 
 workflow:
-  enabled_questions: []
+  enabled_questions: [1, 2, 3, 4]
   stop_before_final_paper: true
   require_user_decision_points: true
   mode: "ai_decision_gated"
