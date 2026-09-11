@@ -10,16 +10,16 @@
 
 | 顺序 | 章节文件 | 论文位置 | 本章任务与写作侧重 | 主要来源 | 预计图表/结果 | 状态 |
 |---|---|---|---|---|---|---|
-| 00 | `paper/sections/00_title_abstract.md` | 标题、摘要、关键词 | 先写可修改版本；突出严格无前视、多时次更新、风险压缩和3组核心数值，正文完成后重写 | `docs/paper_materials.md`、`docs/claim_evidence_map.md` | Q1节省26.90%；Q3/Q4紧急购电下降78.69%/78.05%；不插图 | 用户本地已修改，待全文核验 |
+| 00 | `paper/sections/00_title_abstract.md` | 标题、摘要、关键词 | 突出计划阶段无前视、多时次更新、风险压缩和3组核心数值，正文完成后再做终稿核验 | `docs/paper_materials.md`、`docs/claim_evidence_map.md` | Q1节省26.90%；Q3/Q4紧急购电下降78.69%/78.05%；不插图 | 已完成一致性校正，待终稿核验 |
 | 01 | `paper/sections/01_problem_restatement.md` | 一、问题重述 | 用原创语言重述微网对象、四问任务、约束和交付，不复制题面、不提前报结果 | `docs/00_problem_extracted.md`、`docs/01_task_alignment.md` | 四问任务短表；不插图 | 已确认 |
 | 02 | `paper/sections/02_problem_analysis.md` | 二、问题分析 | 说明四问继承关系、信息集难点、跨日SOC与分账难点，给出全文技术路线 | `docs/01_task_alignment.md`、`docs/02_model_plan.md`、`docs/paper_materials.md` | `figures/00.png`统一技术路线图；Q3机制图后置到问题三 | 已确认 |
-| 03 | `paper/sections/03_assumptions_notations.md` | 三、模型假设；四、符号说明 | 只保留影响模型的6–7项假设，统一功率/电量、购电、SOC和场景符号 | `docs/paper_materials.md`第3–6节、`docs/02_model_plan.md` | 无编号符号表；无结果图 | 已确认 |
-| 04 | `paper/sections/04_q1_modeling_solution.md` | 5.1 问题一 | 侧重物理机制和可解释最优调度：无储能基线、确定性LP、词典序去退化、结果和效率防守 | `docs/results/q1_results.json`、`docs/figures/q1_figures.md`、`code/q1/solve_q1.py`、`code/common/dispatch_lp.py` | 图2–3；表1–2；35,126.95元与26.90% | 已确认 |
+| 03 | `paper/sections/03_assumptions_notations.md` | 三、模型假设；四、符号说明 | 保留6项关键假设，明确不反向售电、计划信息边界与后验结算口径，精简全局符号 | `docs/paper_materials.md`第3–6节、`docs/02_model_plan.md` | 无编号符号表；无结果图 | 已完成重构 |
+| 04 | `paper/sections/04_q1_modeling_solution.md` | 5.1 问题一 | 侧重物理机制和可解释最优调度：无储能基线、确定性LP、词典序去退化、结果和效率防守 | `docs/results/q1_results.json`、`docs/figures/q1_figures.md`、`code/q1/solve_q1.py`、`code/common/dispatch_lp.py` | 图2–3；表1–2；35,126.95元与26.90% | 已完成一致性修订 |
 | 05 | `paper/sections/05_q2_modeling_solution.md` | 5.2 问题二 | 侧重严格因果信息集、预测器选择、残差场景和48小时滚动；解释误差到紧急购电的传播 | `docs/results/q2_results.json`、`docs/figures/q2_figures.md`、`code/q2/solve_q2.py` | 图4–5；表3–5；13,703,782.97元 | 已确认 |
 | 06 | `paper/sections/06_q3_modeling_solution.md` | 5.3 问题三 | 侧重0/6/12/18时修正、上下调线性化和信息价值；诚实呈现小幅降费与显著降风险 | `docs/results/q3_results.json`、`docs/figures/q3_figures.md`、`code/q3/solve_q3.py` | 表6–9；图6–8；0.81%与78.69% | 已确认 |
-| 07 | `paper/sections/07_q4_modeling_solution.md` | 5.4 问题四 | 侧重未来电价未知的因果预测、源荷价场景与Q4-2/Q4-3公平对比；解释P95略升 | `docs/results/q4_results.json`、`docs/figures/q4_figures.md`、`code/q4/solve_q4.py` | 表10–11；图9–10；0.41%与78.05% | 已生成，待本章确认 |
-| 90 | `paper/sections/90_model_validation.md` | 六、模型检验 | 汇总物理/会计复算、预测对照、场景收敛、CVaR风险价格、末端SOC、效率、极端误差和更新消融 | `docs/06_validation_report.md`、`docs/results/validation_results.json` | 验证图1、验证图3；1张综合验证表；验证图2转附录 | 已生成，待本章确认 |
-| 91 | `paper/sections/91_model_evaluation_improvement.md` | 七、模型评价、改进与推广 | 写可执行性、统一性、可复现性优点；写终端带活跃、代表日消融、未含寿命/潮流等具体限制；提出72小时和寿命成本扩展 | `docs/paper_materials.md`第13、17节、`docs/06_validation_report.md` | 不新增结果图；引用验证结论 | 已生成，待本章确认 |
+| 07 | `paper/sections/07_q4_modeling_solution.md` | 5.4 问题四 | 侧重未来电价未知的信息边界、源荷价场景与Q4-2/Q4-3公平对比；解释P95略升 | `docs/results/q4_results.json`、`docs/figures/q4_figures.md`、`code/q4/solve_q4.py` | 表10–11；图9–10；0.41%与78.05% | 已完成一致性修订 |
+| 90 | `paper/sections/90_model_validation.md` | 六、模型检验 | 汇总物理/会计复算、预测对照、场景收敛、CVaR风险价格、末端SOC、效率、极端误差和更新消融 | `docs/06_validation_report.md`、`docs/results/validation_results.json` | 图11–12；表12；验证图2转附录 | 已完成重构 |
+| 91 | `paper/sections/91_model_evaluation_improvement.md` | 七、模型评价、改进与推广 | 区分计划无前视与后验补救，系统评价统一性、局限、改进及推广边界 | `docs/paper_materials.md`第13、17节、`docs/06_validation_report.md` | 不新增结果图；引用验证结论 | 已完成大幅重写 |
 | 92 | `paper/sections/92_references.md` | 参考文献与AI声明 | 只整理真实使用的题面、算法和软件来源；按当年格式在参考文献前设置AI工具使用声明 | 官方题面、最终实际引用来源、`docs/ai_usage_log.md` | 无图；不虚构参考文献 | 待撰写 |
 | 93 | `paper/sections/93_appendix.md` | 附录与支撑材料 | 列补充验证图、结果表和核心代码文件说明，不粘贴大量不可读代码 | `code/`、`data/metadata/`、`docs/figures/`、`docs/poc_registry.csv` | 验证图2、补充参数表、程序清单 | 待撰写 |
 
@@ -37,7 +37,7 @@
 
 当前状态：
 
-- 第00章已由用户在本地修改，视为阶段确认，待全文完成后统一核验；仓库版本暂不覆盖。
+- 第00章已按全文信息边界校正摘要表述，最终合并后仍需统一核验标题、摘要和关键词。
 - 第01章问题重述已由用户以“下一章”确认通过。
 - 第02章问题分析已由用户以“继续”确认通过。
 - 第03章模型假设与符号说明已由用户以“继续”确认通过。
@@ -46,4 +46,4 @@
 - 图1—图5均已补充置于图片下方的独立可见图注。
 - 第06章问题三采用四个独立内容的三级标题；新增图6机制图后，图6—表6—图7—表7—表8—表9—图8随论述穿插，并由用户以“直接下一章”确认通过。
 - 第07章问题四采用三个独立内容的三级标题，图9—表10—表11—图10随分析分开放置，完整比较Q4-2与Q4-3的平均成本、尾部费用和紧急购电风险。
-- 在用户确认第07章前，不进入第90章。
+- 第七章已先行大幅重写；随后按`1.md`完成模型假设与符号说明重构、问题一至问题三题目指定表格重排、问题三和问题四时域及索引校正，并对全文信息边界与后验结算口径作一致性修订。
