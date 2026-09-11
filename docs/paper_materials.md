@@ -278,7 +278,6 @@ Python在本项目中负责数据编排、预测与结果生成，HiGHS负责底
 
 | 图号建议 | 文件 | 正文位置 | 支撑结论 |
 |---|---|---|---|
-| 图1 | `figures/q1/q1_fig00_model_framework.png` | 问题分析/模型总览 | 四问共享严格无前视闭环并逐层扩展 |
 | 图2 | `figures/q1/q1_fig01_dispatch_soc.png` | Q1结果 | 低价/光伏充电、高价放电及SOC边界 |
 | 图3 | `figures/q1/q1_fig02_cost_comparison.png` | Q1结果 | 储能使单日成本下降26.90% |
 | 图4 | `figures/q2/q2_fig01_forecast_execution.png` | Q2结果 | 预测误差如何触发执行补救 |

@@ -5,11 +5,9 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -21,41 +19,6 @@ from code.common.plot_utils import (
 
 
 OUT = ROOT / "figures/q1"
-
-
-def plot_framework() -> None:
-    fig, ax = plt.subplots(figsize=(7.2, 4.0))
-    ax.set_xlim(0, 10)
-    ax.set_ylim(0, 6)
-    ax.axis("off")
-    nodes = [
-        (0.55, 3.75, 2.35, 1.15, "历史数据\n与已发布预测", COLORS["blue_light"]),
-        (3.82, 3.75, 2.35, 1.15, "因果点预测\n与残差场景", COLORS["green_light"]),
-        (7.10, 3.75, 2.35, 1.15, "48 h统一计划\n（仅执行首日）", COLORS["orange_light"]),
-        (2.15, 1.15, 2.55, 1.15, "在线调度\nSOC状态传递", "#EEF0F2"),
-        (5.95, 1.15, 2.55, 1.15, "结算与证据\n成本、风险、可行性", "#EEF0F2"),
-    ]
-    for x, y, w, h, label, color in nodes:
-        box = patches.FancyBboxPatch(
-            (x, y), w, h, boxstyle="round,pad=0.06,rounding_size=0.08",
-            facecolor=color, edgecolor=COLORS["primary"], linewidth=1.0,
-        )
-        ax.add_patch(box)
-        ax.text(x + w / 2, y + h / 2, label, ha="center", va="center", color="#27323A")
-    arrows = [
-        ((2.92, 4.33), (3.78, 4.33)), ((6.18, 4.33), (7.06, 4.33)),
-        ((8.25, 3.72), (4.15, 2.34)), ((4.72, 1.72), (5.91, 1.72)),
-    ]
-    for start, end in arrows:
-        ax.annotate("", xy=end, xytext=start, arrowprops={
-            "arrowstyle": "-|>", "color": COLORS["gray"], "lw": 1.2,
-            "connectionstyle": "arc3,rad=0.0",
-        })
-    ax.text(5.0, 5.55, "决策仅使用当前时点已知信息",
-            ha="center", va="center", color=COLORS["primary"], weight="bold", fontsize=10)
-    ax.text(5.0, 0.45, "Q1：确定性基准   |   Q2–Q4：滚动预测与计划修正",
-            ha="center", va="center", color=COLORS["gray"], fontsize=8.5)
-    savefig(fig, OUT / "q1_fig00_model_framework.png")
 
 
 def plot_dispatch(result: dict, data: pd.DataFrame) -> None:
@@ -116,49 +79,39 @@ def plot_cost_by_block(result: dict, data: pd.DataFrame) -> None:
     matrix = np.vstack((baseline_k, optimized_k))
     delta = baseline_k - optimized_k
 
-    fig, (ax1, ax2) = plt.subplots(
-        2, 1, figsize=(6.8, 3.55), sharex=True,
-        gridspec_kw={"height_ratios": [1.55, 0.78]},
-    )
-    cost_cmap = LinearSegmentedColormap.from_list(
-        "cost_tiles", ["#F4F7F8", COLORS["blue_light"], COLORS["primary"]],
-    )
-    image = ax1.imshow(matrix, aspect="auto", cmap=cost_cmap, vmin=0,
-                       vmax=float(matrix.max()) * 1.05)
-    ax1.set_yticks([0, 1], ["无储能", "优化调度"])
-    for row in range(matrix.shape[0]):
-        for col in range(matrix.shape[1]):
-            color = "white" if matrix[row, col] > 0.64 * matrix.max() else "#27323A"
-            ax1.text(col, row, f"{matrix[row, col]:.1f}", ha="center", va="center",
-                     color=color, fontsize=8, weight="bold")
-    cbar = fig.colorbar(image, ax=ax1, fraction=0.025, pad=0.025)
-    cbar.set_label("费用 / 千元", fontsize=8)
-    cbar.outline.set_linewidth(0.5)
-
-    limit = max(float(np.max(np.abs(delta))), 1e-6)
-    saving_cmap = LinearSegmentedColormap.from_list(
-        "saving_tiles", [COLORS["orange"], "#FAFAFA", COLORS["green"]],
-    )
-    ax2.imshow(delta[np.newaxis, :], aspect="auto", cmap=saving_cmap,
-               norm=TwoSlopeNorm(vmin=-limit, vcenter=0, vmax=limit))
-    ax2.set_yticks([0], ["节省费用"])
-    for col, value in enumerate(delta):
-        ax2.text(col, 0, f"{value:+.1f}", ha="center", va="center",
-                 color="#27323A", fontsize=8, weight="bold")
-    ax2.set_xticks(np.arange(6), labels)
-    ax2.set_xlabel("4 h时段")
-    for ax in (ax1, ax2):
-        ax.tick_params(length=0)
-        for spine in ax.spines.values():
-            spine.set_visible(False)
-        ax.set_xticks(np.arange(-0.5, 6, 1), minor=True)
-        ax.set_yticks(np.arange(-0.5, ax.get_images()[0].get_array().shape[0], 1), minor=True)
-        ax.grid(which="minor", color="white", linewidth=2)
-        ax.tick_params(which="minor", bottom=False, left=False)
+    fig, ax1 = plt.subplots(figsize=(7.2, 4.0))
+    x = np.arange(len(labels))
+    width = 0.34
+    bars_a = ax1.bar(x - width / 2, baseline_k, width, label="无储能",
+                     color=COLORS["gray"], alpha=0.78)
+    bars_b = ax1.bar(x + width / 2, optimized_k, width, label="优化调度",
+                     color=COLORS["primary"])
+    ax1.set_ylabel("费用 / 千元")
+    ax1.set_xticks(x, labels)
+    ax1.set_xlabel("4 h时段")
+    ax1.set_ylim(0, max(baseline_k.max(), optimized_k.max()) * 1.22)
+    polish_axes(ax1)
+    legend_above(ax1, ncol=2)
+    for bars in (bars_a, bars_b):
+        for bar in bars:
+            ax1.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.02,
+                     f"{bar.get_height():.1f}", ha="center", va="bottom", fontsize=7)
+    ax2 = ax1.twinx()
+    ax2.plot(x, delta, color=COLORS["orange"], marker="o", linewidth=1.8,
+             label="节省费用", zorder=5)
+    ax2.axhline(0, color="#9AA1A8", linewidth=0.7)
+    ax2.set_ylabel("节省费用 / 千元", color=COLORS["orange"])
+    ax2.tick_params(axis="y", colors=COLORS["orange"])
+    ax2.spines["top"].set_visible(False)
+    ax2.spines["right"].set_color(COLORS["orange"])
+    for xi, value in zip(x, delta):
+        ax2.annotate(f"{value:+.1f}", (xi, value), xytext=(0, 7),
+                     textcoords="offset points", ha="center", fontsize=7,
+                     color=COLORS["orange"])
     saving = 100 * result["outputs"]["cost_saving_rate"]
-    ax2.text(0.99, -0.46, f"总节省率：{saving:.2f}%", transform=ax2.transAxes,
-             ha="right", va="bottom", color=COLORS["green"], weight="bold")
-    fig.subplots_adjust(hspace=0.16)
+    ax1.text(0.99, 0.97, f"总节省率：{saving:.2f}%", transform=ax1.transAxes,
+             ha="right", va="top", color=COLORS["green"], weight="bold")
+    fig.subplots_adjust(top=0.82, right=0.87)
     savefig(fig, OUT / "q1_fig02_cost_comparison.png")
 
 
@@ -166,7 +119,6 @@ def main() -> None:
     setup_plot()
     result = load_json(ROOT / "docs/results/q1_results.json")
     data = pd.read_csv(ROOT / "data/processed/q1_timeseries.csv")
-    plot_framework()
     plot_dispatch(result, data)
     plot_cost_by_block(result, data)
     print("generated 3 Q1/overview figures")

@@ -24,7 +24,7 @@ def plot_calibration(results: dict) -> None:
     risk = pd.DataFrame(results["v4_risk_weight_grid"])
     risk = risk[(risk["terminal_half_width_kwh"] == 600) & (risk["scenario_count"] == 20)].sort_values("risk_weight")
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.2, 3.6))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8.4, 4.2), constrained_layout=True)
     n_ref_cost = convergence.loc[convergence["scenario_count"] == 60, "mean_daily_cost_cny"].iloc[0]
     n_ref_emg = convergence.loc[convergence["scenario_count"] == 60, "total_emergency_kwh"].iloc[0]
     ax1.plot(convergence["scenario_count"], 100 * convergence["mean_daily_cost_cny"] / n_ref_cost,
@@ -36,7 +36,7 @@ def plot_calibration(results: dict) -> None:
     ax1.set_ylabel("指数 / %（N=60时为100）")
     ax1.set_xticks(convergence["scenario_count"])
     polish_axes(ax1)
-    legend_above(ax1, ncol=2)
+    ax1.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=7)
 
     base_cost = risk.loc[risk["risk_weight"] == 0, "mean_daily_cost_cny"].iloc[0]
     base_emg = risk.loc[risk["risk_weight"] == 0, "total_emergency_kwh"].iloc[0]
@@ -48,8 +48,7 @@ def plot_calibration(results: dict) -> None:
     ax2.set_ylabel("指数 / %（权重=0时为100）")
     ax2.set_xticks(risk["risk_weight"])
     polish_axes(ax2)
-    legend_above(ax2, ncol=2)
-    fig.subplots_adjust(wspace=0.32)
+    ax2.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=7)
     savefig(fig, OUT / "validation_fig01_calibration.png")
 
 
