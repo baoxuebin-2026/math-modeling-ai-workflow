@@ -378,10 +378,15 @@ def solve_adjustment_plan(
     risk_weight: float = 0.25,
     cvar_alpha: float = 0.9,
     upward_multiplier: float = 1.5,
-    downward_multiplier: float = 0.5,
+    downward_penalty_multiplier: float = 0.5,
     emergency_multiplier: float = 5.0,
 ) -> AdjustmentPlanResult:
-    """对未执行时段求调整购电量；偏差始终相对0:00原计划结算。"""
+    """对未执行时段求调整购电量；下调部分仅支付50%违约费。
+
+    原计划费用在日初记账。若取消downward，原全价购电费减少一份，
+    同时支付downward_penalty_multiplier倍的违约费，因此下调相对
+    原计划的净费用系数为downward_penalty_multiplier - 1。
+    """
     plan = _as_vector("original_plan", original_plan)
     horizon = len(plan)
     loads = np.asarray(load_scenarios, dtype=float)
@@ -399,6 +404,8 @@ def solve_adjustment_plan(
         raise ValueError("调整阶段储能边界非法")
     if not (0 <= risk_weight <= 1 and 0 < cvar_alpha < 1):
         raise ValueError("调整阶段风险参数非法")
+    if not 0 <= downward_penalty_multiplier <= 1:
+        raise ValueError("下调违约费比例必须位于[0,1]")
 
     # common: adjusted, upward, downward；scenario block同场景计划的7T+1。
     common = 3 * horizon
@@ -459,9 +466,10 @@ def solve_adjustment_plan(
         bounds[tau] = (None, None)
 
     mean_price = prices.mean(axis=0)
+    downward_net_multiplier = downward_penalty_multiplier - 1.0
     primary = np.zeros(nvar)
     primary[horizon:2 * horizon] = (1 - risk_weight) * upward_multiplier * mean_price
-    primary[2 * horizon:3 * horizon] = (1 - risk_weight) * downward_multiplier * mean_price
+    primary[2 * horizon:3 * horizon] = (1 - risk_weight) * downward_net_multiplier * mean_price
     expected_factor = (1 - risk_weight) / scenarios
     for w in range(scenarios):
         primary[off(w, 0):off(w, 0) + horizon] = expected_factor * emergency_multiplier * prices[w]
@@ -478,7 +486,7 @@ def solve_adjustment_plan(
             for t in range(horizon):
                 rows += [w, w, w]
                 cols += [horizon + t, 2 * horizon + t, off(w, 0) + t]
-                values += [upward_multiplier * prices[w, t], downward_multiplier * prices[w, t],
+                values += [upward_multiplier * prices[w, t], downward_net_multiplier * prices[w, t],
                            emergency_multiplier * prices[w, t]]
             rows += [w, w]
             cols += [tau, z0 + w]
@@ -496,7 +504,7 @@ def solve_adjustment_plan(
     soc = np.vstack([x[off(w, 6):off(w, 6) + horizon + 1] for w in range(scenarios)])
     balance = adjusted[None, :] + emg + discharge + pv_used - charge - grid_spill - loads
     state = soc[:, 1:] - soc[:, :-1] - ETA_C * charge + discharge / ETA_D
-    costs = np.sum(prices * (upward_multiplier * upward + downward_multiplier * downward)[None, :], axis=1) \
+    costs = np.sum(prices * (upward_multiplier * upward + downward_net_multiplier * downward)[None, :], axis=1) \
         + np.sum(emergency_multiplier * prices * emg, axis=1)
     max_balance = float(np.max(np.abs(balance)))
     max_state = float(np.max(np.abs(state)))
