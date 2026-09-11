@@ -4,9 +4,9 @@
 
 统一主线：以10分钟能量平衡和跨日SOC为物理地基，按“确定性调度→源荷不确定→多时次预报更新→未来电价未知”逐问扩展；核心价值表述为“以适度调整成本显著压缩高价紧急购电暴露”。
 
-建议正文保留已确认的10张主图，并在综合验证中再放验证图1和验证图3；验证图2放附录。若最终页数紧张，优先压缩表格和算法流程文字，不先删除Q2风险热力图或两张跨方案对比图。
+建议正文保留已确认的10张主图，并在综合验证中再放验证图1和验证图3；验证图2放附录。正文结果表压缩为7张，其余指定日期、紧急购电和检验结果改用文字叙述。
 
-统一编号约定：符号说明表不编号，正文结果表从问题一的表1开始连续编号；表题置于表格上方，图注独立置于图片下方；图表之间应穿插必要的解释和分析，避免多张图表连续堆放。
+统一编号约定：符号说明表不编号，正文结果表从问题一的表1至问题四的表7连续编号；表题置于表格上方，图注独立置于图片下方；图表之间穿插必要解释，避免连续堆放。
 
 | 顺序 | 章节文件 | 论文位置 | 本章任务与写作侧重 | 主要来源 | 预计图表/结果 | 状态 |
 |---|---|---|---|---|---|---|
@@ -15,11 +15,11 @@
 | 02 | `paper/sections/02_problem_analysis.md` | 二、问题分析 | 说明四问继承关系、信息集难点、跨日SOC与分账难点，给出全文技术路线 | `docs/01_task_alignment.md`、`docs/02_model_plan.md`、`docs/paper_materials.md` | `figures/00.png`统一技术路线图；Q3机制图后置到问题三 | 已确认 |
 | 03 | `paper/sections/03_assumptions_notations.md` | 三、模型假设；四、符号说明 | 保留6项关键假设，明确不反向售电、计划信息边界与后验结算口径，精简全局符号 | `docs/paper_materials.md`第3–6节、`docs/02_model_plan.md` | 无编号符号表；无结果图 | 已完成重构 |
 | 04 | `paper/sections/04_q1_modeling_solution.md` | 5.1 问题一 | 侧重物理机制和可解释最优调度：无储能基线、确定性LP、词典序去退化、结果和效率防守 | `docs/results/q1_results.json`、`docs/figures/q1_figures.md`、`code/q1/solve_q1.py`、`code/common/dispatch_lp.py` | 图2–3；表1–2；35,126.95元与26.90% | 已完成一致性修订 |
-| 05 | `paper/sections/05_q2_modeling_solution.md` | 5.2 问题二 | 侧重严格因果信息集、预测器选择、残差场景和48小时滚动；解释误差到紧急购电的传播 | `docs/results/q2_results.json`、`docs/figures/q2_figures.md`、`code/q2/solve_q2.py` | 图4–5；表3–5；13,703,782.97元 | 已确认 |
-| 06 | `paper/sections/06_q3_modeling_solution.md` | 5.3 问题三 | 侧重0/6/12/18时修正、上下调线性化和信息价值；诚实呈现小幅降费与显著降风险 | `docs/results/q3_results.json`、`docs/figures/q3_figures.md`、`code/q3/solve_q3.py` | 表6–9；图6–8；0.81%与78.69% | 已确认 |
-| 07 | `paper/sections/07_q4_modeling_solution.md` | 5.4 问题四 | 侧重未来电价未知的信息边界、源荷价场景与Q4-2/Q4-3公平对比；解释P95略升 | `docs/results/q4_results.json`、`docs/figures/q4_figures.md`、`code/q4/solve_q4.py` | 表10–11；图9–10；0.41%与78.05% | 已完成一致性修订 |
-| 90 | `paper/sections/90_model_validation.md` | 六、模型检验 | 汇总物理/会计复算、预测对照、场景收敛、CVaR风险价格、末端SOC、效率、极端误差和更新消融 | `docs/06_validation_report.md`、`docs/results/validation_results.json` | 图11–12；表12；验证图2转附录 | 已完成重构 |
-| 91 | `paper/sections/91_model_evaluation_improvement.md` | 七、模型评价、改进与推广 | 区分计划无前视与后验补救，系统评价统一性、局限、改进及推广边界 | `docs/paper_materials.md`第13、17节、`docs/06_validation_report.md` | 不新增结果图；引用验证结论 | 已完成大幅重写 |
+| 05 | `paper/sections/05_q2_modeling_solution.md` | 5.2 问题二 | 侧重严格因果信息集、预测器选择、残差场景和48小时滚动；解释误差到紧急购电的传播 | `docs/results/q2_results.json`、`docs/figures/q2_figures.md`、`code/q2/solve_q2.py` | 图4–5；表3–4；紧急购电改为文字；13,703,782.97元 | 已确认 |
+| 06 | `paper/sections/06_q3_modeling_solution.md` | 5.3 问题三 | 侧重0/6/12/18时修正、上下调线性化和信息价值；诚实呈现小幅降费与显著降风险 | `docs/results/q3_results.json`、`docs/figures/q3_figures.md`、`code/q3/solve_q3.py` | 表5–6；图6–8；原计划与紧急购电改为文字；0.81%与78.69% | 已确认 |
+| 07 | `paper/sections/07_q4_modeling_solution.md` | 5.4 问题四 | 侧重未来电价未知的信息边界、源荷价场景与Q4-2/Q4-3公平对比；解释P95略升 | `docs/results/q4_results.json`、`docs/figures/q4_figures.md`、`code/q4/solve_q4.py` | 表7；图9–10；典型日改为文字；0.41%与78.05% | 已完成一致性修订 |
+| 90 | `paper/sections/90_model_validation.md` | 六、模型检验 | 汇总物理/会计复算、预测对照、场景收敛、CVaR风险价格、末端SOC、效率、极端误差和更新消融 | `docs/06_validation_report.md`、`docs/results/validation_results.json` | 图11–12；检验结果改为文字；验证图2转附录 | 已完成重构 |
+| 91 | `paper/sections/91_model_evaluation_improvement.md` | 七、模型评价与改进 | 区分计划无前视与后验补救，评价模型优点与局限并提出改进方向 | `docs/paper_materials.md`第13、17节、`docs/06_validation_report.md` | 4个三级标题；删除推广部分；不新增图表 | 已完成结构调整 |
 | 92 | `paper/sections/92_references.md` | 参考文献与AI声明 | 只整理真实使用的题面、算法和软件来源；按当年格式在参考文献前设置AI工具使用声明 | 官方题面、最终实际引用来源、`docs/ai_usage_log.md` | 无图；不虚构参考文献 | 待撰写 |
 | 93 | `paper/sections/93_appendix.md` | 附录与支撑材料 | 列补充验证图、结果表和核心代码文件说明，不粘贴大量不可读代码 | `code/`、`data/metadata/`、`docs/figures/`、`docs/poc_registry.csv` | 验证图2、补充参数表、程序清单 | 待撰写 |
 
@@ -42,8 +42,10 @@
 - 第02章问题分析已由用户以“继续”确认通过。
 - 第03章模型假设与符号说明已由用户以“继续”确认通过。
 - 第04章问题一保持三个三级标题，图表已按“表1—图2—表2—图3”随论述穿插调整；模型与数值内容未变，原确认状态保留。
-- 第05章问题二采用四个具有独立内容的三级标题，图表已按“表3—图4—表4—表5—图5”随论述穿插调整，并由用户以“直接第三章”确认通过。
+- 第05章问题二采用四个三级标题，保留表3—4；紧急购电明细改为文字叙述，图4—5随分析穿插。
 - 图1—图5均已补充置于图片下方的独立可见图注。
-- 第06章问题三采用四个独立内容的三级标题；新增图6机制图后，图6—表6—图7—表7—表8—表9—图8随论述穿插，并由用户以“直接下一章”确认通过。
-- 第07章问题四采用三个独立内容的三级标题，图9—表10—表11—图10随分析分开放置，完整比较Q4-2与Q4-3的平均成本、尾部费用和紧急购电风险。
+- 第06章问题三采用四个三级标题；保留表5—6，0时原计划和紧急购电明细改为文字叙述，图6—8随分析穿插。
+- 第07章问题四采用三个三级标题，典型日结果改为文字，保留表7年度对比及图9—10。
 - 第七章已先行大幅重写；随后按`1.md`完成模型假设与符号说明重构、问题一至问题三题目指定表格重排、问题三和问题四时域及索引校正，并对全文信息边界与后验结算口径作一致性修订。
+
+- 全文实际Markdown结果表已压缩为7张；第七章保留7.1—7.3，并新增4个三级标题，删除原7.4推广价值与使用边界。
