@@ -1,0 +1,1388 @@
+{
+  "status": "checked",
+  "dates": [
+    "2025-03-20",
+    "2025-06-21",
+    "2025-09-23",
+    "2025-12-21"
+  ],
+  "v1_physical_and_accounting": {
+    "q1": {
+      "max_balance_residual_kwh": 1.1368683772161603e-13,
+      "max_state_residual_kwh": 8.597567102697212e-13,
+      "simultaneous_charge_discharge_slots": 0
+    },
+    "q2": {
+      "max_balance_residual_kwh": 4.547473508864641e-13,
+      "max_state_residual_kwh_excluding_first_interval": 4.547473508864641e-12,
+      "soc_min_kwh": 1200.0,
+      "soc_max_kwh": 10800.0,
+      "max_charge_kwh": 833.3333333333334,
+      "max_discharge_kwh": 833.3333333333334,
+      "simultaneous_charge_discharge_slots": 0,
+      "fee_recalculation_abs_diff_cny": 0.0,
+      "passed": true
+    },
+    "q3": {
+      "max_balance_residual_kwh": 6.821210263296962e-13,
+      "max_state_residual_kwh_excluding_first_interval": 4.661160346586257e-12,
+      "soc_min_kwh": 1200.0,
+      "soc_max_kwh": 10800.0,
+      "max_charge_kwh": 833.3333333333334,
+      "max_discharge_kwh": 833.3333333333334,
+      "simultaneous_charge_discharge_slots": 0,
+      "fee_recalculation_abs_diff_cny": 1.862645149230957e-09,
+      "passed": true
+    },
+    "q4_2": {
+      "max_balance_residual_kwh": 5.684341886080801e-13,
+      "max_state_residual_kwh_excluding_first_interval": 4.547473508864641e-12,
+      "soc_min_kwh": 1200.0,
+      "soc_max_kwh": 10800.0,
+      "max_charge_kwh": 833.3333333333334,
+      "max_discharge_kwh": 833.3333333333334,
+      "simultaneous_charge_discharge_slots": 0,
+      "fee_recalculation_abs_diff_cny": 1.862645149230957e-09,
+      "passed": true
+    },
+    "q4_3": {
+      "max_balance_residual_kwh": 6.821210263296962e-13,
+      "max_state_residual_kwh_excluding_first_interval": 4.547473508864641e-12,
+      "soc_min_kwh": 1200.0,
+      "soc_max_kwh": 10800.0,
+      "max_charge_kwh": 833.3333333333334,
+      "max_discharge_kwh": 833.3333333333334,
+      "simultaneous_charge_discharge_slots": 0,
+      "fee_recalculation_abs_diff_cny": 1.862645149230957e-09,
+      "passed": true
+    }
+  },
+  "v2_forecast_selection": {
+    "load": {
+      "selected": "seasonal",
+      "selected_nmae": 0.030333111255263154,
+      "alternatives": {
+        "seasonal": 0.030333111255263154,
+        "hist_gbr": 0.0640660478472091
+      },
+      "passed": true
+    },
+    "pv": {
+      "selected": "hist_gbr",
+      "selected_nmae": 0.07217636379283084,
+      "alternatives": {
+        "seasonal": 0.08430553198019207,
+        "hist_gbr": 0.07217636379283084
+      },
+      "passed": true
+    },
+    "price": {
+      "selected": "seasonal",
+      "selected_nmae": 0.045262732544592406,
+      "alternatives": {
+        "seasonal": 0.045262732544592406,
+        "hist_gbr": 0.05419673008231334
+      },
+      "passed": true
+    }
+  },
+  "v3_scenario_convergence": [
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 58391.31234307302,
+      "p95_daily_cost_cny": 87645.65890418492,
+      "total_emergency_kwh": 1408.2186041291077,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8209.975627399106
+    },
+    {
+      "scenario_count": 40,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 55241.20279853343,
+      "p95_daily_cost_cny": 86255.13679400945,
+      "total_emergency_kwh": 2950.039705838007,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9184.429266220306
+    },
+    {
+      "scenario_count": 60,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 55062.67175162124,
+      "p95_daily_cost_cny": 84378.95342375949,
+      "total_emergency_kwh": 2878.280155047342,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8772.049183504558
+    }
+  ],
+  "v4_risk_weight_grid": [
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 58391.31234307302,
+      "p95_daily_cost_cny": 87645.65890418492,
+      "total_emergency_kwh": 1408.2186041291077,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8209.975627399106
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.1,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 61808.320256757455,
+      "p95_daily_cost_cny": 92845.25832291206,
+      "total_emergency_kwh": 305.48868244262786,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9085.084671594526
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.25,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 71279.89833721767,
+      "p95_daily_cost_cny": 97313.1236741389,
+      "total_emergency_kwh": 0.03773831283694226,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9592.61595646249
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.5,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 77786.17239400187,
+      "p95_daily_cost_cny": 97477.37061639405,
+      "total_emergency_kwh": 0.03666155257556193,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 10800.0
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 1200.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 58393.74609198479,
+      "p95_daily_cost_cny": 87631.63408709042,
+      "total_emergency_kwh": 1408.218605592526,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8209.975627399106
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.1,
+      "terminal_half_width_kwh": 1200.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 61808.69804701404,
+      "p95_daily_cost_cny": 92845.2583229121,
+      "total_emergency_kwh": 305.4886832077106,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9085.084671594524
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.25,
+      "terminal_half_width_kwh": 1200.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 71282.12117988784,
+      "p95_daily_cost_cny": 97313.12367413891,
+      "total_emergency_kwh": 0.03773793682289769,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9592.61595646249
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.5,
+      "terminal_half_width_kwh": 1200.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 77786.17264961137,
+      "p95_daily_cost_cny": 97477.37061639405,
+      "total_emergency_kwh": 0.03666155273300151,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 10800.0
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 2400.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 58391.98618907627,
+      "p95_daily_cost_cny": 87641.36289509964,
+      "total_emergency_kwh": 1408.2186049639868,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8209.975627399106
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.1,
+      "terminal_half_width_kwh": 2400.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 61808.75354138141,
+      "p95_daily_cost_cny": 92845.25832291212,
+      "total_emergency_kwh": 305.4886829137747,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9085.084671594523
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.25,
+      "terminal_half_width_kwh": 2400.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 71281.77001355075,
+      "p95_daily_cost_cny": 97313.1236741389,
+      "total_emergency_kwh": 0.03774049822479551,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9592.61595646249
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.5,
+      "terminal_half_width_kwh": 2400.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 77786.17657746714,
+      "p95_daily_cost_cny": 97477.37061639404,
+      "total_emergency_kwh": 0.03666155516206927,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 10800.0
+    }
+  ],
+  "v5_terminal_sensitivity": [
+    {
+      "date": "2025-03-20",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 600.0,
+      "total_cost_cny": 44987.536338516176,
+      "emergency_kwh": 3330.8382934138117,
+      "actual_terminal_soc_kwh": 4266.1816376181705,
+      "planned_terminal_soc_kwh": 5400.0
+    },
+    {
+      "date": "2025-03-20",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 1200.0,
+      "total_cost_cny": 44987.53633851617,
+      "emergency_kwh": 3330.8382934138085,
+      "actual_terminal_soc_kwh": 4266.1816376181705,
+      "planned_terminal_soc_kwh": 4800.0
+    },
+    {
+      "date": "2025-03-20",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 2400.0,
+      "total_cost_cny": 44987.53633851617,
+      "emergency_kwh": 3330.8382934138085,
+      "actual_terminal_soc_kwh": 4266.1816376181705,
+      "planned_terminal_soc_kwh": 3600.0
+    },
+    {
+      "date": "2025-06-21",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 600.0,
+      "total_cost_cny": 22167.309469909967,
+      "emergency_kwh": 0.0005710280075205547,
+      "actual_terminal_soc_kwh": 9305.269018455772,
+      "planned_terminal_soc_kwh": 5400.0
+    },
+    {
+      "date": "2025-06-21",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 1200.0,
+      "total_cost_cny": 22160.331130212133,
+      "emergency_kwh": 0.0005708482461973199,
+      "actual_terminal_soc_kwh": 9305.269018256038,
+      "planned_terminal_soc_kwh": 4800.0
+    },
+    {
+      "date": "2025-06-21",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 2400.0,
+      "total_cost_cny": 22160.331130212133,
+      "emergency_kwh": 0.0005708482461973199,
+      "actual_terminal_soc_kwh": 9305.269018256038,
+      "planned_terminal_soc_kwh": 3600.0
+    },
+    {
+      "date": "2025-09-23",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 600.0,
+      "total_cost_cny": 44246.739350828255,
+      "emergency_kwh": 1527.4161160105518,
+      "actual_terminal_soc_kwh": 6652.17722210315,
+      "planned_terminal_soc_kwh": 5400.0
+    },
+    {
+      "date": "2025-09-23",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 1200.0,
+      "total_cost_cny": 44242.41877091315,
+      "emergency_kwh": 1527.41611612727,
+      "actual_terminal_soc_kwh": 6643.0061807476195,
+      "planned_terminal_soc_kwh": 4800.0
+    },
+    {
+      "date": "2025-09-23",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 2400.0,
+      "total_cost_cny": 44274.2368456881,
+      "emergency_kwh": 1527.4161152677138,
+      "actual_terminal_soc_kwh": 6643.0061807476195,
+      "planned_terminal_soc_kwh": 3600.0
+    },
+    {
+      "date": "2025-12-21",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 600.0,
+      "total_cost_cny": 62764.16070575828,
+      "emergency_kwh": 935.654311768179,
+      "actual_terminal_soc_kwh": 8584.563449554527,
+      "planned_terminal_soc_kwh": 5400.0
+    },
+    {
+      "date": "2025-12-21",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 1200.0,
+      "total_cost_cny": 62764.16070575828,
+      "emergency_kwh": 935.654311768179,
+      "actual_terminal_soc_kwh": 8584.563449554527,
+      "planned_terminal_soc_kwh": 4800.0
+    },
+    {
+      "date": "2025-12-21",
+      "scenario_count": 10,
+      "terminal_half_width_kwh": 2400.0,
+      "total_cost_cny": 62760.42506045138,
+      "emergency_kwh": 935.6543118523296,
+      "actual_terminal_soc_kwh": 8584.563449554527,
+      "planned_terminal_soc_kwh": 3600.0
+    }
+  ],
+  "v6_efficiency_sensitivity": {
+    "q1_reoptimized": [
+      {
+        "case": "both_0.85",
+        "eta_charge": 0.85,
+        "eta_discharge": 0.85,
+        "total_cost_cny": 36603.40648002707,
+        "saving_rate": 0.23825499480391366
+      },
+      {
+        "case": "both_0.90",
+        "eta_charge": 0.9,
+        "eta_discharge": 0.9,
+        "total_cost_cny": 35126.94858928963,
+        "saving_rate": 0.26898121762870153
+      },
+      {
+        "case": "roundtrip_0.90",
+        "eta_charge": 0.9486832980505138,
+        "eta_discharge": 0.9486832980505138,
+        "total_cost_cny": 33801.49554222201,
+        "saving_rate": 0.29656491366465976
+      },
+      {
+        "case": "both_0.95",
+        "eta_charge": 0.95,
+        "eta_discharge": 0.95,
+        "total_cost_cny": 33767.03262075282,
+        "saving_rate": 0.2972821135325995
+      }
+    ],
+    "q2_fixed_plan_stress": [
+      {
+        "date": "2025-03-20",
+        "case": "both_0.85",
+        "total_cost_cny": 48465.508628917276,
+        "emergency_kwh": 4315.076064000232,
+        "terminal_soc_kwh": 3544.458186055369
+      },
+      {
+        "date": "2025-03-20",
+        "case": "both_0.90",
+        "total_cost_cny": 42845.287672527586,
+        "emergency_kwh": 2464.4582688616624,
+        "terminal_soc_kwh": 3687.5488331470283
+      },
+      {
+        "date": "2025-03-20",
+        "case": "roundtrip_0.90",
+        "total_cost_cny": 38662.17074530506,
+        "emergency_kwh": 839.2774724695525,
+        "terminal_soc_kwh": 3826.616433957019
+      },
+      {
+        "date": "2025-03-20",
+        "case": "both_0.95",
+        "total_cost_cny": 38572.75459288954,
+        "emergency_kwh": 797.1497621424585,
+        "terminal_soc_kwh": 3830.374569518379
+      },
+      {
+        "date": "2025-06-21",
+        "case": "both_0.85",
+        "total_cost_cny": 22293.299539255004,
+        "emergency_kwh": 0.00047579334750694,
+        "terminal_soc_kwh": 8268.142993536812
+      },
+      {
+        "date": "2025-06-21",
+        "case": "both_0.90",
+        "total_cost_cny": 22293.299539255004,
+        "emergency_kwh": 0.00047579334750694,
+        "terminal_soc_kwh": 9193.477444632425
+      },
+      {
+        "date": "2025-06-21",
+        "case": "roundtrip_0.90",
+        "total_cost_cny": 22293.299539255004,
+        "emergency_kwh": 0.00047579334750694,
+        "terminal_soc_kwh": 10041.596463466438
+      },
+      {
+        "date": "2025-06-21",
+        "case": "both_0.95",
+        "total_cost_cny": 22293.299539255004,
+        "emergency_kwh": 0.00047579334750694,
+        "terminal_soc_kwh": 10063.886955351845
+      },
+      {
+        "date": "2025-09-23",
+        "case": "both_0.85",
+        "total_cost_cny": 50737.90656653077,
+        "emergency_kwh": 3566.3384839081173,
+        "terminal_soc_kwh": 7503.10411
+      },
+      {
+        "date": "2025-09-23",
+        "case": "both_0.90",
+        "total_cost_cny": 45302.38855022785,
+        "emergency_kwh": 1861.5380873705935,
+        "terminal_soc_kwh": 7873.874940000002
+      },
+      {
+        "date": "2025-09-23",
+        "case": "roundtrip_0.90",
+        "total_cost_cny": 41768.77103548079,
+        "emergency_kwh": 342.0670630241616,
+        "terminal_soc_kwh": 8234.88187650653
+      },
+      {
+        "date": "2025-09-23",
+        "case": "both_0.95",
+        "total_cost_cny": 41684.76532473129,
+        "emergency_kwh": 304.1584073774494,
+        "terminal_soc_kwh": 8244.645770000001
+      },
+      {
+        "date": "2025-12-21",
+        "case": "both_0.85",
+        "total_cost_cny": 66409.86279677988,
+        "emergency_kwh": 2289.379706177935,
+        "terminal_soc_kwh": 7600.484035727892
+      },
+      {
+        "date": "2025-12-21",
+        "case": "both_0.90",
+        "total_cost_cny": 60404.71013834714,
+        "emergency_kwh": 49.76675142887064,
+        "terminal_soc_kwh": 7976.986180335023
+      },
+      {
+        "date": "2025-12-21",
+        "case": "roundtrip_0.90",
+        "total_cost_cny": 60297.53896780716,
+        "emergency_kwh": 0.0009863820204370514,
+        "terminal_soc_kwh": 9216.675819062577
+      },
+      {
+        "date": "2025-12-21",
+        "case": "both_0.95",
+        "total_cost_cny": 60297.53896780716,
+        "emergency_kwh": 0.0009863820204370514,
+        "terminal_soc_kwh": 9238.686049675174
+      }
+    ]
+  },
+  "v7_extreme_error_stress": [
+    {
+      "date": "2025-03-20",
+      "net_demand_bias": -0.2,
+      "total_cost_cny": 36885.285532951864,
+      "emergency_kwh": 0.000550526595212269,
+      "terminal_soc_kwh": 8091.306720491389
+    },
+    {
+      "date": "2025-03-20",
+      "net_demand_bias": -0.1,
+      "total_cost_cny": 36885.285532951864,
+      "emergency_kwh": 0.0005727083592767956,
+      "terminal_soc_kwh": 6164.231680202359
+    },
+    {
+      "date": "2025-03-20",
+      "net_demand_bias": 0.0,
+      "total_cost_cny": 42845.287672527586,
+      "emergency_kwh": 2464.4582688616624,
+      "terminal_soc_kwh": 3687.5488331470283
+    },
+    {
+      "date": "2025-03-20",
+      "net_demand_bias": 0.1,
+      "total_cost_cny": 63779.07755535455,
+      "emergency_kwh": 8166.076609594992,
+      "terminal_soc_kwh": 3036.2673143755956
+    },
+    {
+      "date": "2025-03-20",
+      "net_demand_bias": 0.2,
+      "total_cost_cny": 87022.14693504378,
+      "emergency_kwh": 13688.204602401043,
+      "terminal_soc_kwh": 2313.9348979785295
+    },
+    {
+      "date": "2025-06-21",
+      "net_demand_bias": -0.2,
+      "total_cost_cny": 22293.297309925274,
+      "emergency_kwh": 0.0,
+      "terminal_soc_kwh": 10800.0
+    },
+    {
+      "date": "2025-06-21",
+      "net_demand_bias": -0.1,
+      "total_cost_cny": 22293.297309925274,
+      "emergency_kwh": 0.0,
+      "terminal_soc_kwh": 10800.0
+    },
+    {
+      "date": "2025-06-21",
+      "net_demand_bias": 0.0,
+      "total_cost_cny": 22293.299539255004,
+      "emergency_kwh": 0.00047579334750694,
+      "terminal_soc_kwh": 9193.477444632425
+    },
+    {
+      "date": "2025-06-21",
+      "net_demand_bias": 0.1,
+      "total_cost_cny": 27799.049281004733,
+      "emergency_kwh": 1940.1487438117679,
+      "terminal_soc_kwh": 7605.7115851354365
+    },
+    {
+      "date": "2025-06-21",
+      "net_demand_bias": 0.2,
+      "total_cost_cny": 39992.76081198646,
+      "emergency_kwh": 5163.7786710374085,
+      "terminal_soc_kwh": 6956.659334301975
+    },
+    {
+      "date": "2025-09-23",
+      "net_demand_bias": -0.2,
+      "total_cost_cny": 41026.85072845683,
+      "emergency_kwh": 0.0,
+      "terminal_soc_kwh": 10800.0
+    },
+    {
+      "date": "2025-09-23",
+      "net_demand_bias": -0.1,
+      "total_cost_cny": 41026.85483114191,
+      "emergency_kwh": 0.0006123410558255055,
+      "terminal_soc_kwh": 10103.71788734537
+    },
+    {
+      "date": "2025-09-23",
+      "net_demand_bias": 0.0,
+      "total_cost_cny": 45302.38855022785,
+      "emergency_kwh": 1861.5380873705935,
+      "terminal_soc_kwh": 7873.874940000002
+    },
+    {
+      "date": "2025-09-23",
+      "net_demand_bias": 0.1,
+      "total_cost_cny": 66052.40961981786,
+      "emergency_kwh": 7163.684360537679,
+      "terminal_soc_kwh": 7226.095402500001
+    },
+    {
+      "date": "2025-09-23",
+      "net_demand_bias": 0.2,
+      "total_cost_cny": 89530.75997395301,
+      "emergency_kwh": 12663.694951191228,
+      "terminal_soc_kwh": 6535.90895514815
+    },
+    {
+      "date": "2025-12-21",
+      "net_demand_bias": -0.2,
+      "total_cost_cny": 60297.53293805387,
+      "emergency_kwh": 0.0,
+      "terminal_soc_kwh": 10800.0
+    },
+    {
+      "date": "2025-12-21",
+      "net_demand_bias": -0.1,
+      "total_cost_cny": 60297.53896780716,
+      "emergency_kwh": 0.0008999631777509991,
+      "terminal_soc_kwh": 10494.490603881035
+    },
+    {
+      "date": "2025-12-21",
+      "net_demand_bias": 0.0,
+      "total_cost_cny": 60404.71013834714,
+      "emergency_kwh": 49.76675142887064,
+      "terminal_soc_kwh": 7976.986180335023
+    },
+    {
+      "date": "2025-12-21",
+      "net_demand_bias": 0.1,
+      "total_cost_cny": 88603.88836655697,
+      "emergency_kwh": 8291.492335745672,
+      "terminal_soc_kwh": 7200.7991037152005
+    },
+    {
+      "date": "2025-12-21",
+      "net_demand_bias": 0.2,
+      "total_cost_cny": 122274.71557945393,
+      "emergency_kwh": 16499.470433192117,
+      "terminal_soc_kwh": 6504.632147585572
+    }
+  ],
+  "v8_update_ablation": {
+    "seasonal_anchors": {
+      "q3": [
+        {
+          "date": "2025-03-20",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 40781.94133654522,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 1952.7736136851963,
+          "total_cost_cny": 42734.71495023042,
+          "emergency_kwh": 621.033698774916,
+          "terminal_soc_kwh": 4261.585127192977
+        },
+        {
+          "date": "2025-03-20",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 40781.94133654522,
+          "adjustment_cost_cny": 1254.4372514256802,
+          "emergency_cost_cny": 1720.591972318518,
+          "total_cost_cny": 43756.970560289425,
+          "emergency_kwh": 428.05219500002624,
+          "terminal_soc_kwh": 5717.491397249265
+        },
+        {
+          "date": "2025-03-20",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 40781.94133654522,
+          "adjustment_cost_cny": 1255.4453502037077,
+          "emergency_cost_cny": 1720.5919723857173,
+          "total_cost_cny": 43757.97865913464,
+          "emergency_kwh": 428.05282366972864,
+          "terminal_soc_kwh": 5713.988794666979
+        },
+        {
+          "date": "2025-03-20",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 40781.94133654522,
+          "adjustment_cost_cny": 1240.638656466052,
+          "emergency_cost_cny": 1720.5904149011171,
+          "total_cost_cny": 43743.17040791239,
+          "emergency_kwh": 428.0517899523589,
+          "terminal_soc_kwh": 5698.224094610639
+        },
+        {
+          "date": "2025-06-21",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 21920.613257796584,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.0021920613253314514,
+          "total_cost_cny": 21920.61544985791,
+          "emergency_kwh": 0.00046783936086467853,
+          "terminal_soc_kwh": 9688.371004167586
+        },
+        {
+          "date": "2025-06-21",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 21920.613257796584,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.002192061326240946,
+          "total_cost_cny": 21920.61544985791,
+          "emergency_kwh": 0.0006246461395905357,
+          "terminal_soc_kwh": 9688.370859882509
+        },
+        {
+          "date": "2025-06-21",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 21920.613257796584,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.002192061326240946,
+          "total_cost_cny": 21920.61544985791,
+          "emergency_kwh": 0.0006246461395905357,
+          "terminal_soc_kwh": 9688.370859882509
+        },
+        {
+          "date": "2025-06-21",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 21920.613257796584,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.0018861813123294269,
+          "total_cost_cny": 21920.615143977895,
+          "emergency_kwh": 0.0005593638828598733,
+          "terminal_soc_kwh": 9688.370787346668
+        },
+        {
+          "date": "2025-09-23",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 45008.60878017322,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.004500860879488755,
+          "total_cost_cny": 45008.6132810341,
+          "emergency_kwh": 0.0011594180524185356,
+          "terminal_soc_kwh": 8690.782340801343
+        },
+        {
+          "date": "2025-09-23",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 45008.60878017322,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.004500860881307744,
+          "total_cost_cny": 45008.6132810341,
+          "emergency_kwh": 0.0012529336777772064,
+          "terminal_soc_kwh": 8690.782052330102
+        },
+        {
+          "date": "2025-09-23",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 45008.60878017322,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.004500860878124513,
+          "total_cost_cny": 45008.6132810341,
+          "emergency_kwh": 0.0012512177797649629,
+          "terminal_soc_kwh": 8690.781979257812
+        },
+        {
+          "date": "2025-09-23",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 45008.60878017322,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.003083941150634928,
+          "total_cost_cny": 45008.61186411437,
+          "emergency_kwh": 0.0008862204259551779,
+          "terminal_soc_kwh": 8690.781573705197
+        },
+        {
+          "date": "2025-12-21",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 61878.994593602365,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.0061878994602011525,
+          "total_cost_cny": 61879.000781501825,
+          "emergency_kwh": 0.0028922175555976407,
+          "terminal_soc_kwh": 8961.411934773181
+        },
+        {
+          "date": "2025-12-21",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 61878.994593602365,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.006187899462020141,
+          "total_cost_cny": 61879.000781501825,
+          "emergency_kwh": 0.001837238199017802,
+          "terminal_soc_kwh": 8961.410762573896
+        },
+        {
+          "date": "2025-12-21",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 61878.994593602365,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.006187899462020141,
+          "total_cost_cny": 61879.000781501825,
+          "emergency_kwh": 0.001827872898595686,
+          "terminal_soc_kwh": 8961.410752168009
+        },
+        {
+          "date": "2025-12-21",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 61878.994593602365,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.006187899458382162,
+          "total_cost_cny": 61879.000781501825,
+          "emergency_kwh": 0.0017958996191543048,
+          "terminal_soc_kwh": 8961.410716642142
+        }
+      ],
+      "q4": [
+        {
+          "date": "2025-03-20",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 42468.44616090817,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.004246844619046897,
+          "total_cost_cny": 42468.45040775279,
+          "emergency_kwh": 0.00223812628144764,
+          "terminal_soc_kwh": 1721.1493350541236
+        },
+        {
+          "date": "2025-03-20",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 42468.44616090817,
+          "adjustment_cost_cny": 2490.4150744218805,
+          "emergency_cost_cny": 0.004412872289321967,
+          "total_cost_cny": 44958.865648202336,
+          "emergency_kwh": 0.001421849629696219,
+          "terminal_soc_kwh": 5658.662347286184
+        },
+        {
+          "date": "2025-03-20",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 42468.44616090817,
+          "adjustment_cost_cny": 2503.3892586506845,
+          "emergency_cost_cny": 0.004413737232425774,
+          "total_cost_cny": 44971.839833296086,
+          "emergency_kwh": 0.0014198092529535365,
+          "terminal_soc_kwh": 5769.653772095882
+        },
+        {
+          "date": "2025-03-20",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 42468.44616090817,
+          "adjustment_cost_cny": 2409.8764527333283,
+          "emergency_cost_cny": 0.0028068472174709314,
+          "total_cost_cny": 44878.32542048871,
+          "emergency_kwh": 0.0010028684083881907,
+          "terminal_soc_kwh": 5630.113936692249
+        },
+        {
+          "date": "2025-06-21",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 18370.48489181856,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.001837048490415327,
+          "total_cost_cny": 18370.48672886705,
+          "emergency_kwh": 0.0004350618094530082,
+          "terminal_soc_kwh": 7814.455907442842
+        },
+        {
+          "date": "2025-06-21",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 18370.48489181856,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.001837048490415327,
+          "total_cost_cny": 18370.48672886705,
+          "emergency_kwh": 0.0006362496650487424,
+          "terminal_soc_kwh": 7814.455768501661
+        },
+        {
+          "date": "2025-06-21",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 18370.48489181856,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.001837048490415327,
+          "total_cost_cny": 18370.48672886705,
+          "emergency_kwh": 0.0006362496650487424,
+          "terminal_soc_kwh": 7814.455768501661
+        },
+        {
+          "date": "2025-06-21",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 18370.48489181856,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.0018370484890510852,
+          "total_cost_cny": 18370.48672886705,
+          "emergency_kwh": 0.0006247443041391612,
+          "terminal_soc_kwh": 7814.455755717929
+        },
+        {
+          "date": "2025-09-23",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 45805.23244269688,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.0045805232439306565,
+          "total_cost_cny": 45805.23702322012,
+          "emergency_kwh": 0.0010729733529938291,
+          "terminal_soc_kwh": 2727.906943669393
+        },
+        {
+          "date": "2025-09-23",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 45805.23244269688,
+          "adjustment_cost_cny": 2219.766706004287,
+          "emergency_cost_cny": 0.004728507692561834,
+          "total_cost_cny": 48025.00387720886,
+          "emergency_kwh": 0.0012154902135278348,
+          "terminal_soc_kwh": 5787.77574901236
+        },
+        {
+          "date": "2025-09-23",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 45805.23244269688,
+          "adjustment_cost_cny": 2120.304236150159,
+          "emergency_cost_cny": 0.004721876862276986,
+          "total_cost_cny": 47925.541400723894,
+          "emergency_kwh": 0.00121730440934514,
+          "terminal_soc_kwh": 5635.248449549531
+        },
+        {
+          "date": "2025-09-23",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 45805.23244269688,
+          "adjustment_cost_cny": 2072.268834218995,
+          "emergency_cost_cny": 0.004718674498690234,
+          "total_cost_cny": 47877.50599559037,
+          "emergency_kwh": 0.001119609471227235,
+          "terminal_soc_kwh": 5578.894747180689
+        },
+        {
+          "date": "2025-12-21",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 71413.90027662988,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.007141390029573813,
+          "total_cost_cny": 71413.90741801991,
+          "emergency_kwh": 0.00360585207249372,
+          "terminal_soc_kwh": 8454.51588085581
+        },
+        {
+          "date": "2025-12-21",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 71413.90027662988,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.007141390025935834,
+          "total_cost_cny": 71413.90741801991,
+          "emergency_kwh": 0.002174233544185554,
+          "terminal_soc_kwh": 8454.514290168554
+        },
+        {
+          "date": "2025-12-21",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 71413.90027662988,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.007141390025935834,
+          "total_cost_cny": 71413.90741801991,
+          "emergency_kwh": 0.002057610558577199,
+          "terminal_soc_kwh": 8454.51416058746
+        },
+        {
+          "date": "2025-12-21",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 71413.90027662988,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.007141390029573813,
+          "total_cost_cny": 71413.90741801991,
+          "emergency_kwh": 0.001880221733013518,
+          "terminal_soc_kwh": 8454.513963488766
+        }
+      ]
+    },
+    "seasonal_risk_days": {
+      "q3": [
+        {
+          "date": "2025-03-03",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 52128.32510787379,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 1548.2656157287274,
+          "total_cost_cny": 53676.590723602516,
+          "emergency_kwh": 363.06003332416594,
+          "terminal_soc_kwh": 7779.23093522644
+        },
+        {
+          "date": "2025-03-03",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 52128.32510787379,
+          "adjustment_cost_cny": 679.7984099359844,
+          "emergency_cost_cny": 0.005258152406895533,
+          "total_cost_cny": 52808.12877596218,
+          "emergency_kwh": 0.002187211371664867,
+          "terminal_soc_kwh": 7842.176313670818
+        },
+        {
+          "date": "2025-03-03",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 52128.32510787379,
+          "adjustment_cost_cny": 529.0949764348147,
+          "emergency_cost_cny": 85.44208964844984,
+          "total_cost_cny": 52742.86217395705,
+          "emergency_kwh": 21.215356684310247,
+          "terminal_soc_kwh": 7779.229807523765
+        },
+        {
+          "date": "2025-03-03",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 52128.32510787379,
+          "adjustment_cost_cny": 529.0949764348147,
+          "emergency_cost_cny": 96.1847425255637,
+          "total_cost_cny": 52753.60482683416,
+          "emergency_kwh": 21.214559264071035,
+          "terminal_soc_kwh": 7779.228921501277
+        },
+        {
+          "date": "2025-06-02",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 46061.1345095616,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 13822.771691045135,
+          "total_cost_cny": 59883.90620060673,
+          "emergency_kwh": 2662.959987102652,
+          "terminal_soc_kwh": 6421.6763719177625
+        },
+        {
+          "date": "2025-06-02",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 46061.1345095616,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 13822.771691045176,
+          "total_cost_cny": 59883.906200606776,
+          "emergency_kwh": 2662.95998422427,
+          "terminal_soc_kwh": 6421.675802633906
+        },
+        {
+          "date": "2025-06-02",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 46061.1345095616,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 13822.771691045178,
+          "total_cost_cny": 59883.906200606776,
+          "emergency_kwh": 2662.9599016949064,
+          "terminal_soc_kwh": 6421.675609597826
+        },
+        {
+          "date": "2025-06-02",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 46061.1345095616,
+          "adjustment_cost_cny": 1460.3210895380244,
+          "emergency_cost_cny": 11700.52324845651,
+          "total_cost_cny": 59221.978847556136,
+          "emergency_kwh": 1933.112523443154,
+          "terminal_soc_kwh": 6421.674791088722
+        },
+        {
+          "date": "2025-09-10",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 42407.21724216253,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.004240721726091579,
+          "total_cost_cny": 42407.221482884255,
+          "emergency_kwh": 0.0010924064209406436,
+          "terminal_soc_kwh": 8483.694507337348
+        },
+        {
+          "date": "2025-09-10",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 42407.21724216253,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.004240721724272589,
+          "total_cost_cny": 42407.221482884255,
+          "emergency_kwh": 0.0013088349792585584,
+          "terminal_soc_kwh": 8483.694211148666
+        },
+        {
+          "date": "2025-09-10",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 42407.21724216253,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.0042407217233630945,
+          "total_cost_cny": 42407.221482884255,
+          "emergency_kwh": 0.0013100792801588454,
+          "terminal_soc_kwh": 8483.694123079798
+        },
+        {
+          "date": "2025-09-10",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 42407.21724216253,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.004240721725182084,
+          "total_cost_cny": 42407.221482884255,
+          "emergency_kwh": 0.0012024120098321446,
+          "terminal_soc_kwh": 8483.693799270632
+        },
+        {
+          "date": "2025-12-02",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 59553.012516308874,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 12044.466240763122,
+          "total_cost_cny": 71597.478757072,
+          "emergency_kwh": 3888.728138579454,
+          "terminal_soc_kwh": 8302.227758580359
+        },
+        {
+          "date": "2025-12-02",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 59553.012516308874,
+          "adjustment_cost_cny": 1138.02931318838,
+          "emergency_cost_cny": 12900.316741234667,
+          "total_cost_cny": 73591.35857073191,
+          "emergency_kwh": 2984.0920919993964,
+          "terminal_soc_kwh": 8302.227758580359
+        },
+        {
+          "date": "2025-12-02",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 59553.012516308874,
+          "adjustment_cost_cny": 1138.02931318838,
+          "emergency_cost_cny": 12900.316741234663,
+          "total_cost_cny": 73591.35857073191,
+          "emergency_kwh": 2984.0994864654494,
+          "terminal_soc_kwh": 8302.228662555539
+        },
+        {
+          "date": "2025-12-02",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 59553.012516308874,
+          "adjustment_cost_cny": 1138.02931318838,
+          "emergency_cost_cny": 12900.316741234667,
+          "total_cost_cny": 73591.35857073191,
+          "emergency_kwh": 2984.0993671529404,
+          "terminal_soc_kwh": 8302.228529986083
+        }
+      ],
+      "q4": [
+        {
+          "date": "2025-03-03",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 56611.39874154037,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 1429.5005678479138,
+          "total_cost_cny": 58040.89930938828,
+          "emergency_kwh": 306.22944625900686,
+          "terminal_soc_kwh": 5627.133672921426
+        },
+        {
+          "date": "2025-03-03",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 56611.39874154037,
+          "adjustment_cost_cny": 810.1881117440412,
+          "emergency_cost_cny": 0.0057151524124492425,
+          "total_cost_cny": 57421.59256843683,
+          "emergency_kwh": 0.002591037964993575,
+          "terminal_soc_kwh": 5738.374842399227
+        },
+        {
+          "date": "2025-03-03",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 56611.39874154037,
+          "adjustment_cost_cny": 531.3169227296032,
+          "emergency_cost_cny": 0.005696561003787792,
+          "total_cost_cny": 57142.721360830976,
+          "emergency_kwh": 0.002262545047052483,
+          "terminal_soc_kwh": 5648.098157760615
+        },
+        {
+          "date": "2025-03-03",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 56611.39874154037,
+          "adjustment_cost_cny": 531.3169227296032,
+          "emergency_cost_cny": 0.005696561001968803,
+          "total_cost_cny": 57142.72136083097,
+          "emergency_kwh": 0.0017209253140842008,
+          "terminal_soc_kwh": 5648.09755596091
+        },
+        {
+          "date": "2025-06-02",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 52227.12637660334,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 9310.120386748322,
+          "total_cost_cny": 61537.24676335166,
+          "emergency_kwh": 1887.0852418225763,
+          "terminal_soc_kwh": 2613.4852995013994
+        },
+        {
+          "date": "2025-06-02",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 52227.12637660334,
+          "adjustment_cost_cny": 251.56859689318418,
+          "emergency_cost_cny": 9026.533019961504,
+          "total_cost_cny": 61505.22799345803,
+          "emergency_kwh": 1775.8902489948605,
+          "terminal_soc_kwh": 2841.762389166611
+        },
+        {
+          "date": "2025-06-02",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 52227.12637660334,
+          "adjustment_cost_cny": 162.58580660515622,
+          "emergency_cost_cny": 9063.33536266843,
+          "total_cost_cny": 61453.04754587692,
+          "emergency_kwh": 1791.0883195648305,
+          "terminal_soc_kwh": 2727.5594785566577
+        },
+        {
+          "date": "2025-06-02",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 52227.12637660334,
+          "adjustment_cost_cny": 1080.845913230974,
+          "emergency_cost_cny": 10423.322646543496,
+          "total_cost_cny": 63731.2949363778,
+          "emergency_kwh": 1775.8894070490378,
+          "terminal_soc_kwh": 3802.592259895984
+        },
+        {
+          "date": "2025-09-10",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 42538.39690792167,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 0.004253839688317384,
+          "total_cost_cny": 42538.40116176136,
+          "emergency_kwh": 0.0010182740127629884,
+          "terminal_soc_kwh": 2504.6996259832326
+        },
+        {
+          "date": "2025-09-10",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 42538.39690792167,
+          "adjustment_cost_cny": 2250.22416454555,
+          "emergency_cost_cny": 0.004403854634801974,
+          "total_cost_cny": 44788.62547632185,
+          "emergency_kwh": 0.001363397809762126,
+          "terminal_soc_kwh": 5743.481222457654
+        },
+        {
+          "date": "2025-09-10",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 42538.39690792167,
+          "adjustment_cost_cny": 2422.822907474361,
+          "emergency_cost_cny": 0.004415361215706071,
+          "total_cost_cny": 44961.224230757245,
+          "emergency_kwh": 0.0013707831126837208,
+          "terminal_soc_kwh": 6008.731379045366
+        },
+        {
+          "date": "2025-09-10",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 42538.39690792167,
+          "adjustment_cost_cny": 2268.074569127416,
+          "emergency_cost_cny": 0.004405044662689761,
+          "total_cost_cny": 44806.47588209374,
+          "emergency_kwh": 0.0013507673840730474,
+          "terminal_soc_kwh": 5808.501762031971
+        },
+        {
+          "date": "2025-12-02",
+          "max_update_hour": 0,
+          "updates_used": 0,
+          "plan_cost_cny": 72559.4715644333,
+          "adjustment_cost_cny": 0.0,
+          "emergency_cost_cny": 10809.0097187306,
+          "total_cost_cny": 83368.4812831639,
+          "emergency_kwh": 3337.5986382581004,
+          "terminal_soc_kwh": 7251.641720501448
+        },
+        {
+          "date": "2025-12-02",
+          "max_update_hour": 6,
+          "updates_used": 1,
+          "plan_cost_cny": 72559.4715644333,
+          "adjustment_cost_cny": 791.3497118693678,
+          "emergency_cost_cny": 15016.939278043732,
+          "total_cost_cny": 88367.7605543464,
+          "emergency_kwh": 2984.2800651285406,
+          "terminal_soc_kwh": 7251.641720501448
+        },
+        {
+          "date": "2025-12-02",
+          "max_update_hour": 12,
+          "updates_used": 2,
+          "plan_cost_cny": 72559.4715644333,
+          "adjustment_cost_cny": 791.3497118693678,
+          "emergency_cost_cny": 15016.9392780437,
+          "total_cost_cny": 88367.76055434637,
+          "emergency_kwh": 2984.291818140044,
+          "terminal_soc_kwh": 7251.6436912651825
+        },
+        {
+          "date": "2025-12-02",
+          "max_update_hour": 18,
+          "updates_used": 3,
+          "plan_cost_cny": 72559.4715644333,
+          "adjustment_cost_cny": 791.3497118693678,
+          "emergency_cost_cny": 15016.939278043696,
+          "total_cost_cny": 88367.76055434636,
+          "emergency_kwh": 2984.2911985894466,
+          "terminal_soc_kwh": 7251.6430028756295
+        }
+      ]
+    },
+    "risk_dates": {
+      "q3": [
+        "2025-03-03",
+        "2025-06-02",
+        "2025-09-10",
+        "2025-12-02"
+      ],
+      "q4": [
+        "2025-03-03",
+        "2025-06-02",
+        "2025-09-10",
+        "2025-12-02"
+      ]
+    }
+  }
+}

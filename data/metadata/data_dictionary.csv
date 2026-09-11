@@ -1,0 +1,10 @@
+﻿file,field,type,unit,definition
+q1_timeseries.csv,price_cny_per_kwh,float,元/kWh,附件1电价
+q1_timeseries.csv,load_kw,float,kW,附件1小区负载功率
+q1_timeseries.csv,pv_forecast_kw,float,kW,附件1光伏预测功率
+annual_actual.csv,load_kw,float,kW,附件2小区负载功率
+annual_actual.csv,pv_actual_kw,float,kW,附件2光伏实际功率
+annual_price.csv,price_cny_per_kwh,float,元/kWh,附件4实时电价
+pv_forecasts_hourly.csv,pv_forecast_kw,float,kW,附件3整点预报
+pv_forecasts_hourly.csv,target_timestamp,datetime,,发布时间加预报步长
+*_timeseries/actual/forecast*.csv,*_kwh,float,kWh,对应功率乘以1/6小时；预报在求解时插值
