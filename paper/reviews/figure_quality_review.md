@@ -12,7 +12,7 @@
 | Q4图1 | `figures/q4/q4_fig01_price_response.png` | 是 | 是 | 是 | 是 | 正文 | 首轮通过 |
 | Q4图2 | `figures/q4/q4_fig02_q42_q43_comparison.png` | 是 | 是 | 是 | 是 | 正文 | 改为成本—风险二维迁移图，强化图型层次 |
 | 验证图1 | `figures/validation/validation_fig01_calibration.png` | 是 | 是 | 是 | 是 | 正文/验证 | 扩大画布并调整图例位置；插图检验通过 |
-| 验证图2 | `figures/validation/validation_fig02_physical_sensitivity.png` | 是 | 是 | 是 | 是 | 正文/验证 | 去除效率柱状图，改为带节省率标注的点线图 |
+| 验证图2 | `figures/validation/validation_fig02_physical_sensitivity.png` | 是 | 是 | 是 | 是 | 附录 | 去除效率柱状图，改为带节省率标注的点线图 |
 | 验证图3 | `figures/validation/validation_fig03_update_ablation.png` | 是 | 是 | 是 | 是 | 正文/验证 | 首轮通过 |
 
 除新增的`figures/q3.png`机制图外，其余程序生成PNG均经`check_contest_figure.py --strict --min-dpi 300`检查通过，像素尺寸均大于1700×970；新增机制图已完成内容与可读性检查，分辨率在全文排版时统一复核。
