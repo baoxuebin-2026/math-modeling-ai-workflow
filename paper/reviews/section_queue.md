@@ -18,8 +18,8 @@
 | 05 | `paper/sections/05_q2_modeling_solution.md` | 5.2 问题二 | 侧重严格因果信息集、预测器选择、残差场景和48小时滚动；解释误差到紧急购电的传播 | `docs/results/q2_results.json`、`docs/figures/q2_figures.md`、`code/q2/solve_q2.py` | 图4–5；表3–5；13,703,782.97元 | 已确认 |
 | 06 | `paper/sections/06_q3_modeling_solution.md` | 5.3 问题三 | 侧重0/6/12/18时修正、上下调线性化和信息价值；诚实呈现小幅降费与显著降风险 | `docs/results/q3_results.json`、`docs/figures/q3_figures.md`、`code/q3/solve_q3.py` | 表6–9；图6–8；0.81%与78.69% | 已确认 |
 | 07 | `paper/sections/07_q4_modeling_solution.md` | 5.4 问题四 | 侧重未来电价未知的因果预测、源荷价场景与Q4-2/Q4-3公平对比；解释P95略升 | `docs/results/q4_results.json`、`docs/figures/q4_figures.md`、`code/q4/solve_q4.py` | 表10–11；图9–10；0.41%与78.05% | 已生成，待本章确认 |
-| 90 | `paper/sections/90_model_validation.md` | 六、模型检验 | 汇总物理/会计复算、预测对照、场景收敛、CVaR风险价格、末端SOC、效率、极端误差和更新消融 | `docs/06_validation_report.md`、`docs/results/validation_results.json` | 验证图1、验证图3；1张综合验证表；验证图2转附录 | 待撰写 |
-| 91 | `paper/sections/91_model_evaluation_improvement.md` | 七、模型评价、改进与推广 | 写可执行性、统一性、可复现性优点；写终端带活跃、代表日消融、未含寿命/潮流等具体限制；提出72小时和寿命成本扩展 | `docs/paper_materials.md`第13、17节、`docs/06_validation_report.md` | 不新增结果图；引用验证结论 | 待撰写 |
+| 90 | `paper/sections/90_model_validation.md` | 六、模型检验 | 汇总物理/会计复算、预测对照、场景收敛、CVaR风险价格、末端SOC、效率、极端误差和更新消融 | `docs/06_validation_report.md`、`docs/results/validation_results.json` | 验证图1、验证图3；1张综合验证表；验证图2转附录 | 已生成，待本章确认 |
+| 91 | `paper/sections/91_model_evaluation_improvement.md` | 七、模型评价、改进与推广 | 写可执行性、统一性、可复现性优点；写终端带活跃、代表日消融、未含寿命/潮流等具体限制；提出72小时和寿命成本扩展 | `docs/paper_materials.md`第13、17节、`docs/06_validation_report.md` | 不新增结果图；引用验证结论 | 已生成，待本章确认 |
 | 92 | `paper/sections/92_references.md` | 参考文献与AI声明 | 只整理真实使用的题面、算法和软件来源；按当年格式在参考文献前设置AI工具使用声明 | 官方题面、最终实际引用来源、`docs/ai_usage_log.md` | 无图；不虚构参考文献 | 待撰写 |
 | 93 | `paper/sections/93_appendix.md` | 附录与支撑材料 | 列补充验证图、结果表和核心代码文件说明，不粘贴大量不可读代码 | `code/`、`data/metadata/`、`docs/figures/`、`docs/poc_registry.csv` | 验证图2、补充参数表、程序清单 | 待撰写 |
 
