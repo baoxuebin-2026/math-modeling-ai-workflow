@@ -11,8 +11,8 @@
 | 00 | `paper/sections/00_title_abstract.md` | 标题、摘要、关键词 | 先写可修改版本；突出严格无前视、多时次更新、风险压缩和3组核心数值，正文完成后重写 | `docs/paper_materials.md`、`docs/claim_evidence_map.md` | Q1节省26.90%；Q3/Q4紧急购电下降78.69%/78.05%；不插图 | 用户本地已修改，待全文核验 |
 | 01 | `paper/sections/01_problem_restatement.md` | 一、问题重述 | 用原创语言重述微网对象、四问任务、约束和交付，不复制题面、不提前报结果 | `docs/00_problem_extracted.md`、`docs/01_task_alignment.md` | 四问任务短表；不插图 | 已确认 |
 | 02 | `paper/sections/02_problem_analysis.md` | 二、问题分析 | 说明四问继承关系、信息集难点、跨日SOC与分账难点，给出全文技术路线 | `docs/01_task_alignment.md`、`docs/02_model_plan.md`、`docs/paper_materials.md` | `figures/00.png`统一技术路线图；Q3机制图后置到问题三 | 已确认 |
-| 03 | `paper/sections/03_assumptions_notations.md` | 三、模型假设；四、符号说明 | 只保留影响模型的6–7项假设，统一功率/电量、购电、SOC和场景符号 | `docs/paper_materials.md`第3–6节、`docs/02_model_plan.md` | 1张符号表；无结果图 | 已生成，待本章确认 |
-| 04 | `paper/sections/04_q1_modeling_solution.md` | 5.1 问题一 | 侧重物理机制和可解释最优调度：无储能基线、确定性LP、词典序去退化、结果和效率防守 | `docs/results/q1_results.json`、`docs/figures/q1_figures.md`、`code/q1/solve_q1.py`、`code/common/dispatch_lp.py` | 图2–3；Q1基线对比表；35,126.95元与26.90% | 待撰写 |
+| 03 | `paper/sections/03_assumptions_notations.md` | 三、模型假设；四、符号说明 | 只保留影响模型的6–7项假设，统一功率/电量、购电、SOC和场景符号 | `docs/paper_materials.md`第3–6节、`docs/02_model_plan.md` | 1张符号表；无结果图 | 已确认 |
+| 04 | `paper/sections/04_q1_modeling_solution.md` | 5.1 问题一 | 侧重物理机制和可解释最优调度：无储能基线、确定性LP、词典序去退化、结果和效率防守 | `docs/results/q1_results.json`、`docs/figures/q1_figures.md`、`code/q1/solve_q1.py`、`code/common/dispatch_lp.py` | 图2–3；Q1基线对比表；35,126.95元与26.90% | 已生成，待本章确认 |
 | 05 | `paper/sections/05_q2_modeling_solution.md` | 5.2 问题二 | 侧重严格因果信息集、预测器选择、残差场景和48小时滚动；解释误差到紧急购电的传播 | `docs/results/q2_results.json`、`docs/figures/q2_figures.md`、`code/q2/solve_q2.py` | 图4–5；Q2年度指标；13,703,782.97元 | 待撰写 |
 | 06 | `paper/sections/06_q3_modeling_solution.md` | 5.3 问题三 | 侧重0/6/12/18时修正、上下调线性化和信息价值；诚实呈现小幅降费与显著降风险 | `docs/results/q3_results.json`、`docs/figures/q3_figures.md`、`code/q3/solve_q3.py` | 图6–7；Q2/Q3对比表；0.81%与78.69% | 待撰写 |
 | 07 | `paper/sections/07_q4_modeling_solution.md` | 5.4 问题四 | 侧重未来电价未知的因果预测、源荷价场景与Q4-2/Q4-3公平对比；解释P95略升 | `docs/results/q4_results.json`、`docs/figures/q4_figures.md`、`code/q4/solve_q4.py` | 图8–9；Q4对比表；0.41%与78.05% | 待撰写 |
@@ -38,5 +38,6 @@
 - 第00章已由用户在本地修改，视为阶段确认，待全文完成后统一核验；仓库版本暂不覆盖。
 - 第01章问题重述已由用户以“下一章”确认通过。
 - 第02章问题分析已由用户以“继续”确认通过。
-- 第03章模型假设与符号说明及其来源、量纲核对记录已生成。
-- 在用户确认第03章前，不进入第04章。
+- 第03章模型假设与符号说明已由用户以“继续”确认通过。
+- 第04章问题一模型、题定结果表、图2—3及来源核验记录已生成。
+- 在用户确认第04章前，不进入第05章。
