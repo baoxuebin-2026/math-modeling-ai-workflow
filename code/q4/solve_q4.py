@@ -151,13 +151,20 @@ def run_day(day_text: str, scenario_count: int = 3, risk_weight: float = 0.25,
         soc = float(actual.soc[-1])
     actual43 = _merge(parts)
     upward, downward = np.maximum(active - original, 0), np.maximum(original - active, 0)
+    cancelled_plan_cost = float(actual_price @ downward)
+    down_penalty_cost = float(0.5 * actual_price @ downward)
     costs43 = {
         "plan_cny": float(actual_price @ original),
         "upward_cny": float(1.5 * actual_price @ upward),
-        "downward_cny": float(0.5 * actual_price @ downward),
+        "cancelled_plan_cny": cancelled_plan_cost,
+        "downward_cny": down_penalty_cost,
+        "downward_net_cny": down_penalty_cost - cancelled_plan_cost,
         "emergency_cny": float(5 * actual_price @ actual43["emergency"]),
     }
-    costs43["total_cny"] = sum(costs43.values())
+    costs43["total_cny"] = (
+        costs43["plan_cny"] + costs43["upward_cny"]
+        + costs43["downward_net_cny"] + costs43["emergency_cny"]
+    )
 
     return {
         "date": day_text,
@@ -299,7 +306,7 @@ def run_full(scenario_count: int, risk_weight: float, terminal_half_width: float
     costs42 = np.asarray([item["total_cny"] for item in daily42])
     costs43 = np.asarray([item["total_cny"] for item in daily43])
     summary = {
-        "question": "问题四", "status": "computed", "model_version": "C-M1-v1",
+        "question": "问题四", "status": "computed", "model_version": "C-M1-v2",
         "forecast_selection": context.forecast_modes,
         "forecast_metrics_january": context.forecast_scores,
         "parameters": {"scenario_count": scenario_count, "risk_weight": risk_weight,
@@ -324,7 +331,9 @@ def run_full(scenario_count: int, risk_weight: float, terminal_half_width: float
             "totals": {
                 "plan_cny": float(sum(item["plan_cny"] for item in daily43)),
                 "upward_cny": float(sum(item["upward_cny"] for item in daily43)),
+                "cancelled_plan_cny": float(sum(item["cancelled_plan_cny"] for item in daily43)),
                 "downward_cny": float(sum(item["downward_cny"] for item in daily43)),
+                "downward_net_cny": float(sum(item["downward_net_cny"] for item in daily43)),
                 "emergency_cny": float(sum(item["emergency_cny"] for item in daily43)),
                 "total_cny": float(costs43.sum()),
                 "emergency_kwh": float(sum(item["emergency_kwh"] for item in daily43)),
