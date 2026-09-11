@@ -1,7 +1,7 @@
 project:
   name: "2026 CUMCM C题：微网与外部电网电力调控策略"
   language: "zh-CN"
-  target: "pre_paper_materials"
+  target: "paper_section_queue_confirmation"
 
 competition:
   name: "2026年高教社杯全国大学生数学建模竞赛"

@@ -1,0 +1,182 @@
+{
+  "status": "checked",
+  "evaluation_period": [
+    "2025-01-08",
+    "2025-01-31"
+  ],
+  "selection_rule": "先在N=20下选平均费用最低、紧急购电不高于同带宽lambda=0且末端贴边不超过半数的组合；再选与N=60平均费用差不超过2%、紧急购电差不超过10%的最小场景数。",
+  "risk_width_grid": [
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 58391.31234307302,
+      "p95_daily_cost_cny": 87645.65890418492,
+      "total_emergency_kwh": 1408.2186041291077,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8209.975627399106
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.1,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 61808.320256757455,
+      "p95_daily_cost_cny": 92845.25832291206,
+      "total_emergency_kwh": 305.48868244262786,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9085.084671594526
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.25,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 71279.89833721767,
+      "p95_daily_cost_cny": 97313.1236741389,
+      "total_emergency_kwh": 0.03773831283694226,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9592.61595646249
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.5,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 77786.17239400187,
+      "p95_daily_cost_cny": 97477.37061639405,
+      "total_emergency_kwh": 0.03666155257556193,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 10800.0
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 1200.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 58393.74609198479,
+      "p95_daily_cost_cny": 87631.63408709042,
+      "total_emergency_kwh": 1408.218605592526,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8209.975627399106
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.1,
+      "terminal_half_width_kwh": 1200.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 61808.69804701404,
+      "p95_daily_cost_cny": 92845.2583229121,
+      "total_emergency_kwh": 305.4886832077106,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9085.084671594524
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.25,
+      "terminal_half_width_kwh": 1200.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 71282.12117988784,
+      "p95_daily_cost_cny": 97313.12367413891,
+      "total_emergency_kwh": 0.03773793682289769,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9592.61595646249
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.5,
+      "terminal_half_width_kwh": 1200.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 77786.17264961137,
+      "p95_daily_cost_cny": 97477.37061639405,
+      "total_emergency_kwh": 0.03666155273300151,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 10800.0
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 2400.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 58391.98618907627,
+      "p95_daily_cost_cny": 87641.36289509964,
+      "total_emergency_kwh": 1408.2186049639868,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8209.975627399106
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.1,
+      "terminal_half_width_kwh": 2400.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 61808.75354138141,
+      "p95_daily_cost_cny": 92845.25832291212,
+      "total_emergency_kwh": 305.4886829137747,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9085.084671594523
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.25,
+      "terminal_half_width_kwh": 2400.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 71281.77001355075,
+      "p95_daily_cost_cny": 97313.1236741389,
+      "total_emergency_kwh": 0.03774049822479551,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9592.61595646249
+    },
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.5,
+      "terminal_half_width_kwh": 2400.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 77786.17657746714,
+      "p95_daily_cost_cny": 97477.37061639404,
+      "total_emergency_kwh": 0.03666155516206927,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 10800.0
+    }
+  ],
+  "scenario_convergence": [
+    {
+      "scenario_count": 20,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 58391.31234307302,
+      "p95_daily_cost_cny": 87645.65890418492,
+      "total_emergency_kwh": 1408.2186041291077,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8209.975627399106
+    },
+    {
+      "scenario_count": 40,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 55241.20279853343,
+      "p95_daily_cost_cny": 86255.13679400945,
+      "total_emergency_kwh": 2950.039705838007,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 9184.429266220306
+    },
+    {
+      "scenario_count": 60,
+      "risk_weight": 0.0,
+      "terminal_half_width_kwh": 600.0,
+      "evaluation_days": 24,
+      "mean_daily_cost_cny": 55062.67175162124,
+      "p95_daily_cost_cny": 84378.95342375949,
+      "total_emergency_kwh": 2878.280155047342,
+      "terminal_boundary_days": 24,
+      "final_january_soc_kwh": 8772.049183504558
+    }
+  ],
+  "selected": {
+    "scenario_count": 40,
+    "risk_weight": 0.0,
+    "terminal_half_width_kwh": 600.0
+  }
+}

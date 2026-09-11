@@ -1,0 +1,7 @@
+﻿dataset,expected_rows,actual_rows,missing_numeric,negative_numeric,status,action
+q1_timeseries.csv,144,144,0,0,passed,保留原值，仅作结构与单位标准化
+annual_actual.csv,52560,52560,0,0,passed,保留原值，仅作结构与单位标准化
+annual_price.csv,52560,52560,0,0,passed,保留原值，仅作结构与单位标准化
+pv_forecasts_hourly.csv,35040,35040,0,0,passed,保留原值，仅作结构与单位标准化
+附件3结构日期,1095,1095,,,passed,仅向下继承每日后三个发布时刻的日期
+附件3十分钟插值,210240,210240,,0,passed,按需生成，不持久化超大派生表

@@ -20,33 +20,11 @@ Thumbs.db
 *.tmp
 *.bak
 
-# Competition data should not be committed
-data/raw/*
-data/external/*
-data/processed/*
-data/metadata/*
-!data/raw/.gitkeep
-!data/external/.gitkeep
-!data/processed/.gitkeep
-!data/metadata/.gitkeep
+# Competition inputs, processed data and official results are intentionally
+# versioned in this private repository for end-to-end reproducibility.
+data/processed/submission/*.inspect.ndjson
 
-# Generated figures and outputs
-figures/**/*.png
-figures/**/*.jpg
-figures/**/*.jpeg
-figures/**/*.svg
-figures/**/*.pdf
-!figures/**/.gitkeep
-
-docs/results/*
-docs/figures/*
-!docs/results/.gitkeep
-!docs/figures/.gitkeep
-docs/paper_materials.md
-docs/03_data_report.md
-docs/04_result_summary.md
-docs/05_visualization_plan.md
-docs/06_validation_report.md
+# Generated figures, structured outputs and paper materials are versioned.
 
 # Spreadsheet/editor lock files
 ~$*
@@ -58,13 +36,9 @@ antiAgent-main/
 可视化计划.md
 MinerU_markdown_*.md
 
-# Paper drafts are generated locally
-paper/sections/*
-!paper/sections/.gitkeep
-paper/drafts/*
-!paper/drafts/.gitkeep
-paper/reviews/*
-!paper/reviews/.gitkeep
+# Transient render/debug caches and duplicate uploads stay local.
+tmp/
+upload/
 
 # Local reference papers / extracted markdowns should not be committed
 论文撰写.md
