@@ -127,7 +127,9 @@ def run_day(day_text: str, scenario_count: int = 3, risk_weight: float = 0.25,
     downward = np.maximum(original - active, 0)
     plan_cost = float(fixed_price @ original)
     up_cost = float(1.5 * fixed_price @ upward)
-    down_cost = float(0.5 * fixed_price @ downward)
+    cancelled_plan_cost = float(fixed_price @ downward)
+    down_penalty_cost = float(0.5 * fixed_price @ downward)
+    down_net_cost = down_penalty_cost - cancelled_plan_cost
     emergency_cost = float(5 * fixed_price @ merged["emergency"])
     return {
         "date": day_text, "information_cutoffs": [f"{day_text} {h:02d}:00:00" for h in issue_hours],
@@ -138,9 +140,11 @@ def run_day(day_text: str, scenario_count: int = 3, risk_weight: float = 0.25,
         "original_plan_grid_kwh": original.tolist(), "final_active_grid_kwh": active.tolist(),
         "adjustments": adjustment_records,
         "actual": {name: values.tolist() for name, values in merged.items()},
-        "costs": {"plan_cny": plan_cost, "upward_cny": up_cost, "downward_cny": down_cost,
+        "costs": {"plan_cny": plan_cost, "upward_cny": up_cost,
+                  "cancelled_plan_cny": cancelled_plan_cost,
+                  "downward_cny": down_penalty_cost, "downward_net_cny": down_net_cost,
                   "emergency_cny": emergency_cost,
-                  "total_cny": plan_cost + up_cost + down_cost + emergency_cost},
+                  "total_cny": plan_cost + up_cost + down_net_cost + emergency_cost},
         "diagnostics": {
             "soc_start_kwh": initial_soc, "soc_end_kwh": soc,
             "cross_segment_soc_continuity": True,
@@ -215,7 +219,7 @@ def run_full(scenario_count: int, risk_weight: float, terminal_half_width: float
 
     day_costs = np.asarray([item["total_cny"] for item in daily])
     summary = {
-        "question": "问题三", "status": "computed", "model_version": "C-M1-v1",
+        "question": "问题三", "status": "computed", "model_version": "C-M1-v2",
         "forecast_selection": context.forecast_modes,
         "forecast_metrics_january": context.forecast_scores,
         "parameters": {"scenario_count": scenario_count, "risk_weight": risk_weight,
@@ -226,7 +230,9 @@ def run_full(scenario_count: int, risk_weight: float, terminal_half_width: float
         "totals": {
             "plan_cny": float(sum(item["plan_cny"] for item in daily)),
             "upward_cny": float(sum(item["upward_cny"] for item in daily)),
+            "cancelled_plan_cny": float(sum(item["cancelled_plan_cny"] for item in daily)),
             "downward_cny": float(sum(item["downward_cny"] for item in daily)),
+            "downward_net_cny": float(sum(item["downward_net_cny"] for item in daily)),
             "emergency_cny": float(sum(item["emergency_cny"] for item in daily)),
             "total_cny": float(day_costs.sum()),
             "emergency_kwh": float(sum(item["emergency_kwh"] for item in daily)),
