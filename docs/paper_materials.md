@@ -274,7 +274,7 @@ Python在本项目中负责数据编排、预测与结果生成，HiGHS负责底
 
 ## 14. 图表证据链与正文位置
 
-### 14.1 推荐的9张主图
+### 14.1 推荐的10张主图
 
 | 图号建议 | 文件 | 正文位置 | 支撑结论 |
 |---|---|---|---|
@@ -282,10 +282,11 @@ Python在本项目中负责数据编排、预测与结果生成，HiGHS负责底
 | 图3 | `figures/q1/q1_fig02_cost_comparison.png` | Q1结果 | 储能使单日成本下降26.90% |
 | 图4 | `figures/q2/q2_fig01_forecast_execution.png` | Q2结果 | 预测误差如何触发执行补救 |
 | 图5 | `figures/q2/q2_fig02_emergency_heatmap.png` | Q2年度评价 | 紧急购电的月—时段集中性 |
-| 图6 | `figures/q3/q3_fig01_plan_revisions.png` | Q3机制 | 6/12/18时逐段替换未执行计划 |
-| 图7 | `figures/q3/q3_fig02_q2_q3_comparison.png` | Q3结果 | 0.81%成本改善与78.69%风险下降 |
-| 图8 | `figures/q4/q4_fig01_price_response.png` | Q4机制 | 未知价格预测与调度响应 |
-| 图9 | `figures/q4/q4_fig02_q42_q43_comparison.png` | Q4结果 | 0.41%成本改善与78.05%风险下降 |
+| 图6 | `figures/q3.png` | Q3模型 | 0/6/12/18时信息更新、区间锁定与滚动重优化机制 |
+| 图7 | `figures/q3/q3_fig01_plan_revisions.png` | Q3结果 | 6/12/18时逐段替换未执行计划 |
+| 图8 | `figures/q3/q3_fig02_q2_q3_comparison.png` | Q3结果 | 0.81%成本改善与78.69%风险下降 |
+| 图9 | `figures/q4/q4_fig01_price_response.png` | Q4机制 | 未知价格预测与调度响应 |
+| 图10 | `figures/q4/q4_fig02_q42_q43_comparison.png` | Q4结果 | 0.41%成本改善与78.05%风险下降 |
 
 ### 14.2 验证图
 
@@ -295,7 +296,7 @@ Python在本项目中负责数据编排、预测与结果生成，HiGHS负责底
 | `figures/validation/validation_fig02_physical_sensitivity.png` | 综合验证正文或附录 | 末端带宽与效率敏感性 |
 | `figures/validation/validation_fig03_update_ablation.png` | Q3/Q4验证或综合验证 | 滚动更新贡献及非单调边界 |
 
-9张主图已逐张查看并通过约300 DPI严格检查；3张验证图也已检查。当前运行环境缺少CJK字体，所以图内采用英文短标签，中文图题与解释由论文正文承担；用户计划在本地继续微调字体与版式。若正文页数紧张，优先保留验证图1与验证图3，验证图2及详细数表放附录。
+新增机制图已直接查看并纳入正文；其余9张程序生成主图均已通过约300 DPI严格检查，3张验证图也已检查。正文图中文字、图例、坐标与单位均可读，所有图在图片下方另设中文图注；全文合并后再统一复核字号、分辨率和分页位置。若正文页数紧张，优先保留验证图1与验证图3，验证图2及详细数表放附录。
 
 ## 15. 建议的正文核心表
 
@@ -371,7 +372,7 @@ Python在本项目中负责数据编排、预测与结果生成，HiGHS负责底
 - 图表：`code/run_visualizations.py`及各问`visualize_q*.py`。
 - 验证：`code/common/run_validation.py`、`code/common/visualize_validation.py`。
 
-所有正式数值均来自JSON/CSV，绘图和Excel构建器不重新求解。5份工作簿公式错误为0且已视觉复核；12张图已通过严格分辨率和可读性检查。
+所有正式数值均来自JSON/CSV，绘图和Excel构建器不重新求解。5份工作簿公式错误为0且已视觉复核；12张程序生成图已通过严格分辨率和可读性检查，新增机制图待全文排版时统一核验。
 
 ## 20. AI合规与人工复核事项
 
