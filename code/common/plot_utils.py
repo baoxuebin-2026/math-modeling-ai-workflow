@@ -10,6 +10,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib import font_manager
 
 
 COLORS = {
@@ -25,10 +26,17 @@ COLORS = {
     "grid": "#E6E8EB",
 }
 
+FONT_PATH = Path(__file__).resolve().parents[2] / "assets/fonts/NotoSansCJKsc-Regular.otf"
+
 
 def setup_plot() -> None:
+    if not FONT_PATH.exists():
+        raise FileNotFoundError(f"缺少绘图中文字体：{FONT_PATH}")
+    font_manager.fontManager.addfont(str(FONT_PATH))
+    font_name = font_manager.FontProperties(fname=FONT_PATH).get_name()
     plt.rcParams.update({
-        "font.family": "DejaVu Sans",
+        "font.family": font_name,
+        "font.sans-serif": [font_name],
         "font.size": 9,
         "axes.labelsize": 9,
         "xtick.labelsize": 8,
@@ -41,6 +49,7 @@ def setup_plot() -> None:
         "savefig.facecolor": "white",
         "savefig.dpi": 300,
         "lines.linewidth": 1.5,
+        "axes.unicode_minus": False,
     })
 
 
@@ -56,7 +65,7 @@ def hour_axis(ax, *, label: bool = True) -> None:
     ax.set_xlim(0, 24)
     ax.set_xticks(np.arange(0, 25, 3))
     if label:
-        ax.set_xlabel("Time / h")
+        ax.set_xlabel("时间 / h")
 
 
 def legend_above(ax, *, ncol: int = 3) -> None:

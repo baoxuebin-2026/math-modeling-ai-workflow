@@ -40,19 +40,19 @@ def plot_forecast_and_execution(result: dict, snapshots: dict) -> str:
     total_grid = plan + emergency
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.2, 4.7), sharex=True)
-    ax1.plot(x, actual_net, color=COLORS["primary"], label="Realized net demand")
-    ax1.plot(x, forecast_net, color=COLORS["orange"], ls="--", label="Day-ahead forecast")
+    ax1.plot(x, actual_net, color=COLORS["primary"], label="实际净负荷")
+    ax1.plot(x, forecast_net, color=COLORS["orange"], ls="--", label="日前预测")
     ax1.fill_between(x, forecast_net, actual_net, color=COLORS["orange_light"], alpha=0.55)
     ax1.axhline(0, color="#9AA1A8", lw=0.7)
-    ax1.set_ylabel("Net demand / kWh")
+    ax1.set_ylabel("净负荷电量 / kWh")
     polish_axes(ax1)
     legend_above(ax1, ncol=2)
 
-    ax2.plot(x, plan, color=COLORS["gray"], label="Planned grid")
-    ax2.plot(x, total_grid, color=COLORS["primary"], label="Grid incl. emergency")
+    ax2.plot(x, plan, color=COLORS["gray"], label="计划购电")
+    ax2.plot(x, total_grid, color=COLORS["primary"], label="含紧急购电的实际购电")
     ax2.fill_between(x, 0, emergency, color="#F1D4D1", edgecolor=COLORS["red"],
-                     linewidth=0.7, label="Emergency purchase")
-    ax2.set_ylabel("Grid energy / kWh")
+                     linewidth=0.7, label="紧急购电")
+    ax2.set_ylabel("购电量 / kWh")
     polish_axes(ax2)
     hour_axis(ax2)
     legend_above(ax2, ncol=3)
@@ -77,13 +77,13 @@ def plot_emergency_heatmap(detail: pd.DataFrame) -> None:
     image = ax.imshow(matrix, aspect="auto", cmap="YlOrBr", interpolation="nearest")
     ax.set_xticks(np.arange(0, 24, 2), [f"{h:02d}" for h in range(0, 24, 2)])
     ax.set_yticks(np.arange(11), [f"{m:02d}" for m in range(2, 13)])
-    ax.set_xlabel("Hour of day")
-    ax.set_ylabel("Month")
+    ax.set_xlabel("日内时刻 / h")
+    ax.set_ylabel("月份")
     ax.tick_params(length=0)
     for spine in ax.spines.values():
         spine.set_visible(False)
     cbar = fig.colorbar(image, ax=ax, fraction=0.025, pad=0.025)
-    cbar.set_label("Emergency purchase / MWh")
+    cbar.set_label("紧急购电量 / MWh")
     cbar.outline.set_visible(False)
     savefig(fig, OUT / "q2_fig02_emergency_heatmap.png")
 

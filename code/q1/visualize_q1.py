@@ -9,6 +9,7 @@ import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -28,11 +29,11 @@ def plot_framework() -> None:
     ax.set_ylim(0, 6)
     ax.axis("off")
     nodes = [
-        (0.55, 3.75, 2.35, 1.15, "Historical data\n& issued forecasts", COLORS["blue_light"]),
-        (3.82, 3.75, 2.35, 1.15, "Causal point forecast\n& residual scenarios", COLORS["green_light"]),
-        (7.10, 3.75, 2.35, 1.15, "48 h common plan\n(first day executed)", COLORS["orange_light"]),
-        (2.15, 1.15, 2.55, 1.15, "Online dispatch\nSOC carried forward", "#EEF0F2"),
-        (5.95, 1.15, 2.55, 1.15, "Settlement & evidence\ncost, risk, feasibility", "#EEF0F2"),
+        (0.55, 3.75, 2.35, 1.15, "历史数据\n与已发布预测", COLORS["blue_light"]),
+        (3.82, 3.75, 2.35, 1.15, "因果点预测\n与残差场景", COLORS["green_light"]),
+        (7.10, 3.75, 2.35, 1.15, "48 h统一计划\n（仅执行首日）", COLORS["orange_light"]),
+        (2.15, 1.15, 2.55, 1.15, "在线调度\nSOC状态传递", "#EEF0F2"),
+        (5.95, 1.15, 2.55, 1.15, "结算与证据\n成本、风险、可行性", "#EEF0F2"),
     ]
     for x, y, w, h, label, color in nodes:
         box = patches.FancyBboxPatch(
@@ -50,9 +51,9 @@ def plot_framework() -> None:
             "arrowstyle": "-|>", "color": COLORS["gray"], "lw": 1.2,
             "connectionstyle": "arc3,rad=0.0",
         })
-    ax.text(5.0, 5.55, "Information available at the decision time only",
+    ax.text(5.0, 5.55, "决策仅使用当前时点已知信息",
             ha="center", va="center", color=COLORS["primary"], weight="bold", fontsize=10)
-    ax.text(5.0, 0.45, "Q1: deterministic benchmark   |   Q2–Q4: rolling forecasts and updates",
+    ax.text(5.0, 0.45, "Q1：确定性基准   |   Q2–Q4：滚动预测与计划修正",
             ha="center", va="center", color=COLORS["gray"], fontsize=8.5)
     savefig(fig, OUT / "q1_fig00_model_framework.png")
 
@@ -70,15 +71,15 @@ def plot_dispatch(result: dict, data: pd.DataFrame) -> None:
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.2, 4.8), sharex=True,
                                    gridspec_kw={"height_ratios": [1.35, 1.0]})
-    ax1.plot(x, load, color=COLORS["primary"], label="Load", zorder=4)
-    ax1.plot(x, pv, color=COLORS["orange"], label="PV", zorder=3)
-    ax1.plot(x, grid, color=COLORS["gray"], label="Planned grid", zorder=2)
+    ax1.plot(x, load, color=COLORS["primary"], label="负荷", zorder=4)
+    ax1.plot(x, pv, color=COLORS["orange"], label="光伏出力", zorder=3)
+    ax1.plot(x, grid, color=COLORS["gray"], label="计划购电", zorder=2)
     ax1.fill_between(x, 0, discharge, color=COLORS["green_light"],
-                     edgecolor=COLORS["green"], linewidth=0.7, label="Discharge")
+                     edgecolor=COLORS["green"], linewidth=0.7, label="储能放电")
     ax1.fill_between(x, 0, -charge, color=COLORS["orange_light"],
-                     edgecolor=COLORS["orange"], linewidth=0.7, label="Charge")
+                     edgecolor=COLORS["orange"], linewidth=0.7, label="储能充电")
     ax1.axhline(0, color="#9AA1A8", lw=0.7)
-    ax1.set_ylabel("Energy / kWh per 10 min")
+    ax1.set_ylabel("10 min电量 / kWh")
     polish_axes(ax1)
     legend_above(ax1, ncol=5)
 
@@ -88,15 +89,15 @@ def plot_dispatch(result: dict, data: pd.DataFrame) -> None:
         mask = np.isclose(price, value)
         ax2.fill_between(x, 1200, 10800, where=mask, color=bands[min(i, 2)], alpha=0.55,
                          step="mid", linewidth=0)
-    ax2.plot(np.linspace(0, 24, len(soc)), soc, color=COLORS["primary"], label="SOC")
+    ax2.plot(np.linspace(0, 24, len(soc)), soc, color=COLORS["primary"], label="储能SOC")
     ax2.axhline(1200, color=COLORS["gray"], ls="--", lw=0.8)
     ax2.axhline(10800, color=COLORS["gray"], ls="--", lw=0.8)
     ax2.set_ylim(700, 11300)
-    ax2.set_ylabel("Stored energy / kWh")
+    ax2.set_ylabel("储能电量 / kWh")
     polish_axes(ax2)
     hour_axis(ax2)
-    ax2.text(23.75, 10800, "upper bound", ha="right", va="bottom", fontsize=7, color=COLORS["gray"])
-    ax2.text(23.75, 1375, "lower bound", ha="right", va="bottom", fontsize=7, color=COLORS["gray"])
+    ax2.text(23.75, 10800, "上限", ha="right", va="bottom", fontsize=7, color=COLORS["gray"])
+    ax2.text(23.75, 1375, "下限", ha="right", va="bottom", fontsize=7, color=COLORS["gray"])
     fig.subplots_adjust(hspace=0.18)
     savefig(fig, OUT / "q1_fig01_dispatch_soc.png")
 
@@ -110,23 +111,54 @@ def plot_cost_by_block(result: dict, data: pd.DataFrame) -> None:
     baseline = np.array([(price[i:i + 24] * baseline_grid[i:i + 24]).sum() for i in range(0, 144, 24)])
     optimized = np.array([(price[i:i + 24] * optimized_grid[i:i + 24]).sum() for i in range(0, 144, 24)])
     labels = ["00–04", "04–08", "08–12", "12–16", "16–20", "20–24"]
-    y = np.arange(6)
+    baseline_k = baseline / 1000
+    optimized_k = optimized / 1000
+    matrix = np.vstack((baseline_k, optimized_k))
+    delta = baseline_k - optimized_k
 
-    fig, ax = plt.subplots(figsize=(6.8, 3.8))
-    h = 0.34
-    ax.barh(y + h / 2, baseline / 1000, height=h, color=COLORS["gray"], alpha=0.75,
-            label="No storage")
-    ax.barh(y - h / 2, optimized / 1000, height=h, color=COLORS["primary"],
-            label="Optimized")
-    ax.set_yticks(y, labels)
-    ax.invert_yaxis()
-    ax.set_xlabel("Electricity cost / thousand CNY")
-    ax.set_ylabel("Four-hour block")
-    polish_axes(ax, grid_axis="x")
-    legend_above(ax, ncol=2)
+    fig, (ax1, ax2) = plt.subplots(
+        2, 1, figsize=(6.8, 3.55), sharex=True,
+        gridspec_kw={"height_ratios": [1.55, 0.78]},
+    )
+    cost_cmap = LinearSegmentedColormap.from_list(
+        "cost_tiles", ["#F4F7F8", COLORS["blue_light"], COLORS["primary"]],
+    )
+    image = ax1.imshow(matrix, aspect="auto", cmap=cost_cmap, vmin=0,
+                       vmax=float(matrix.max()) * 1.05)
+    ax1.set_yticks([0, 1], ["无储能", "优化调度"])
+    for row in range(matrix.shape[0]):
+        for col in range(matrix.shape[1]):
+            color = "white" if matrix[row, col] > 0.64 * matrix.max() else "#27323A"
+            ax1.text(col, row, f"{matrix[row, col]:.1f}", ha="center", va="center",
+                     color=color, fontsize=8, weight="bold")
+    cbar = fig.colorbar(image, ax=ax1, fraction=0.025, pad=0.025)
+    cbar.set_label("费用 / 千元", fontsize=8)
+    cbar.outline.set_linewidth(0.5)
+
+    limit = max(float(np.max(np.abs(delta))), 1e-6)
+    saving_cmap = LinearSegmentedColormap.from_list(
+        "saving_tiles", [COLORS["orange"], "#FAFAFA", COLORS["green"]],
+    )
+    ax2.imshow(delta[np.newaxis, :], aspect="auto", cmap=saving_cmap,
+               norm=TwoSlopeNorm(vmin=-limit, vcenter=0, vmax=limit))
+    ax2.set_yticks([0], ["节省费用"])
+    for col, value in enumerate(delta):
+        ax2.text(col, 0, f"{value:+.1f}", ha="center", va="center",
+                 color="#27323A", fontsize=8, weight="bold")
+    ax2.set_xticks(np.arange(6), labels)
+    ax2.set_xlabel("4 h时段")
+    for ax in (ax1, ax2):
+        ax.tick_params(length=0)
+        for spine in ax.spines.values():
+            spine.set_visible(False)
+        ax.set_xticks(np.arange(-0.5, 6, 1), minor=True)
+        ax.set_yticks(np.arange(-0.5, ax.get_images()[0].get_array().shape[0], 1), minor=True)
+        ax.grid(which="minor", color="white", linewidth=2)
+        ax.tick_params(which="minor", bottom=False, left=False)
     saving = 100 * result["outputs"]["cost_saving_rate"]
-    ax.text(0.99, 0.02, f"Total saving: {saving:.2f}%", transform=ax.transAxes,
-            ha="right", va="bottom", color=COLORS["green"], weight="bold")
+    ax2.text(0.99, -0.46, f"总节省率：{saving:.2f}%", transform=ax2.transAxes,
+             ha="right", va="bottom", color=COLORS["green"], weight="bold")
+    fig.subplots_adjust(hspace=0.16)
     savefig(fig, OUT / "q1_fig02_cost_comparison.png")
 
 

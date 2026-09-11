@@ -35,16 +35,16 @@ def plot_revision_trajectory(result: dict) -> str:
     fig, (ax, delta_ax) = plt.subplots(
         2, 1, figsize=(7.2, 4.8), sharex=True, gridspec_kw={"height_ratios": [1.45, 0.75]},
     )
-    ax.plot(x, original, color=COLORS["gray"], ls="--", label="00:00 original plan")
+    ax.plot(x, original, color=COLORS["gray"], ls="--", label="00:00原始计划")
     palette = [COLORS["orange"], COLORS["green"], COLORS["purple"]]
     for item, color in zip(day["adjustments"], palette):
         start = int(item["start_slot"]) - 1
         values = np.asarray(item["adjusted_grid_kwh"])
         ax.plot(x[start:start + len(values)], values, color=color, alpha=0.82,
-                label=f"{item['issue_hour']:02d}:00 update")
+                label=f"{item['issue_hour']:02d}:00修正")
         ax.axvline(item["issue_hour"], color=color, lw=0.7, alpha=0.45)
-    ax.plot(x, final, color=COLORS["primary"], lw=1.8, label="Executed active plan")
-    ax.set_ylabel("Planned grid energy / kWh")
+    ax.plot(x, final, color=COLORS["primary"], lw=1.8, label="最终执行计划")
+    ax.set_ylabel("计划购电量 / kWh")
     polish_axes(ax)
     legend_above(ax, ncol=5)
     ax.text(0.995, 0.98, day_text, transform=ax.transAxes, ha="right", va="top",
@@ -52,12 +52,12 @@ def plot_revision_trajectory(result: dict) -> str:
     delta = final - original
     delta_ax.fill_between(x, 0, np.maximum(delta, 0), color=COLORS["green_light"],
                           edgecolor=COLORS["green"], linewidth=0.7,
-                          label="Net upward revision" if not np.any(delta < -1e-6) else "Upward revision")
+                          label="净上调" if not np.any(delta < -1e-6) else "上调")
     if np.any(delta < -1e-6):
         delta_ax.fill_between(x, 0, np.minimum(delta, 0), color=COLORS["orange_light"],
-                              edgecolor=COLORS["orange"], linewidth=0.7, label="Downward revision")
+                              edgecolor=COLORS["orange"], linewidth=0.7, label="下调")
     delta_ax.axhline(0, color="#9AA1A8", lw=0.7)
-    delta_ax.set_ylabel("Revision / kWh")
+    delta_ax.set_ylabel("计划修正量 / kWh")
     polish_axes(delta_ax)
     hour_axis(delta_ax)
     legend_above(delta_ax, ncol=2)
@@ -68,35 +68,43 @@ def plot_revision_trajectory(result: dict) -> str:
 
 def plot_q2_q3_comparison(q2: dict, q3: dict) -> None:
     q2t, q3t = q2["totals"], q3["totals"]
-    labels = ["Q2: day-ahead", "Q3: rolling updates"]
-    plan = np.array([q2t["plan_cost_cny"], q3t["plan_cny"]]) / 10000
-    adjustment = np.array([0, q3t["upward_cny"] + q3t["downward_cny"]]) / 10000
-    emergency_cost = np.array([q2t["emergency_cost_cny"], q3t["emergency_cny"]]) / 10000
-    emergency_energy = np.array([q2t["emergency_kwh"], q3t["emergency_kwh"]]) / 1000
+    q2_values = np.array([q2t["total_cost_cny"] / 10000, q2t["emergency_kwh"] / 1000])
+    q3_values = np.array([q3t["total_cny"] / 10000, q3t["emergency_kwh"] / 1000])
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.2, 3.8), gridspec_kw={"width_ratios": [1.25, 1]})
-    x = np.arange(2)
-    ax1.bar(x, plan, color=COLORS["primary"], label="Plan")
-    ax1.bar(x, adjustment, bottom=plan, color=COLORS["orange"], label="Adjustment")
-    ax1.bar(x, emergency_cost, bottom=plan + adjustment, color=COLORS["red"], label="Emergency")
-    ax1.set_xticks(x, labels)
-    ax1.set_ylabel("Annual cost / 10,000 CNY")
-    polish_axes(ax1)
-    legend_above(ax1, ncol=3)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.2, 3.2))
+    panels = (
+        (ax1, q2_values[0], q3_values[0], "年总费用 / 万元"),
+        (ax2, q2_values[1], q3_values[1], "紧急购电量 / MWh"),
+    )
+    for ax, before, after, xlabel in panels:
+        ax.hlines(0, min(before, after), max(before, after), color=COLORS["blue_light"],
+                  linewidth=7, zorder=1)
+        ax.scatter(before, 0, s=95, color=COLORS["gray"], edgecolor="white",
+                   linewidth=0.8, label="Q2 日前计划", zorder=3)
+        ax.scatter(after, 0, s=95, marker="D", color=COLORS["primary"], edgecolor="white",
+                   linewidth=0.8, label="Q3 滚动修正", zorder=3)
+        ax.annotate(f"Q2  {before:.1f}", (before, 0), xytext=(0, 14),
+                    textcoords="offset points", ha="center", color=COLORS["gray"], weight="bold")
+        ax.annotate(f"Q3  {after:.1f}", (after, 0), xytext=(0, -17),
+                    textcoords="offset points", ha="center", color=COLORS["primary"], weight="bold")
+        span = abs(before - after)
+        ax.set_xlim(min(before, after) - 0.30 * span, max(before, after) + 0.30 * span)
+        ax.set_ylim(-0.35, 0.35)
+        ax.set_yticks([])
+        ax.set_xlabel(xlabel)
+        ax.grid(True, axis="x", color=COLORS["grid"], linewidth=0.65)
+        ax.spines["left"].set_visible(False)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
     cost_reduction = 100 * (1 - q3t["total_cny"] / q2t["total_cost_cny"])
-    ax1.text(0.98, 0.97, f"Total cost: −{cost_reduction:.2f}%", transform=ax1.transAxes,
-             ha="right", va="top", color=COLORS["green"], weight="bold")
-
-    bars = ax2.bar(x, emergency_energy, color=[COLORS["gray"], COLORS["green"]], width=0.58)
-    ax2.set_xticks(x, labels)
-    ax2.set_ylabel("Emergency purchase / MWh")
-    polish_axes(ax2)
-    for bar, value in zip(bars, emergency_energy):
-        ax2.text(bar.get_x() + bar.get_width() / 2, value, f"{value:.1f}",
-                 ha="center", va="bottom", fontsize=8)
-    reduction = 100 * (1 - emergency_energy[1] / emergency_energy[0])
-    ax2.text(0.98, 0.97, f"Reduction: {reduction:.2f}%", transform=ax2.transAxes,
-             ha="right", va="top", color=COLORS["green"], weight="bold")
+    reduction = 100 * (1 - q3_values[1] / q2_values[1])
+    ax1.text(0.5, 0.92, f"−{cost_reduction:.2f}%", transform=ax1.transAxes,
+             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=11)
+    ax2.text(0.5, 0.92, f"−{reduction:.2f}%", transform=ax2.transAxes,
+             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=11)
+    handles, legend_labels = ax1.get_legend_handles_labels()
+    fig.legend(handles, legend_labels, loc="upper center", bbox_to_anchor=(0.5, 1.02),
+               ncol=2, frameon=False)
     fig.subplots_adjust(wspace=0.36)
     savefig(fig, OUT / "q3_fig02_q2_q3_comparison.png")
 

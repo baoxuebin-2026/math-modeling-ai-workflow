@@ -40,23 +40,23 @@ def plot_price_and_response(result: dict, snapshots: dict) -> str:
     q43_soc = 100 * np.asarray(day["q4_3"]["actual"]["soc"]) / 12000
 
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.2, 4.9), sharex=True)
-    ax1.plot(x, price_actual, color=COLORS["primary"], label="Realized price")
-    ax1.plot(x, price_forecast, color=COLORS["orange"], ls="--", label="00:00 forecast")
+    ax1.plot(x, price_actual, color=COLORS["primary"], label="实际电价")
+    ax1.plot(x, price_forecast, color=COLORS["orange"], ls="--", label="00:00电价预测")
     ax1.fill_between(x, price_actual, price_forecast, color=COLORS["orange_light"], alpha=0.6)
-    ax1.set_ylabel("Price / CNY per kWh")
+    ax1.set_ylabel("电价 /（元/kWh）")
     polish_axes(ax1)
     legend_above(ax1, ncol=2)
 
-    ax2.plot(x, q42_plan, color=COLORS["gray"], label="Q4-2 grid plan")
-    ax2.plot(x, q43_plan, color=COLORS["primary"], label="Q4-3 active plan")
-    ax2.set_ylabel("Grid energy / kWh")
+    ax2.plot(x, q42_plan, color=COLORS["gray"], label="Q4-2购电计划")
+    ax2.plot(x, q43_plan, color=COLORS["primary"], label="Q4-3滚动计划")
+    ax2.set_ylabel("购电量 / kWh")
     polish_axes(ax2)
     hour_axis(ax2)
     ax2b = ax2.twinx()
     soc_x = np.linspace(0, 24, len(q42_soc))
     ax2b.plot(soc_x, q42_soc, color=COLORS["gray"], ls=":", lw=1.1, label="Q4-2 SOC")
     ax2b.plot(soc_x, q43_soc, color=COLORS["green"], ls="--", lw=1.2, label="Q4-3 SOC")
-    ax2b.set_ylabel("SOC / % of capacity")
+    ax2b.set_ylabel("SOC / %")
     ax2b.set_ylim(5, 95)
     ax2b.spines["top"].set_visible(False)
     ax2b.spines["right"].set_color("#9AA1A8")
@@ -73,36 +73,36 @@ def plot_price_and_response(result: dict, snapshots: dict) -> str:
 
 def plot_q42_q43_comparison(result: dict) -> None:
     a, b = result["q4_2"]["totals"], result["q4_3"]["totals"]
-    labels = ["Q4-2: no update", "Q4-3: rolling updates"]
-    plan = np.array([a["plan_cny"], b["plan_cny"]]) / 10000
-    adjustment = np.array([0, b["upward_cny"] + b["downward_cny"]]) / 10000
-    emergency_cost = np.array([a["emergency_cny"], b["emergency_cny"]]) / 10000
-    emergency_energy = np.array([a["emergency_kwh"], b["emergency_kwh"]]) / 1000
+    cost = np.array([a["total_cny"], b["total_cny"]]) / 10000
+    emergency = np.array([a["emergency_kwh"], b["emergency_kwh"]]) / 1000
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.2, 3.8), gridspec_kw={"width_ratios": [1.25, 1]})
-    x = np.arange(2)
-    ax1.bar(x, plan, color=COLORS["primary"], label="Plan")
-    ax1.bar(x, adjustment, bottom=plan, color=COLORS["orange"], label="Adjustment")
-    ax1.bar(x, emergency_cost, bottom=plan + adjustment, color=COLORS["red"], label="Emergency")
-    ax1.set_xticks(x, labels)
-    ax1.set_ylabel("Annual cost / 10,000 CNY")
-    polish_axes(ax1)
-    legend_above(ax1, ncol=3)
+    fig, ax = plt.subplots(figsize=(6.4, 3.9))
+    ax.annotate("", xy=(cost[1], emergency[1]), xytext=(cost[0], emergency[0]),
+                arrowprops={"arrowstyle": "-|>", "color": COLORS["blue_light"],
+                            "lw": 8, "shrinkA": 8, "shrinkB": 8}, zorder=1)
+    ax.scatter(cost[0], emergency[0], s=125, color=COLORS["gray"], edgecolor="white",
+               linewidth=0.9, zorder=3)
+    ax.scatter(cost[1], emergency[1], s=125, marker="D", color=COLORS["primary"],
+               edgecolor="white", linewidth=0.9, zorder=3)
+    ax.annotate(f"Q4-2  不修正\n{cost[0]:.1f}万元，{emergency[0]:.1f} MWh",
+                (cost[0], emergency[0]), xytext=(-8, 12), textcoords="offset points",
+                ha="right", va="bottom", color=COLORS["gray"], weight="bold")
+    ax.annotate(f"Q4-3  滚动修正\n{cost[1]:.1f}万元，{emergency[1]:.1f} MWh",
+                (cost[1], emergency[1]), xytext=(8, -12), textcoords="offset points",
+                ha="left", va="top", color=COLORS["primary"], weight="bold")
+    ax.set_xlabel("年总费用 / 万元（越低越优）")
+    ax.set_ylabel("紧急购电量 / MWh（越低越优）")
+    x_span = float(np.ptp(cost))
+    y_span = float(np.ptp(emergency))
+    ax.set_xlim(float(cost.min()) - 0.28 * x_span, float(cost.max()) + 0.28 * x_span)
+    ax.set_ylim(max(0, float(emergency.min()) - 0.28 * y_span),
+                float(emergency.max()) + 0.28 * y_span)
+    polish_axes(ax)
     cost_reduction = 100 * (1 - b["total_cny"] / a["total_cny"])
-    ax1.text(0.98, 0.97, f"Total cost: −{cost_reduction:.2f}%", transform=ax1.transAxes,
-             ha="right", va="top", color=COLORS["green"], weight="bold")
-
-    bars = ax2.bar(x, emergency_energy, color=[COLORS["gray"], COLORS["green"]], width=0.58)
-    ax2.set_xticks(x, labels)
-    ax2.set_ylabel("Emergency purchase / MWh")
-    polish_axes(ax2)
-    for bar, value in zip(bars, emergency_energy):
-        ax2.text(bar.get_x() + bar.get_width() / 2, value, f"{value:.1f}",
-                 ha="center", va="bottom", fontsize=8)
-    reduction = 100 * (1 - emergency_energy[1] / emergency_energy[0])
-    ax2.text(0.98, 0.97, f"Reduction: {reduction:.2f}%", transform=ax2.transAxes,
-             ha="right", va="top", color=COLORS["green"], weight="bold")
-    fig.subplots_adjust(wspace=0.36)
+    reduction = 100 * (1 - emergency[1] / emergency[0])
+    ax.text(0.98, 0.08, f"费用 −{cost_reduction:.2f}%\n紧急购电 −{reduction:.2f}%",
+            transform=ax.transAxes, ha="right", va="bottom", color=COLORS["green"],
+            weight="bold", fontsize=9)
     savefig(fig, OUT / "q4_fig02_q42_q43_comparison.png")
 
 
