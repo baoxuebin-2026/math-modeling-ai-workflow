@@ -8,8 +8,8 @@
 
 | 顺序 | 章节文件 | 论文位置 | 本章任务与写作侧重 | 主要来源 | 预计图表/结果 | 状态 |
 |---|---|---|---|---|---|---|
-| 00 | `paper/sections/00_title_abstract.md` | 标题、摘要、关键词 | 先写可修改版本；突出严格无前视、多时次更新、风险压缩和3组核心数值，正文完成后重写 | `docs/paper_materials.md`、`docs/claim_evidence_map.md` | Q1节省26.90%；Q3/Q4紧急购电下降78.69%/78.05%；不插图 | 已生成，待本章确认 |
-| 01 | `paper/sections/01_problem_restatement.md` | 一、问题重述 | 用原创语言重述微网对象、四问任务、约束和交付，不复制题面、不提前报结果 | `docs/00_problem_extracted.md`、`docs/01_task_alignment.md` | 四问任务短表；不插图 | 待撰写 |
+| 00 | `paper/sections/00_title_abstract.md` | 标题、摘要、关键词 | 先写可修改版本；突出严格无前视、多时次更新、风险压缩和3组核心数值，正文完成后重写 | `docs/paper_materials.md`、`docs/claim_evidence_map.md` | Q1节省26.90%；Q3/Q4紧急购电下降78.69%/78.05%；不插图 | 用户本地已修改，待全文核验 |
+| 01 | `paper/sections/01_problem_restatement.md` | 一、问题重述 | 用原创语言重述微网对象、四问任务、约束和交付，不复制题面、不提前报结果 | `docs/00_problem_extracted.md`、`docs/01_task_alignment.md` | 四问任务短表；不插图 | 已生成，待本章确认 |
 | 02 | `paper/sections/02_problem_analysis.md` | 二、问题分析 | 说明四问继承关系、信息集难点、跨日SOC与分账难点，给出全文技术路线 | `docs/01_task_alignment.md`、`docs/02_model_plan.md`、`docs/paper_materials.md` | 图1总体框架；不写最终费用 | 待撰写 |
 | 03 | `paper/sections/03_assumptions_notations.md` | 三、模型假设；四、符号说明 | 只保留影响模型的6–7项假设，统一功率/电量、购电、SOC和场景符号 | `docs/paper_materials.md`第3–6节、`docs/02_model_plan.md` | 1张符号表；无结果图 | 待撰写 |
 | 04 | `paper/sections/04_q1_modeling_solution.md` | 5.1 问题一 | 侧重物理机制和可解释最优调度：无储能基线、确定性LP、词典序去退化、结果和效率防守 | `docs/results/q1_results.json`、`docs/figures/q1_figures.md`、`code/q1/solve_q1.py`、`code/common/dispatch_lp.py` | 图2–3；Q1基线对比表；35,126.95元与26.90% | 待撰写 |
@@ -35,6 +35,6 @@
 
 当前状态：
 
-- 第00章已按用户提供的范文结构重写，当前等待本章确认。
-- 对应来源核对记录已生成。
-- 在用户确认第00章前，不进入第01章。
+- 第00章已由用户在本地修改，视为阶段确认，待全文完成后统一核验；仓库版本暂不覆盖。
+- 第01章问题重述及其来源核对记录已生成。
+- 在用户确认第01章前，不进入第02章。
