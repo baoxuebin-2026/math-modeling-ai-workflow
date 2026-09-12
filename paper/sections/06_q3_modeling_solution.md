@@ -92,7 +92,9 @@ $$
 \min\quad
 &(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega^h
 +\lambda\operatorname{CVaR}_{\alpha}(J^h)\\
-\mathrm{s.t.}\quad
+\mathrm{s.t.}\quad&
+\left\{
+\begin{aligned}
 &J_\omega^h=\sum_{t\in\mathcal T_h}\pi_t
 \left(1.5U_t^h-0.5V_t^h+5G_{t,\omega}^{e,h}\right),\\
 &G_{t\mid h}^{a}-U_t^h+V_t^h=G_t^0,\\
@@ -109,6 +111,8 @@ $$
 R_{t,\omega}^{h},W_{t,\omega}^{pv,h},W_{t,\omega}^{g,h}\ge0,\\
 &N=40,\quad \alpha=0.9,\quad \lambda=0,\quad
 |\mathcal T_h|\in\{108,72,36\}.
+\end{aligned}
+\right.
 \end{aligned}}
 $$
 
