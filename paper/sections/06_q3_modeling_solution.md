@@ -27,16 +27,27 @@ $$
 令 $G_t^0$ 为0时制定的原计划购电量，$G_{t\mid h}^{a}$ 为时刻 $h$ 对剩余时段给出的调整后购电量。相对于原计划的上调量和下调量分别定义为
 
 $$
-U_t^h=\max\{G_{t\mid h}^{a}-G_t^0,0\},
-\qquad
-V_t^h=\max\{G_t^0-G_{t\mid h}^{a},0\}.
+
+\left\{
+\begin{aligned}
+U_t^h&=\max\{G_{t\mid h}^{a}-G_t^0,0\},\\
+V_t^h&=\max\{G_t^0-G_{t\mid h}^{a},0\}.
+\end{aligned}
+\right.
+
 $$
 
 为保持模型线性，将其写成
 
 $$
-G_{t\mid h}^{a}-U_t^h+V_t^h=G_t^0,
-\qquad U_t^h,V_t^h\ge0.
+
+\left\{
+\begin{aligned}
+G_{t\mid h}^{a}-U_t^h+V_t^h&=G_t^0,\\
+U_t^h,V_t^h&\ge0.
+\end{aligned}
+\right.
+
 $$
 
 0时原计划费用属于已经确定的支出；调整阶段只需权衡上下调费用和可能发生的紧急购电费用。一天结束后，以最后一次有效修正形成的执行计划 $G_t^a$ 统一结算，日总费用为
@@ -57,6 +68,7 @@ $$
 在更新时刻 $h$，调整购电量在各场景中保持一致，储能动作和紧急购电作为场景补救变量。对 $t\in\mathcal T_h$，核心关系为
 
 $$
+\left\{
 \begin{aligned}
 G_{t\mid h}^{a}+G_{t,\omega}^{e,h}+D_{t,\omega}^{h}+R_{t,\omega}^{h}
 &=\ell_{t,\omega}^{h}+C_{t,\omega}^{h}+W_{t,\omega}^{g,h},\\
@@ -65,6 +77,7 @@ S_{t+1,\omega}^{h}
 &=S_{t,\omega}^{h}+\eta_cC_{t,\omega}^{h}
 -\frac{D_{t,\omega}^{h}}{\eta_d}.
 \end{aligned}
+\right.
 $$
 
 储能容量、充放电上限和非负约束沿用问题二，末端满足 $5400\le S_{145,\omega}^{h}\le6600$。调整阶段场景费用为
@@ -94,27 +107,32 @@ $$
 **调整费用与风险约束**
 
 $$
+\left\{
 \begin{aligned}
 J_\omega^h&=\sum_{t\in\mathcal T_h}\pi_t
 \left(1.5U_t^h-0.5V_t^h+5G_{t,\omega}^{e,h}\right),\\
 z_{\omega,h}&\ge J_\omega^h-\zeta_h,\qquad z_{\omega,h}\ge0,\\
 G_{t\mid h}^{a}-U_t^h+V_t^h&=G_t^0.
 \end{aligned}
+\right.
 $$
 
 **能量平衡约束**
 
 $$
+\left\{
 \begin{aligned}
 G_{t\mid h}^{a}+G_{t,\omega}^{e,h}+D_{t,\omega}^{h}+R_{t,\omega}^{h}
 &=\ell_{t,\omega}^{h}+C_{t,\omega}^{h}+W_{t,\omega}^{g,h},\\
 R_{t,\omega}^{h}+W_{t,\omega}^{pv,h}&=p_{t,\omega}^{h}.
 \end{aligned}
+\right.
 $$
 
 **储能状态约束**
 
 $$
+\left\{
 \begin{aligned}
 S_{t+1,\omega}^{h}
 &=S_{t,\omega}^{h}+\eta_cC_{t,\omega}^{h}
@@ -123,11 +141,13 @@ S_{k_h,\omega}^{h}&=S_{k_h}^{\mathrm{act}},\qquad
 5400\le S_{145,\omega}^{h}\le6600,\\
 1200&\le S_{t,\omega}^{h}\le10800.
 \end{aligned}
+\right.
 $$
 
 **变量边界与计算参数**
 
 $$
+\left\{
 \begin{aligned}
 &0\le C_{t,\omega}^{h},D_{t,\omega}^{h}\le833.3333,\\
 &G_{t\mid h}^{a},U_t^h,V_t^h,G_{t,\omega}^{e,h},
@@ -135,6 +155,7 @@ R_{t,\omega}^{h},W_{t,\omega}^{pv,h},W_{t,\omega}^{g,h}\ge0,\\
 &N=40,\qquad \alpha=0.9,\qquad \lambda=0,\qquad
 |\mathcal T_h|\in\{108,72,36\}.
 \end{aligned}
+\right.
 $$
 
 该方程组把信息更新、上下调结算、储能状态传递和剩余时域边界统一在同一滚动优化问题中。
