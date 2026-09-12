@@ -86,7 +86,7 @@ $$
 
 在更新时刻 $h\in\{6,12,18\}$，$G_{t\mid h}^{a}$、$U_t^h$ 和 $V_t^h$ 为场景共享的调整决策，其余变量为场景补救变量。剩余时域模型可集中写为
 
-$
+$$
 \boxed{
 \begin{aligned}
 \min\quad
@@ -110,7 +110,7 @@ R_{t,\omega}^{h},W_{t,\omega}^{pv,h},W_{t,\omega}^{g,h}\ge0,\\
 &N=40,\quad \alpha=0.9,\quad \lambda=0,\quad
 |\mathcal T_h|\in\{108,72,36\}.
 \end{aligned}}
-$
+$$
 
 该方程组把信息更新、上下调结算、储能状态传递和剩余时域边界统一在同一滚动优化问题中。
 
