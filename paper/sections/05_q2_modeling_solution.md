@@ -93,7 +93,39 @@ $$
 
 需要说明的是，全天计划 $G_t^0$ 在实测数据进入前已经锁定；为在统一口径下复算给定实测轨迹，本文再以全天计划为固定约束，对当日完整实测源荷轨迹一次性求解储能动作与紧急购电。因此该部分属于**已实现轨迹下的后验最优补救评价**，并非每10 min仅凭当时信息运行的因果控制器。该口径不改变计划生成的无前视性，但可能低估真实在线执行中的紧急购电量，其影响在第七章说明。
 
-### 5.2.3 指定日期购电与储能结果
+### 5.2.3 问题二模型总括
+
+令 $\boldsymbol x_\omega=(G_{t,\omega}^e,C_{t,\omega},D_{t,\omega},R_{t,\omega},W_{t,\omega}^{pv},W_{t,\omega}^g,S_{t,\omega})$ 为场景补救变量，$G_t^0$ 为所有场景共享的日前决策，则问题二可集中表示为
+
+$
+\boxed{
+\begin{aligned}
+\min_{\boldsymbol G^0,\{\boldsymbol x_\omega\}}\quad
+&(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega
++\lambda\operatorname{CVaR}_{\alpha}(J)\\
+\mathrm{s.t.}\quad
+&J_\omega=\sum_{t=1}^{T}\pi_t
+\left(G_t^0+5G_{t,\omega}^e\right),\\
+&G_t^0+G_{t,\omega}^e+D_{t,\omega}+R_{t,\omega}
+=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^g,\\
+&R_{t,\omega}+W_{t,\omega}^{pv}=p_{t,\omega},\\
+&S_{t+1,\omega}=S_{t,\omega}
++\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d},\\
+&S_{1,\omega}=S_d^{\mathrm{init}},\qquad
+5400\le S_{T+1,\omega}\le6600,\\
+&1200\le S_{t,\omega}\le10800,\qquad
+0\le C_{t,\omega},D_{t,\omega}\le833.3333,\\
+&G_t^0,G_{t,\omega}^e,R_{t,\omega},
+W_{t,\omega}^{pv},W_{t,\omega}^g\ge0,\\
+&z_\omega\ge J_\omega-\zeta,\qquad z_\omega\ge0,\\
+&T=288,\quad N=40,\quad \alpha=0.9,\quad \lambda=0
+\ \text{（正式计算）}.
+\end{aligned}}
+$
+
+该方程组同时给出日前共享决策、场景补救、跨日SOC边界和正式计算参数；每日只执行其前144个时段。
+
+### 5.2.4 指定日期购电与储能结果
 
 将附件2的年度源荷数据代入模型，得到题目指定四个日期的计划购电结果，如表3所示。四日计划购电量和费用差异明显，其中6月21日光伏条件较好，全天计划购电量及计划费用最低；12月21日计划购电量最高。
 
@@ -143,7 +175,7 @@ $$
 
 四个指定日期的结果说明，计划费用较低并不必然对应紧急购电量较小，实际结算还取决于预测误差出现的方向、时段及当时可释放的储能余量。完整144格结果已写入 result2.xlsx，正文只保留题目要求的指定时段和汇总量。
 
-### 5.2.4 年度结果与预测误差分析
+### 5.2.5 年度结果与预测误差分析
 
 以1月进行因果校准后，正式统计2025年2月1日至12月31日共334 d。计划购电费为12638168.88元，紧急购电费为1065614.09元，总费用为13703782.97元；累计紧急购电量为347701.03 kWh，发生紧急购电的10 min时段为3219格。日费用中位数、P90和P95分别为43716.50元、59471.80元和62384.69元。
 
