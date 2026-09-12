@@ -97,7 +97,7 @@ $$
 
 令 $\boldsymbol x_\omega=(G_{t,\omega}^e,C_{t,\omega},D_{t,\omega},R_{t,\omega},W_{t,\omega}^{pv},W_{t,\omega}^g,S_{t,\omega})$ 为场景补救变量，$G_t^0$ 为所有场景共享的日前决策，则问题二可集中表示为
 
-$
+$$
 \boxed{
 \begin{aligned}
 \min_{\boldsymbol G^0,\{\boldsymbol x_\omega\}}\quad
@@ -121,7 +121,7 @@ W_{t,\omega}^{pv},W_{t,\omega}^g\ge0,\\
 &T=288,\quad N=40,\quad \alpha=0.9,\quad \lambda=0
 \ \text{（正式计算）}.
 \end{aligned}}
-$
+$$
 
 该方程组同时给出日前共享决策、场景补救、跨日SOC边界和正式计算参数；每日只执行其前144个时段。
 
