@@ -44,7 +44,7 @@ $$
 $$
 J_3=\sum_{t=1}^{144}\pi_tG_t^0
 +1.5\sum_{t=1}^{144}\pi_tU_t
-+(-0.5)\\sum_{t=1}^{144}\\pi_tV_t
+-0.5\sum_{t=1}^{144}\pi_tV_t
 +5\sum_{t=1}^{144}\pi_tG_t^e.
 $$
 
@@ -101,7 +101,7 @@ $
 &R_{t,\omega}^{h}+W_{t,\omega}^{pv,h}=p_{t,\omega}^{h},\\
 &S_{t+1,\omega}^{h}=S_{t,\omega}^{h}
 +\eta_cC_{t,\omega}^{h}-\frac{D_{t,\omega}^{h}}{\eta_d},\\
-&S_{6h+1,\omega}^{h}=S_h^{\mathrm{act}},\qquad
+&S_{6h+1,\omega}^{h}=S_{6h+1}^{\mathrm{act}},\qquad
 5400\le S_{145,\omega}^{h}\le6600,\\
 &1200\le S_{t,\omega}^{h}\le10800,\qquad
 0\le C_{t,\omega}^{h},D_{t,\omega}^{h}\le833.3333,\\
