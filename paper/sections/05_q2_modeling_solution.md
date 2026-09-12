@@ -9,8 +9,14 @@
 设日期 $d$ 的决策时刻为当日0时，$\mathcal I_d$ 表示此前已经公开或观测的信息。未来48 h负载和光伏预测满足
 
 $$
-\hat\ell_{d,t}=F_L(\mathcal I_d),\qquad
-\hat p_{d,t}=F_P(\mathcal I_d),
+
+\left\{
+\begin{aligned}
+\hat\ell_{d,t}&=F_L(\mathcal I_d),\\
+\hat p_{d,t}&=F_P(\mathcal I_d),
+\end{aligned}
+\right.
+
 $$
 
 训练样本、特征和残差库均不得包含日期 $d$ 及其后的实测值。扩展窗回测中，负载采用季节朴素法时NMAE为3.03%，光伏采用HistGBR时为7.22%，均优于各自备选模型；所用特征均在决策时刻可得。
@@ -18,9 +24,14 @@ $$
 光伏短期预测是新能源参与调度的重要基础[9-10]，但单条点预测不足以刻画紧急购电风险。记历史负载和光伏残差为 $e^L$、$e^P$，从日期 $d$ 以前的残差库中同步抽取连续2 d残差块，构造
 
 $$
-\ell_{t,\omega}=\max\{0,\hat\ell_{d,t}+e^L_{b_\omega,t}\},
-\qquad
-p_{t,\omega}=\max\{0,\hat p_{d,t}+e^P_{b_\omega,t}\}.
+
+\left\{
+\begin{aligned}
+\ell_{t,\omega}&=\max\{0,\hat\ell_{d,t}+e^L_{b_\omega,t}\},\\
+p_{t,\omega}&=\max\{0,\hat p_{d,t}+e^P_{b_\omega,t}\}.
+\end{aligned}
+\right.
+
 $$
 
 源荷采用同一块索引，以保留二者相关性和误差的时序持续性；经1月样本外校准，正式模型取场景数 $N=40$。
@@ -32,6 +43,7 @@ $$
 对任意时段 $t$ 和场景 $\omega$，能量平衡、光伏分配和SOC递推为
 
 $$
+\left\{
 \begin{aligned}
 G_t^0+G_{t,\omega}^e+D_{t,\omega}+R_{t,\omega}
 &=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^{g},\\
@@ -39,6 +51,7 @@ R_{t,\omega}+W_{t,\omega}^{pv}&=p_{t,\omega},\\
 S_{t+1,\omega}
 &=S_{t,\omega}+\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d}.
 \end{aligned}
+\right.
 $$
 
 容量、功率和非负约束沿用问题一；初始SOC取上一日实际运行的24时状态，48 h末端设置
@@ -83,24 +96,34 @@ $$
 **场景费用与风险约束**
 
 $$
-J_\omega=\sum_{t=1}^{T}\pi_t
-\left(G_t^0+5G_{t,\omega}^e\right),\qquad
-z_\omega\ge J_\omega-\zeta,\qquad z_\omega\ge0.
+
+\left\{
+\begin{aligned}
+J_\omega&=\sum_{t=1}^{T}\pi_t
+\left(G_t^0+5G_{t,\omega}^e\right),\\
+z_\omega&\ge J_\omega-\zeta,\\
+z_\omega&\ge0.
+\end{aligned}
+\right.
+
 $$
 
 **能量平衡约束**
 
 $$
+\left\{
 \begin{aligned}
 G_t^0+G_{t,\omega}^e+D_{t,\omega}+R_{t,\omega}
 &=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^g,\\
 R_{t,\omega}+W_{t,\omega}^{pv}&=p_{t,\omega}.
 \end{aligned}
+\right.
 $$
 
 **储能状态约束**
 
 $$
+\left\{
 \begin{aligned}
 S_{t+1,\omega}
 &=S_{t,\omega}+\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d},\\
@@ -108,11 +131,13 @@ S_{1,\omega}&=S_d^{\mathrm{init}},\qquad
 5400\le S_{T+1,\omega}\le6600,\\
 1200&\le S_{t,\omega}\le10800.
 \end{aligned}
+\right.
 $$
 
 **变量边界与计算参数**
 
 $$
+\left\{
 \begin{aligned}
 &0\le C_{t,\omega},D_{t,\omega}\le833.3333,\\
 &G_t^0,G_{t,\omega}^e,R_{t,\omega},
@@ -120,6 +145,7 @@ W_{t,\omega}^{pv},W_{t,\omega}^g\ge0,\\
 &T=288,\qquad N=40,\qquad \alpha=0.9,\qquad
 \lambda=0\ \text{（正式计算）}.
 \end{aligned}
+\right.
 $$
 
 该方程组同时给出日前共享决策、场景补救、跨日SOC边界和正式计算参数；每日只执行其前144个时段。
