@@ -86,37 +86,60 @@ $$
 
 在更新时刻 $h\in\{6,12,18\}$，定义 $k_h=6h+1$ 为该时刻对应的SOC起点索引。令 $\boldsymbol y_h=(G_{t\mid h}^{a},U_t^h,V_t^h)$ 为场景共享的调整变量，$\boldsymbol x_{\omega,h}=(G_{t,\omega}^{e,h},C_{t,\omega}^{h},D_{t,\omega}^{h},R_{t,\omega}^{h},W_{t,\omega}^{pv,h},W_{t,\omega}^{g,h},S_{t,\omega}^{h})$ 为场景补救变量，则剩余时域模型可集中写为
 
+**目标函数**
+
 $$
-\boxed{
-\begin{aligned}
-\min_{\boldsymbol y_h,\{\boldsymbol x_{\omega,h}\},\zeta_h,\{z_{\omega,h}\}}\quad
-&(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega^h
+\min_{\boldsymbol y_h,\{\boldsymbol x_{\omega,h}\},\zeta_h,\{z_{\omega,h}\}}
+(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega^h
 +\lambda\left[
 \zeta_h+\frac1{(1-\alpha)N}\sum_{\omega=1}^{N}z_{\omega,h}
-\right]\\
-\mathrm{s.t.}\quad&
-\left\{
+\right].
+$$
+
+**调整费用与风险约束**
+
+$$
 \begin{aligned}
-&J_\omega^h=\sum_{t\in\mathcal T_h}\pi_t
+J_\omega^h&=\sum_{t\in\mathcal T_h}\pi_t
 \left(1.5U_t^h-0.5V_t^h+5G_{t,\omega}^{e,h}\right),\\
-&z_{\omega,h}\ge J_\omega^h-\zeta_h,\qquad z_{\omega,h}\ge0,\\
-&G_{t\mid h}^{a}-U_t^h+V_t^h=G_t^0,\\
-&G_{t\mid h}^{a}+G_{t,\omega}^{e,h}+D_{t,\omega}^{h}+R_{t,\omega}^{h}
-=\ell_{t,\omega}^{h}+C_{t,\omega}^{h}+W_{t,\omega}^{g,h},\\
-&R_{t,\omega}^{h}+W_{t,\omega}^{pv,h}=p_{t,\omega}^{h},\\
-&S_{t+1,\omega}^{h}=S_{t,\omega}^{h}
-+\eta_cC_{t,\omega}^{h}-\frac{D_{t,\omega}^{h}}{\eta_d},\\
-&S_{k_h,\omega}^{h}=S_{k_h}^{\mathrm{act}},\qquad
+z_{\omega,h}&\ge J_\omega^h-\zeta_h,\qquad z_{\omega,h}\ge0,\\
+G_{t\mid h}^{a}-U_t^h+V_t^h&=G_t^0.
+\end{aligned}
+$$
+
+**能量平衡约束**
+
+$$
+\begin{aligned}
+G_{t\mid h}^{a}+G_{t,\omega}^{e,h}+D_{t,\omega}^{h}+R_{t,\omega}^{h}
+&=\ell_{t,\omega}^{h}+C_{t,\omega}^{h}+W_{t,\omega}^{g,h},\\
+R_{t,\omega}^{h}+W_{t,\omega}^{pv,h}&=p_{t,\omega}^{h}.
+\end{aligned}
+$$
+
+**储能状态约束**
+
+$$
+\begin{aligned}
+S_{t+1,\omega}^{h}
+&=S_{t,\omega}^{h}+\eta_cC_{t,\omega}^{h}
+-\frac{D_{t,\omega}^{h}}{\eta_d},\\
+S_{k_h,\omega}^{h}&=S_{k_h}^{\mathrm{act}},\qquad
 5400\le S_{145,\omega}^{h}\le6600,\\
-&1200\le S_{t,\omega}^{h}\le10800,\qquad
-0\le C_{t,\omega}^{h},D_{t,\omega}^{h}\le833.3333,\\
+1200&\le S_{t,\omega}^{h}\le10800.
+\end{aligned}
+$$
+
+**变量边界与计算参数**
+
+$$
+\begin{aligned}
+&0\le C_{t,\omega}^{h},D_{t,\omega}^{h}\le833.3333,\\
 &G_{t\mid h}^{a},U_t^h,V_t^h,G_{t,\omega}^{e,h},
 R_{t,\omega}^{h},W_{t,\omega}^{pv,h},W_{t,\omega}^{g,h}\ge0,\\
-&N=40,\quad \alpha=0.9,\quad \lambda=0,\quad
+&N=40,\qquad \alpha=0.9,\qquad \lambda=0,\qquad
 |\mathcal T_h|\in\{108,72,36\}.
 \end{aligned}
-\right.
-\end{aligned}}
 $$
 
 该方程组把信息更新、上下调结算、储能状态传递和剩余时域边界统一在同一滚动优化问题中。
