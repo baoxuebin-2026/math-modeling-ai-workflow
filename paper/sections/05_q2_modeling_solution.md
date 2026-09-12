@@ -103,7 +103,9 @@ $$
 \min_{\boldsymbol G^0,\{\boldsymbol x_\omega\}}\quad
 &(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega
 +\lambda\operatorname{CVaR}_{\alpha}(J)\\
-\mathrm{s.t.}\quad
+\mathrm{s.t.}\quad&
+\left\{
+\begin{aligned}
 &J_\omega=\sum_{t=1}^{T}\pi_t
 \left(G_t^0+5G_{t,\omega}^e\right),\\
 &G_t^0+G_{t,\omega}^e+D_{t,\omega}+R_{t,\omega}
@@ -120,6 +122,8 @@ W_{t,\omega}^{pv},W_{t,\omega}^g\ge0,\\
 &z_\omega\ge J_\omega-\zeta,\qquad z_\omega\ge0,\\
 &T=288,\quad N=40,\quad \alpha=0.9,\quad \lambda=0
 \ \text{（正式计算）}.
+\end{aligned}
+\right.
 \end{aligned}}
 $$
 
