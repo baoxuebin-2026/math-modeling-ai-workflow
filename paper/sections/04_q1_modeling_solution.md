@@ -81,7 +81,7 @@ $$
 
 将上述目标函数、决策变量和约束集中后，问题一可写为
 
-$
+$$
 \boxed{
 \begin{aligned}
 \min_{\{G_t^0,C_t,D_t,R_t,W_t^{pv},W_t^g,S_t\}}\quad
@@ -96,7 +96,7 @@ $
 &G_t^0,R_t,W_t^{pv},W_t^g\ge0,\qquad
 \eta_c=\eta_d=0.9.
 \end{aligned}}
-$
+$$
 
 该总括模型为确定性连续线性规划，首末SOC闭合约束保证储能收益不依赖日末透支。
 
