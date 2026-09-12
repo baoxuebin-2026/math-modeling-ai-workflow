@@ -97,36 +97,56 @@ $$
 
 令 $\boldsymbol x_\omega=(G_{t,\omega}^e,C_{t,\omega},D_{t,\omega},R_{t,\omega},W_{t,\omega}^{pv},W_{t,\omega}^g,S_{t,\omega})$ 为场景补救变量，$G_t^0$ 为所有场景共享的日前决策，则问题二可集中表示为
 
+**目标函数**
+
 $$
-\boxed{
-\begin{aligned}
-\min_{\boldsymbol G^0,\{\boldsymbol x_\omega\},\zeta,\{z_\omega\}}\quad
-&(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega
+\min_{\boldsymbol G^0,\{\boldsymbol x_\omega\},\zeta,\{z_\omega\}}
+(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega
 +\lambda\left[
 \zeta+\frac1{(1-\alpha)N}\sum_{\omega=1}^{N}z_\omega
-\right]\\
-\mathrm{s.t.}\quad&
-\left\{
+\right].
+$$
+
+**场景费用与风险约束**
+
+$$
+J_\omega=\sum_{t=1}^{T}\pi_t
+\left(G_t^0+5G_{t,\omega}^e\right),\qquad
+z_\omega\ge J_\omega-\zeta,\qquad z_\omega\ge0.
+$$
+
+**能量平衡约束**
+
+$$
 \begin{aligned}
-&J_\omega=\sum_{t=1}^{T}\pi_t
-\left(G_t^0+5G_{t,\omega}^e\right),\\
-&G_t^0+G_{t,\omega}^e+D_{t,\omega}+R_{t,\omega}
-=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^g,\\
-&R_{t,\omega}+W_{t,\omega}^{pv}=p_{t,\omega},\\
-&S_{t+1,\omega}=S_{t,\omega}
-+\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d},\\
-&S_{1,\omega}=S_d^{\mathrm{init}},\qquad
+G_t^0+G_{t,\omega}^e+D_{t,\omega}+R_{t,\omega}
+&=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^g,\\
+R_{t,\omega}+W_{t,\omega}^{pv}&=p_{t,\omega}.
+\end{aligned}
+$$
+
+**储能状态约束**
+
+$$
+\begin{aligned}
+S_{t+1,\omega}
+&=S_{t,\omega}+\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d},\\
+S_{1,\omega}&=S_d^{\mathrm{init}},\qquad
 5400\le S_{T+1,\omega}\le6600,\\
-&1200\le S_{t,\omega}\le10800,\qquad
-0\le C_{t,\omega},D_{t,\omega}\le833.3333,\\
+1200&\le S_{t,\omega}\le10800.
+\end{aligned}
+$$
+
+**变量边界与计算参数**
+
+$$
+\begin{aligned}
+&0\le C_{t,\omega},D_{t,\omega}\le833.3333,\\
 &G_t^0,G_{t,\omega}^e,R_{t,\omega},
 W_{t,\omega}^{pv},W_{t,\omega}^g\ge0,\\
-&z_\omega\ge J_\omega-\zeta,\qquad z_\omega\ge0,\\
-&T=288,\quad N=40,\quad \alpha=0.9,\quad \lambda=0
-\ \text{（正式计算）}.
+&T=288,\qquad N=40,\qquad \alpha=0.9,\qquad
+\lambda=0\ \text{（正式计算）}.
 \end{aligned}
-\right.
-\end{aligned}}
 $$
 
 该方程组同时给出日前共享决策、场景补救、跨日SOC边界和正式计算参数；每日只执行其前144个时段。
