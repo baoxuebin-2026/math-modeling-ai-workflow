@@ -24,9 +24,15 @@ $$
 问题四-3在0时形成48 h原计划，在6、12、18时仅优化当日剩余时段。已实现价格用于修正剩余时段的预测中心：
 
 $$
-b_h=\frac{1}{n_h}\sum_{k\in\mathcal K_h}
-(\pi_k-\hat\pi_{k\mid0}),\qquad
-\hat\pi_{t\mid h}=\max\{\hat\pi_{t\mid0}+b_h,0\}.
+
+\left\{
+\begin{aligned}
+b_h&=\frac{1}{n_h}\sum_{k\in\mathcal K_h}
+(\pi_k-\hat\pi_{k\mid0}),\\
+\hat\pi_{t\mid h}&=\max\{\hat\pi_{t\mid0}+b_h,0\}.
+\end{aligned}
+\right.
+
 $$
 
 结合最新光伏预报生成剩余场景后，增量费用为
@@ -70,6 +76,7 @@ $$
 **场景费用与风险约束**
 
 $$
+\left\{
 \begin{aligned}
 J_\omega^{4-2}
 &=\sum_{t=1}^{T}\pi_{t,\omega}
@@ -82,22 +89,26 @@ z_\omega^{4-2}&\ge J_\omega^{4-2}-\zeta^{4-2},
 z_{\omega,h}^{4-3}&\ge J_{\omega,h}^{4-3}-\zeta_h^{4-3},
 \qquad z_{\omega,h}^{4-3}\ge0.
 \end{aligned}
+\right.
 $$
 
 **能量平衡约束**
 
 $$
+\left\{
 \begin{aligned}
 \widetilde G_{t,\omega}^{(m)}+G_{t,\omega}^{e,m}
 +D_{t,\omega}^{m}+R_{t,\omega}^{m}
 &=\ell_{t,\omega}^{m}+C_{t,\omega}^{m}+W_{t,\omega}^{g,m},\\
 R_{t,\omega}^{m}+W_{t,\omega}^{pv,m}&=p_{t,\omega}^{m}.
 \end{aligned}
+\right.
 $$
 
 **调整关系与储能约束**
 
 $$
+\left\{
 \begin{aligned}
 G_{t\mid h}^{a}-U_t^h+V_t^h&=G_t^0
 \qquad (m=4\text{-}3),\\
@@ -109,11 +120,13 @@ S_{1,\omega}^{4-2}&=S_d^{\mathrm{init}},\qquad
 S_{k_h,\omega}^{4-3}&=S_{k_h}^{\mathrm{act}},\qquad
 5400\le S_{145,\omega}^{4-3}\le6600.
 \end{aligned}
+\right.
 $$
 
 **变量边界与计算参数**
 
 $$
+\left\{
 \begin{aligned}
 &1200\le S_{t,\omega}^{m}\le10800,\qquad
 0\le C_{t,\omega}^{m},D_{t,\omega}^{m}\le833.3333,\\
@@ -122,6 +135,7 @@ W_{t,\omega}^{pv,m},W_{t,\omega}^{g,m},U_t^h,V_t^h\ge0,\\
 &N=40,\qquad \alpha=0.9,\qquad \lambda=0,\qquad
 T=288,\qquad |\mathcal T_h|\in\{108,72,36\}.
 \end{aligned}
+\right.
 $$
 
 0时模型在第48小时末施加SOC参考带，日内更新则在当日24时施加同一参考带。
