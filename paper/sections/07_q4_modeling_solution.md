@@ -78,6 +78,10 @@ $
 +\eta_cC_{t,\omega}^{m}-\frac{D_{t,\omega}^{m}}{\eta_d},\\
 &G_{t\mid h}^{a}-U_t^h+V_t^h=G_t^0
 \qquad (m=4\text{-}3),\\
+&S_{1,\omega}^{4-2}=S_d^{\mathrm{init}},\qquad
+5400\le S_{T+1,\omega}^{4-2}\le6600,\\
+&S_{6h+1,\omega}^{4-3}=S_{6h+1}^{\mathrm{act}},\qquad
+5400\le S_{145,\omega}^{4-3}\le6600,\\
 &1200\le S_{t,\omega}^{m}\le10800,\qquad
 0\le C_{t,\omega}^{m},D_{t,\omega}^{m}\le833.3333,\\
 &G_{t,\omega}^{e,m},R_{t,\omega}^{m},
