@@ -52,7 +52,44 @@ $$
 
 与问题二、问题三一致，计划及调整严格遵守上述信息边界；但给定实测轨迹下各执行段的储能动作与紧急购电采用完整实测段作后验最优补救求解，并非10 min级因果反馈控制。该实现口径可能使紧急购电结果偏乐观，本文在第七章将其列为主要局限。
 
-### 5.4.2 指定日期结果与价格响应
+### 5.4.2 问题四模型总括
+
+令 $\widetilde G_{t,\omega}^{(m)}$ 表示策略 $m$ 下的生效购电量：问题四-2中为 $G_t^0$，问题四-3的更新阶段为 $G_{t\mid h}^{a}$。两种波动电价策略可统一表示为
+
+$
+\boxed{
+\begin{aligned}
+\min\ J^{4-2}\quad
+&=(1-\lambda)\frac1N\sum_{\omega=1}^{N}
+\sum_{t=1}^{T}\pi_{t,\omega}
+\left(G_t^0+5G_{t,\omega}^{e}\right)
++\lambda\operatorname{CVaR}_{\alpha}(J^{4-2}),\\
+\min\ J_h^{4-3}\quad
+&=(1-\lambda)\frac1N\sum_{\omega=1}^{N}
+\sum_{t\in\mathcal T_h}\pi_{t,\omega}
+\left(1.5U_t^h-0.5V_t^h+5G_{t,\omega}^{e,h}\right)
++\lambda\operatorname{CVaR}_{\alpha}(J_h^{4-3})\\
+\mathrm{s.t.}\quad
+&\widetilde G_{t,\omega}^{(m)}+G_{t,\omega}^{e,m}
++D_{t,\omega}^{m}+R_{t,\omega}^{m}
+=\ell_{t,\omega}^{m}+C_{t,\omega}^{m}+W_{t,\omega}^{g,m},\\
+&R_{t,\omega}^{m}+W_{t,\omega}^{pv,m}=p_{t,\omega}^{m},\\
+&S_{t+1,\omega}^{m}=S_{t,\omega}^{m}
++\eta_cC_{t,\omega}^{m}-\frac{D_{t,\omega}^{m}}{\eta_d},\\
+&G_{t\mid h}^{a}-U_t^h+V_t^h=G_t^0
+\qquad (m=4\text{-}3),\\
+&1200\le S_{t,\omega}^{m}\le10800,\qquad
+0\le C_{t,\omega}^{m},D_{t,\omega}^{m}\le833.3333,\\
+&G_{t,\omega}^{e,m},R_{t,\omega}^{m},
+W_{t,\omega}^{pv,m},W_{t,\omega}^{g,m},U_t^h,V_t^h\ge0,\\
+&N=40,\quad \alpha=0.9,\quad \lambda=0,\quad
+T=288,\quad |\mathcal T_h|\in\{108,72,36\}.
+\end{aligned}}
+$
+
+0时模型在第48小时末施加SOC参考带，6、12、18时更新模型则在当日24时施加同一参考带；实际结算仅使用相应时段已经实现的电价。
+
+### 5.4.3 指定日期结果与价格响应
 
 以2025年3月20日为例，图9同时给出0时价格预测与实际波动，以及问题四-2日前计划、问题四-3最终滚动计划和SOC轨迹。0时预测能够描述价格的大体日内水平，但无法预知全部局部尖峰；问题四-3在新光伏信息和已实现价格偏差到达后，重新配置尚未执行时段的购电量，使调度对价格变化作出因果响应。
 
@@ -64,7 +101,7 @@ $$
 
 四个日期的完整10 min计划、调整、储能运行和紧急购电明细均已纳入年度结果。全部334 d结果分别写入 result4-2.xlsx 和 result4-3.xlsx，正文只保留具有代表性的费用—风险汇总。
 
-### 5.4.3 年度对比与风险分析
+### 5.4.4 年度对比与风险分析
 
 以2025年2月1日至12月31日共334 d为统一统计区间，问题四-2与问题四-3的年度结果见表7。问题四-3增加147160.92元计划费，调整净费用为358998.58元；紧急购电费减少672748.66元，最终总费用减少166589.15元；累计紧急购电量减少252972.76 kWh。
 
