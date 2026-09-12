@@ -69,7 +69,9 @@ $$
 \sum_{t\in\mathcal T_h}\pi_{t,\omega}
 \left(1.5U_t^h-0.5V_t^h+5G_{t,\omega}^{e,h}\right)
 +\lambda\operatorname{CVaR}_{\alpha}(J_h^{4-3})\\
-\mathrm{s.t.}\quad
+\mathrm{s.t.}\quad&
+\left\{
+\begin{aligned}
 &\widetilde G_{t,\omega}^{(m)}+G_{t,\omega}^{e,m}
 +D_{t,\omega}^{m}+R_{t,\omega}^{m}
 =\ell_{t,\omega}^{m}+C_{t,\omega}^{m}+W_{t,\omega}^{g,m},\\
@@ -88,6 +90,8 @@ $$
 W_{t,\omega}^{pv,m},W_{t,\omega}^{g,m},U_t^h,V_t^h\ge0,\\
 &N=40,\quad \alpha=0.9,\quad \lambda=0,\quad
 T=288,\quad |\mathcal T_h|\in\{108,72,36\}.
+\end{aligned}
+\right.
 \end{aligned}}
 $$
 
