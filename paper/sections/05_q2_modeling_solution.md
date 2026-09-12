@@ -100,9 +100,11 @@ $$
 $$
 \boxed{
 \begin{aligned}
-\min_{\boldsymbol G^0,\{\boldsymbol x_\omega\}}\quad
+\min_{\boldsymbol G^0,\{\boldsymbol x_\omega\},\zeta,\{z_\omega\}}\quad
 &(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega
-+\lambda\operatorname{CVaR}_{\alpha}(J)\\
++\lambda\left[
+\zeta+\frac1{(1-\alpha)N}\sum_{\omega=1}^{N}z_\omega
+\right]\\
 \mathrm{s.t.}\quad&
 \left\{
 \begin{aligned}
