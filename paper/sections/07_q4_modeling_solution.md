@@ -25,13 +25,11 @@ $$
 
 $$
 
-\left\{
-\begin{aligned}
-b_h&=\frac{1}{n_h}\sum_{k\in\mathcal K_h}
+\begin{cases}
+b_h=\frac{1}{n_h}\sum_{k\in\mathcal K_h}
 (\pi_k-\hat\pi_{k\mid0}),\\
-\hat\pi_{t\mid h}&=\max\{\hat\pi_{t\mid0}+b_h,0\}.
-\end{aligned}
-\right.
+\hat\pi_{t\mid h}=\max\{\hat\pi_{t\mid0}+b_h,0\}.
+\end{cases}
 
 $$
 
@@ -76,66 +74,58 @@ $$
 **场景费用与风险约束**
 
 $$
-\left\{
-\begin{aligned}
+\begin{cases}
 J_\omega^{4-2}
-&=\sum_{t=1}^{T}\pi_{t,\omega}
+=\sum_{t=1}^{T}\pi_{t,\omega}
 \left(G_t^0+5G_{t,\omega}^{e}\right),\\
 J_{\omega,h}^{4-3}
-&=\sum_{t\in\mathcal T_h}\pi_{t,\omega}
+=\sum_{t\in\mathcal T_h}\pi_{t,\omega}
 \left(1.5U_t^h-0.5V_t^h+5G_{t,\omega}^{e,h}\right),\\
-z_\omega^{4-2}&\ge J_\omega^{4-2}-\zeta^{4-2},
+z_\omega^{4-2}\ge J_\omega^{4-2}-\zeta^{4-2},
 \qquad z_\omega^{4-2}\ge0,\\
-z_{\omega,h}^{4-3}&\ge J_{\omega,h}^{4-3}-\zeta_h^{4-3},
+z_{\omega,h}^{4-3}\ge J_{\omega,h}^{4-3}-\zeta_h^{4-3},
 \qquad z_{\omega,h}^{4-3}\ge0.
-\end{aligned}
-\right.
+\end{cases}
 $$
 
 **能量平衡约束**
 
 $$
-\left\{
-\begin{aligned}
+\begin{cases}
 \widetilde G_{t,\omega}^{(m)}+G_{t,\omega}^{e,m}
 +D_{t,\omega}^{m}+R_{t,\omega}^{m}
-&=\ell_{t,\omega}^{m}+C_{t,\omega}^{m}+W_{t,\omega}^{g,m},\\
-R_{t,\omega}^{m}+W_{t,\omega}^{pv,m}&=p_{t,\omega}^{m}.
-\end{aligned}
-\right.
+=\ell_{t,\omega}^{m}+C_{t,\omega}^{m}+W_{t,\omega}^{g,m},\\
+R_{t,\omega}^{m}+W_{t,\omega}^{pv,m}=p_{t,\omega}^{m}.
+\end{cases}
 $$
 
 **调整关系与储能约束**
 
 $$
-\left\{
-\begin{aligned}
-G_{t\mid h}^{a}-U_t^h+V_t^h&=G_t^0
+\begin{cases}
+G_{t\mid h}^{a}-U_t^h+V_t^h=G_t^0
 \qquad (m=4\text{-}3),\\
 S_{t+1,\omega}^{m}
-&=S_{t,\omega}^{m}+\eta_cC_{t,\omega}^{m}
+=S_{t,\omega}^{m}+\eta_cC_{t,\omega}^{m}
 -\frac{D_{t,\omega}^{m}}{\eta_d},\\
-S_{1,\omega}^{4-2}&=S_d^{\mathrm{init}},\qquad
+S_{1,\omega}^{4-2}=S_d^{\mathrm{init}},\qquad
 5400\le S_{T+1,\omega}^{4-2}\le6600,\\
-S_{k_h,\omega}^{4-3}&=S_{k_h}^{\mathrm{act}},\qquad
+S_{k_h,\omega}^{4-3}=S_{k_h}^{\mathrm{act}},\qquad
 5400\le S_{145,\omega}^{4-3}\le6600.
-\end{aligned}
-\right.
+\end{cases}
 $$
 
 **变量边界与计算参数**
 
 $$
-\left\{
-\begin{aligned}
-&1200\le S_{t,\omega}^{m}\le10800,\qquad
+\begin{cases}
+1200\le S_{t,\omega}^{m}\le10800,\qquad
 0\le C_{t,\omega}^{m},D_{t,\omega}^{m}\le833.3333,\\
-&G_t^0,G_{t\mid h}^{a},G_{t,\omega}^{e,m},R_{t,\omega}^{m},
+G_t^0,G_{t\mid h}^{a},G_{t,\omega}^{e,m},R_{t,\omega}^{m},
 W_{t,\omega}^{pv,m},W_{t,\omega}^{g,m},U_t^h,V_t^h\ge0,\\
-&N=40,\qquad \alpha=0.9,\qquad \lambda=0,\qquad
+N=40,\qquad \alpha=0.9,\qquad \lambda=0,\qquad
 T=288,\qquad |\mathcal T_h|\in\{108,72,36\}.
-\end{aligned}
-\right.
+\end{cases}
 $$
 
 0时模型在第48小时末施加SOC参考带，日内更新则在当日24时施加同一参考带。
