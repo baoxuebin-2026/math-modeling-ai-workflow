@@ -9,7 +9,14 @@
 令第 $t$ 格负载和光伏功率分别为 $L_t$、$P_t$，按 $\Delta t=1/6\ \mathrm h$ 折算为
 
 $$
-\ell_t=L_t\Delta t,\qquad p_t=P_t\Delta t.
+
+\left\{
+\begin{aligned}
+\ell_t&=L_t\Delta t,\\
+p_t&=P_t\Delta t.
+\end{aligned}
+\right.
+
 $$
 
 决策变量包括计划购电量 $G_t^0$、充放电量 $C_t,D_t$、储电量 $S_t$、实际利用光伏量 $R_t$、弃光量 $W_t^{pv}$ 和未使用计划电量 $W_t^g$。模型以母线能量平衡和光伏分配保证供需一致，以SOC递推描述储能状态，并满足容量、功率、非负和首末SOC闭合约束。由于全天信息已知且外网购电能力未设上限，本问不设置紧急购电。
@@ -23,8 +30,14 @@ $$
 全部物理关系集中列于5.1.2。目标函数和约束均为线性连续形式，因此问题一属于确定性线性规划。为评价储能收益，设置无储能基线
 
 $$
-G_t^{\mathrm{base}}=\max(\ell_t-p_t,0),\qquad
-J_{\mathrm{base}}=\sum_{t=1}^{144}\pi_tG_t^{\mathrm{base}},
+
+\left\{
+\begin{aligned}
+G_t^{\mathrm{base}}&=\max(\ell_t-p_t,0),\\
+J_{\mathrm{base}}&=\sum_{t=1}^{144}\pi_tG_t^{\mathrm{base}},
+\end{aligned}
+\right.
+
 $$
 
 该基线仅允许光伏直接供给当期负载，不具备跨时段转移能力。
@@ -43,23 +56,42 @@ $$
 **能量平衡约束**
 
 $$
-G_t^0+D_t+R_t=\ell_t+C_t+W_t^g,\qquad
-R_t+W_t^{pv}=p_t,\quad t=1,\ldots,144.
+
+\left\{
+\begin{aligned}
+G_t^0+D_t+R_t&=\ell_t+C_t+W_t^g,\\
+R_t+W_t^{pv}&=p_t,\qquad t=1,\ldots,144.
+\end{aligned}
+\right.
+
 $$
 
 **储能状态约束**
 
 $$
-S_{t+1}=S_t+\eta_cC_t-\frac{D_t}{\eta_d},\qquad
-S_1=S_{145}=6000,\qquad 1200\le S_t\le10800.
+
+\left\{
+\begin{aligned}
+S_{t+1}&=S_t+\eta_cC_t-\frac{D_t}{\eta_d},\\
+S_1&=S_{145}=6000,\\
+1200&\le S_t\le10800.
+\end{aligned}
+\right.
+
 $$
 
 **变量边界**
 
 $$
-0\le C_t,D_t\le P^{\max}\Delta t=833.3333,
-\qquad G_t^0,R_t,W_t^{pv},W_t^g\ge0,
-\qquad \eta_c=\eta_d=0.9.
+
+\left\{
+\begin{aligned}
+0&\le C_t,D_t\le P^{\max}\Delta t=833.3333,\\
+G_t^0,R_t,W_t^{pv},W_t^g&\ge0,\\
+\eta_c&=\eta_d=0.9.
+\end{aligned}
+\right.
+
 $$
 
 该总括模型为确定性连续线性规划，首末SOC闭合约束保证储能收益不依赖日末透支。
