@@ -54,24 +54,36 @@ $$
 
 ### 5.4.2 问题四模型总括
 
-令 $\widetilde G_{t,\omega}^{(m)}$ 表示策略 $m$ 下的生效购电量：问题四-2中为 $G_t^0$，问题四-3的更新阶段为 $G_{t\mid h}^{a}$。两种波动电价策略可统一表示为
+令 $\widetilde G_{t,\omega}^{(m)}$ 表示策略 $m$ 下的生效购电量：问题四-2中为 $G_t^0$，问题四-3的更新阶段为 $G_{t\mid h}^{a}$。进一步定义 $k_h=6h+1$，并以 $\boldsymbol x_\omega^{4-2}$ 表示问题四-2的场景补救变量，以 $\boldsymbol y_h^{4-3}=(G_{t\mid h}^{a},U_t^h,V_t^h)$ 和 $\boldsymbol x_{\omega,h}^{4-3}$ 分别表示问题四-3的共享调整变量与场景补救变量，则两种波动电价策略可统一表示为
 
 $$
 \boxed{
 \begin{aligned}
-\min\ J^{4-2}\quad
-&=(1-\lambda)\frac1N\sum_{\omega=1}^{N}
-\sum_{t=1}^{T}\pi_{t,\omega}
-\left(G_t^0+5G_{t,\omega}^{e}\right)
-+\lambda\operatorname{CVaR}_{\alpha}(J^{4-2}),\\
-\min\ J_h^{4-3}\quad
-&=(1-\lambda)\frac1N\sum_{\omega=1}^{N}
-\sum_{t\in\mathcal T_h}\pi_{t,\omega}
-\left(1.5U_t^h-0.5V_t^h+5G_{t,\omega}^{e,h}\right)
-+\lambda\operatorname{CVaR}_{\alpha}(J_h^{4-3})\\
+\min_{\boldsymbol G^0,\{\boldsymbol x_\omega^{4-2}\},
+\zeta^{4-2},\{z_\omega^{4-2}\}}\quad J^{4-2}
+&=(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_\omega^{4-2}
++\lambda\left[
+\zeta^{4-2}+\frac1{(1-\alpha)N}
+\sum_{\omega=1}^{N}z_\omega^{4-2}
+\right],\\
+\min_{\boldsymbol y_h^{4-3},\{\boldsymbol x_{\omega,h}^{4-3}\},
+\zeta_h^{4-3},\{z_{\omega,h}^{4-3}\}}\quad J_h^{4-3}
+&=(1-\lambda)\frac1N\sum_{\omega=1}^{N}J_{\omega,h}^{4-3}
++\lambda\left[
+\zeta_h^{4-3}+\frac1{(1-\alpha)N}
+\sum_{\omega=1}^{N}z_{\omega,h}^{4-3}
+\right]\\
 \mathrm{s.t.}\quad&
 \left\{
 \begin{aligned}
+&J_\omega^{4-2}=\sum_{t=1}^{T}\pi_{t,\omega}
+\left(G_t^0+5G_{t,\omega}^{e}\right),\\
+&J_{\omega,h}^{4-3}=\sum_{t\in\mathcal T_h}\pi_{t,\omega}
+\left(1.5U_t^h-0.5V_t^h+5G_{t,\omega}^{e,h}\right),\\
+&z_\omega^{4-2}\ge J_\omega^{4-2}-\zeta^{4-2},
+\qquad z_\omega^{4-2}\ge0,\\
+&z_{\omega,h}^{4-3}\ge J_{\omega,h}^{4-3}-\zeta_h^{4-3},
+\qquad z_{\omega,h}^{4-3}\ge0,\\
 &\widetilde G_{t,\omega}^{(m)}+G_{t,\omega}^{e,m}
 +D_{t,\omega}^{m}+R_{t,\omega}^{m}
 =\ell_{t,\omega}^{m}+C_{t,\omega}^{m}+W_{t,\omega}^{g,m},\\
@@ -82,11 +94,11 @@ $$
 \qquad (m=4\text{-}3),\\
 &S_{1,\omega}^{4-2}=S_d^{\mathrm{init}},\qquad
 5400\le S_{T+1,\omega}^{4-2}\le6600,\\
-&S_{6h+1,\omega}^{4-3}=S_{6h+1}^{\mathrm{act}},\qquad
+&S_{k_h,\omega}^{4-3}=S_{k_h}^{\mathrm{act}},\qquad
 5400\le S_{145,\omega}^{4-3}\le6600,\\
 &1200\le S_{t,\omega}^{m}\le10800,\qquad
 0\le C_{t,\omega}^{m},D_{t,\omega}^{m}\le833.3333,\\
-&G_{t,\omega}^{e,m},R_{t,\omega}^{m},
+&G_t^0,G_{t\mid h}^{a},G_{t,\omega}^{e,m},R_{t,\omega}^{m},
 W_{t,\omega}^{pv,m},W_{t,\omega}^{g,m},U_t^h,V_t^h\ge0,\\
 &N=40,\quad \alpha=0.9,\quad \lambda=0,\quad
 T=288,\quad |\mathcal T_h|\in\{108,72,36\}.
@@ -136,5 +148,5 @@ $$
 
 需要注意，问题四-3的日费用P95由72287.04元升至72963.46元，增幅0.94%。因此，多时次调整并未在所有指标上占优，而是在年度平均成本、尾部费用与供电缺口之间重新分配风险。模型检验还表明，高风险日的完整更新平均使紧急购电下降13.93%，但费用上升3.49%，进一步说明单次更新不保证费用单调下降。
 
-由于问题四使用未知波动电价，而问题二和问题三采用固定已知电价，二者的信息集和结算曲线不同，不能将跨问题金额差直接解释为模型优劣。公平结论应限定在问题四-2与问题四-3之间：在相同波动电价信息边界下，多时次滚动策略使总费用下降1.15%，并显著压缩紧急购电暴露，并保持全部能量与SOC约束可行。
+由于问题四使用未知波动电价，而问题二和问题三采用固定已知电价，二者的信息集和结算曲线不同，不能将跨问题金额差直接解释为模型优劣。公平结论应限定在问题四-2与问题四-3之间：在相同波动电价信息边界下，多时次滚动策略使总费用下降1.15%，同时显著压缩紧急购电暴露，并保持全部能量与SOC约束可行。
 
