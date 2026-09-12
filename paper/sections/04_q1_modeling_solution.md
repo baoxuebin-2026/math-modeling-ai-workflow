@@ -10,12 +10,10 @@
 
 $$
 
-\left\{
-\begin{aligned}
-\ell_t&=L_t\Delta t,\\
-p_t&=P_t\Delta t.
-\end{aligned}
-\right.
+\begin{cases}
+\ell_t=L_t\Delta t,\\
+p_t=P_t\Delta t.
+\end{cases}
 
 $$
 
@@ -31,12 +29,10 @@ $$
 
 $$
 
-\left\{
-\begin{aligned}
-G_t^{\mathrm{base}}&=\max(\ell_t-p_t,0),\\
-J_{\mathrm{base}}&=\sum_{t=1}^{144}\pi_tG_t^{\mathrm{base}},
-\end{aligned}
-\right.
+\begin{cases}
+G_t^{\mathrm{base}}=\max(\ell_t-p_t,0),\\
+J_{\mathrm{base}}=\sum_{t=1}^{144}\pi_tG_t^{\mathrm{base}},
+\end{cases}
 
 $$
 
@@ -57,12 +53,10 @@ $$
 
 $$
 
-\left\{
-\begin{aligned}
-G_t^0+D_t+R_t&=\ell_t+C_t+W_t^g,\\
-R_t+W_t^{pv}&=p_t,\qquad t=1,\ldots,144.
-\end{aligned}
-\right.
+\begin{cases}
+G_t^0+D_t+R_t=\ell_t+C_t+W_t^g,\\
+R_t+W_t^{pv}=p_t,\qquad t=1,\ldots,144.
+\end{cases}
 
 $$
 
@@ -70,13 +64,11 @@ $$
 
 $$
 
-\left\{
-\begin{aligned}
-S_{t+1}&=S_t+\eta_cC_t-\frac{D_t}{\eta_d},\\
-S_1&=S_{145}=6000,\\
-1200&\le S_t\le10800.
-\end{aligned}
-\right.
+\begin{cases}
+S_{t+1}=S_t+\eta_cC_t-\frac{D_t}{\eta_d},\\
+S_1=S_{145}=6000,\\
+1200\le S_t\le10800.
+\end{cases}
 
 $$
 
@@ -84,13 +76,11 @@ $$
 
 $$
 
-\left\{
-\begin{aligned}
-0&\le C_t,D_t\le P^{\max}\Delta t=833.3333,\\
-G_t^0,R_t,W_t^{pv},W_t^g&\ge0,\\
-\eta_c&=\eta_d=0.9.
-\end{aligned}
-\right.
+\begin{cases}
+0\le C_t,D_t\le P^{\max}\Delta t=833.3333,\\
+G_t^0,R_t,W_t^{pv},W_t^g\ge0,\\
+\eta_c=\eta_d=0.9.
+\end{cases}
 
 $$
 
