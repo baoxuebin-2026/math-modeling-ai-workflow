@@ -10,12 +10,10 @@
 
 $$
 
-\left\{
-\begin{aligned}
-\hat\ell_{d,t}&=F_L(\mathcal I_d),\\
-\hat p_{d,t}&=F_P(\mathcal I_d),
-\end{aligned}
-\right.
+\begin{cases}
+\hat\ell_{d,t}=F_L(\mathcal I_d),\\
+\hat p_{d,t}=F_P(\mathcal I_d),
+\end{cases}
 
 $$
 
@@ -25,12 +23,10 @@ $$
 
 $$
 
-\left\{
-\begin{aligned}
-\ell_{t,\omega}&=\max\{0,\hat\ell_{d,t}+e^L_{b_\omega,t}\},\\
-p_{t,\omega}&=\max\{0,\hat p_{d,t}+e^P_{b_\omega,t}\}.
-\end{aligned}
-\right.
+\begin{cases}
+\ell_{t,\omega}=\max\{0,\hat\ell_{d,t}+e^L_{b_\omega,t}\},\\
+p_{t,\omega}=\max\{0,\hat p_{d,t}+e^P_{b_\omega,t}\}.
+\end{cases}
 
 $$
 
@@ -43,15 +39,13 @@ $$
 对任意时段 $t$ 和场景 $\omega$，能量平衡、光伏分配和SOC递推为
 
 $$
-\left\{
-\begin{aligned}
+\begin{cases}
 G_t^0+G_{t,\omega}^e+D_{t,\omega}+R_{t,\omega}
-&=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^{g},\\
-R_{t,\omega}+W_{t,\omega}^{pv}&=p_{t,\omega},\\
+=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^{g},\\
+R_{t,\omega}+W_{t,\omega}^{pv}=p_{t,\omega},\\
 S_{t+1,\omega}
-&=S_{t,\omega}+\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d}.
-\end{aligned}
-\right.
+=S_{t,\omega}+\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d}.
+\end{cases}
 $$
 
 容量、功率和非负约束沿用问题一；初始SOC取上一日实际运行的24时状态，48 h末端设置
@@ -97,55 +91,47 @@ $$
 
 $$
 
-\left\{
-\begin{aligned}
-J_\omega&=\sum_{t=1}^{T}\pi_t
+\begin{cases}
+J_\omega=\sum_{t=1}^{T}\pi_t
 \left(G_t^0+5G_{t,\omega}^e\right),\\
-z_\omega&\ge J_\omega-\zeta,\\
-z_\omega&\ge0.
-\end{aligned}
-\right.
+z_\omega\ge J_\omega-\zeta,\\
+z_\omega\ge0.
+\end{cases}
 
 $$
 
 **能量平衡约束**
 
 $$
-\left\{
-\begin{aligned}
+\begin{cases}
 G_t^0+G_{t,\omega}^e+D_{t,\omega}+R_{t,\omega}
-&=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^g,\\
-R_{t,\omega}+W_{t,\omega}^{pv}&=p_{t,\omega}.
-\end{aligned}
-\right.
+=\ell_{t,\omega}+C_{t,\omega}+W_{t,\omega}^g,\\
+R_{t,\omega}+W_{t,\omega}^{pv}=p_{t,\omega}.
+\end{cases}
 $$
 
 **储能状态约束**
 
 $$
-\left\{
-\begin{aligned}
+\begin{cases}
 S_{t+1,\omega}
-&=S_{t,\omega}+\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d},\\
-S_{1,\omega}&=S_d^{\mathrm{init}},\qquad
+=S_{t,\omega}+\eta_cC_{t,\omega}-\frac{D_{t,\omega}}{\eta_d},\\
+S_{1,\omega}=S_d^{\mathrm{init}},\qquad
 5400\le S_{T+1,\omega}\le6600,\\
-1200&\le S_{t,\omega}\le10800.
-\end{aligned}
-\right.
+1200\le S_{t,\omega}\le10800.
+\end{cases}
 $$
 
 **变量边界与计算参数**
 
 $$
-\left\{
-\begin{aligned}
-&0\le C_{t,\omega},D_{t,\omega}\le833.3333,\\
-&G_t^0,G_{t,\omega}^e,R_{t,\omega},
+\begin{cases}
+0\le C_{t,\omega},D_{t,\omega}\le833.3333,\\
+G_t^0,G_{t,\omega}^e,R_{t,\omega},
 W_{t,\omega}^{pv},W_{t,\omega}^g\ge0,\\
-&T=288,\qquad N=40,\qquad \alpha=0.9,\qquad
+T=288,\qquad N=40,\qquad \alpha=0.9,\qquad
 \lambda=0\ \text{（正式计算）}.
-\end{aligned}
-\right.
+\end{cases}
 $$
 
 该方程组同时给出日前共享决策、场景补救、跨日SOC边界和正式计算参数；每日只执行其前144个时段。
