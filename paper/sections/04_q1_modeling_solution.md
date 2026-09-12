@@ -86,7 +86,9 @@ $$
 \begin{aligned}
 \min_{\{G_t^0,C_t,D_t,R_t,W_t^{pv},W_t^g,S_t\}}\quad
 &J_1=\sum_{t=1}^{144}\pi_tG_t^0\\
-\mathrm{s.t.}\quad
+\mathrm{s.t.}\quad&
+\left\{
+\begin{aligned}
 &G_t^0+D_t+R_t=\ell_t+C_t+W_t^g,\quad t=1,\ldots,144,\\
 &R_t+W_t^{pv}=p_t,\\
 &S_{t+1}=S_t+\eta_cC_t-\frac{D_t}{\eta_d},\\
@@ -95,6 +97,8 @@ $$
 &0\le C_t,D_t\le P^{\max}\Delta t=833.3333,\\
 &G_t^0,R_t,W_t^{pv},W_t^g\ge0,\qquad
 \eta_c=\eta_d=0.9.
+\end{aligned}
+\right.
 \end{aligned}}
 $$
 
