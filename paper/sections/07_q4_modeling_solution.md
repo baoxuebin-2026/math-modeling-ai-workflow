@@ -56,7 +56,7 @@ $$
 
 令 $\widetilde G_{t,\omega}^{(m)}$ 表示策略 $m$ 下的生效购电量：问题四-2中为 $G_t^0$，问题四-3的更新阶段为 $G_{t\mid h}^{a}$。两种波动电价策略可统一表示为
 
-$
+$$
 \boxed{
 \begin{aligned}
 \min\ J^{4-2}\quad
@@ -89,7 +89,7 @@ W_{t,\omega}^{pv,m},W_{t,\omega}^{g,m},U_t^h,V_t^h\ge0,\\
 &N=40,\quad \alpha=0.9,\quad \lambda=0,\quad
 T=288,\quad |\mathcal T_h|\in\{108,72,36\}.
 \end{aligned}}
-$
+$$
 
 0时模型在第48小时末施加SOC参考带，6、12、18时更新模型则在当日24时施加同一参考带；实际结算仅使用相应时段已经实现的电价。
 
