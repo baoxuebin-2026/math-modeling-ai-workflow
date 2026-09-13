@@ -33,7 +33,7 @@ def plot_revision_trajectory(result: dict) -> str:
     final = np.asarray(day["final_active_grid_kwh"])
 
     fig, (ax, delta_ax) = plt.subplots(
-        2, 1, figsize=(7.2, 4.8), sharex=True, gridspec_kw={"height_ratios": [1.45, 0.75]},
+        2, 1, figsize=(8.8, 5.4), sharex=True, gridspec_kw={"height_ratios": [1.45, 0.75]},
     )
     ax.plot(x, original, color=COLORS["gray"], ls="--", label="00:00原始计划")
     palette = [COLORS["orange"], COLORS["green"], COLORS["purple"]]
@@ -48,7 +48,7 @@ def plot_revision_trajectory(result: dict) -> str:
     polish_axes(ax)
     legend_above(ax, ncol=5)
     ax.text(0.995, 0.98, day_text, transform=ax.transAxes, ha="right", va="top",
-            color=COLORS["gray"], fontsize=8)
+            color=COLORS["gray"], fontsize=9)
     delta = final - original
     delta_ax.fill_between(x, 0, np.maximum(delta, 0), color=COLORS["green_light"],
                           edgecolor=COLORS["green"], linewidth=0.7,
@@ -61,7 +61,7 @@ def plot_revision_trajectory(result: dict) -> str:
     polish_axes(delta_ax)
     hour_axis(delta_ax)
     legend_above(delta_ax, ncol=2)
-    fig.subplots_adjust(hspace=0.24)
+    fig.subplots_adjust(hspace=0.32)
     savefig(fig, OUT / "q3_fig01_plan_revisions.png")
     return day_text
 
@@ -71,7 +71,7 @@ def plot_q2_q3_comparison(q2: dict, q3: dict) -> None:
     q2_values = np.array([q2t["total_cost_cny"] / 10000, q2t["emergency_kwh"] / 1000])
     q3_values = np.array([q3t["total_cny"] / 10000, q3t["emergency_kwh"] / 1000])
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.2, 3.2))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8.4, 3.8))
     panels = (
         (ax1, q2_values[0], q3_values[0], "年总费用 / 万元"),
         (ax2, q2_values[1], q3_values[1], "紧急购电量 / MWh"),
@@ -99,13 +99,13 @@ def plot_q2_q3_comparison(q2: dict, q3: dict) -> None:
     cost_reduction = 100 * (1 - q3t["total_cny"] / q2t["total_cost_cny"])
     reduction = 100 * (1 - q3_values[1] / q2_values[1])
     ax1.text(0.5, 0.92, f"−{cost_reduction:.2f}%", transform=ax1.transAxes,
-             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=11)
+             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=12)
     ax2.text(0.5, 0.92, f"−{reduction:.2f}%", transform=ax2.transAxes,
-             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=11)
+             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=12)
     handles, legend_labels = ax1.get_legend_handles_labels()
-    fig.legend(handles, legend_labels, loc="upper center", bbox_to_anchor=(0.5, 1.02),
+    fig.legend(handles, legend_labels, loc="upper center", bbox_to_anchor=(0.5, 1.03),
                ncol=2, frameon=False)
-    fig.subplots_adjust(wspace=0.36)
+    fig.subplots_adjust(wspace=0.40)
     savefig(fig, OUT / "q3_fig02_q2_q3_comparison.png")
 
 
