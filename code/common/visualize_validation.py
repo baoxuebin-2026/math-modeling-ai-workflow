@@ -36,7 +36,7 @@ def plot_calibration(results: dict) -> None:
     ax1.set_ylabel("指数 / %（N=60时为100）")
     ax1.set_xticks(convergence["scenario_count"])
     polish_axes(ax1)
-    ax1.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=8.5)
+    ax1.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=10.5)
 
     base_cost = risk.loc[risk["risk_weight"] == 0, "mean_daily_cost_cny"].iloc[0]
     base_emg = risk.loc[risk["risk_weight"] == 0, "total_emergency_kwh"].iloc[0]
@@ -48,7 +48,7 @@ def plot_calibration(results: dict) -> None:
     ax2.set_ylabel("指数 / %（权重=0时为100）")
     ax2.set_xticks(risk["risk_weight"])
     polish_axes(ax2)
-    ax2.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=8.5)
+    ax2.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=10.5)
     savefig(fig, OUT / "validation_fig01_calibration.png")
 
 
@@ -88,7 +88,7 @@ def plot_physical_sensitivity(results: dict) -> None:
     offsets = [(0, 8), (0, 8), (0, 8), (0, 8)]
     for xi, cost, saving, offset in zip(x, costs, 100 * eta["saving_rate"], offsets):
         ax2.annotate(f"节省{saving:.1f}%", (xi, cost), xytext=offset,
-                     textcoords="offset points", ha="center", va="bottom", fontsize=8)
+                     textcoords="offset points", ha="center", va="bottom", fontsize=10)
     span = float(costs.max() - costs.min())
     ax2.set_ylim(float(costs.min()) - 0.18 * span, float(costs.max()) + 0.26 * span)
     fig.subplots_adjust(wspace=0.40)
@@ -115,7 +115,7 @@ def plot_update_ablation(results: dict) -> None:
         cost_change = 100 * (grouped["cost"].iloc[-1] / grouped["cost"].iloc[0] - 1)
         ax.text(0.98, 0.97, f"紧急购电 −{reduction:.1f}%\n费用 {cost_change:+.1f}%",
                 transform=ax.transAxes, ha="right", va="top", color=COLORS["green"],
-                fontsize=9, weight="bold")
+                fontsize=11, weight="bold")
     fig.subplots_adjust(wspace=0.38)
     savefig(fig, OUT / "validation_fig03_update_ablation.png")
 
