@@ -59,8 +59,8 @@ def plot_dispatch(result: dict, data: pd.DataFrame) -> None:
     ax2.set_ylabel("储能电量 / kWh")
     polish_axes(ax2)
     hour_axis(ax2)
-    ax2.text(23.75, 10800, "上限", ha="right", va="bottom", fontsize=9, color=COLORS["gray"])
-    ax2.text(23.75, 1375, "下限", ha="right", va="bottom", fontsize=9, color=COLORS["gray"])
+    ax2.text(23.75, 10800, "上限", ha="right", va="bottom", fontsize=11, color=COLORS["gray"])
+    ax2.text(23.75, 1375, "下限", ha="right", va="bottom", fontsize=11, color=COLORS["gray"])
     fig.subplots_adjust(hspace=0.28)
     savefig(fig, OUT / "q1_fig01_dispatch_soc.png")
 
@@ -95,7 +95,7 @@ def plot_cost_by_block(result: dict, data: pd.DataFrame) -> None:
     for bars in (bars_a, bars_b):
         for bar in bars:
             ax1.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.02,
-                     f"{bar.get_height():.1f}", ha="center", va="bottom", fontsize=8.5)
+                     f"{bar.get_height():.1f}", ha="center", va="bottom", fontsize=10.5)
     ax2 = ax1.twinx()
     ax2.plot(x, delta, color=COLORS["orange"], marker="o", linewidth=1.8,
              label="节省费用", zorder=5)
@@ -106,12 +106,12 @@ def plot_cost_by_block(result: dict, data: pd.DataFrame) -> None:
     ax2.spines["right"].set_color(COLORS["orange"])
     for xi, value in zip(x, delta):
         ax2.annotate(f"{value:+.1f}", (xi, value), xytext=(0, 7),
-                     textcoords="offset points", ha="center", fontsize=8.5,
+                     textcoords="offset points", ha="center", fontsize=10.5,
                      color=COLORS["orange"])
     saving = 100 * result["outputs"]["cost_saving_rate"]
-    ax1.text(0.99, 0.97, f"总节省率：{saving:.2f}%", transform=ax1.transAxes,
+    ax1.text(0.99, 0.72, f"总节省率：{saving:.2f}%", transform=ax1.transAxes,
              ha="right", va="top", color=COLORS["green"], weight="bold")
-    fig.subplots_adjust(top=0.80, right=0.88)
+    fig.subplots_adjust(top=0.78, right=0.88)
     savefig(fig, OUT / "q1_fig02_cost_comparison.png")
 
 
