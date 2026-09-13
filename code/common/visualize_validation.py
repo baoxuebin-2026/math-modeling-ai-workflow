@@ -24,7 +24,7 @@ def plot_calibration(results: dict) -> None:
     risk = pd.DataFrame(results["v4_risk_weight_grid"])
     risk = risk[(risk["terminal_half_width_kwh"] == 600) & (risk["scenario_count"] == 20)].sort_values("risk_weight")
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8.4, 4.2), constrained_layout=True)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.2, 4.8), constrained_layout=True)
     n_ref_cost = convergence.loc[convergence["scenario_count"] == 60, "mean_daily_cost_cny"].iloc[0]
     n_ref_emg = convergence.loc[convergence["scenario_count"] == 60, "total_emergency_kwh"].iloc[0]
     ax1.plot(convergence["scenario_count"], 100 * convergence["mean_daily_cost_cny"] / n_ref_cost,
@@ -36,7 +36,7 @@ def plot_calibration(results: dict) -> None:
     ax1.set_ylabel("指数 / %（N=60时为100）")
     ax1.set_xticks(convergence["scenario_count"])
     polish_axes(ax1)
-    ax1.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=7)
+    ax1.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=8.5)
 
     base_cost = risk.loc[risk["risk_weight"] == 0, "mean_daily_cost_cny"].iloc[0]
     base_emg = risk.loc[risk["risk_weight"] == 0, "total_emergency_kwh"].iloc[0]
@@ -48,7 +48,7 @@ def plot_calibration(results: dict) -> None:
     ax2.set_ylabel("指数 / %（权重=0时为100）")
     ax2.set_xticks(risk["risk_weight"])
     polish_axes(ax2)
-    ax2.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=7)
+    ax2.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=8.5)
     savefig(fig, OUT / "validation_fig01_calibration.png")
 
 
@@ -60,7 +60,7 @@ def plot_physical_sensitivity(results: dict) -> None:
     eta = pd.DataFrame(results["v6_efficiency_sensitivity"]["q1_reoptimized"])
     labels = ["0.85/0.85", "0.90/0.90", "往返效率=0.90", "0.95/0.95"]
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.2, 3.7))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8.8, 4.3))
     ref_cost = terminal.loc[terminal["terminal_half_width_kwh"] == 600, "cost"].iloc[0]
     ref_emg = terminal.loc[terminal["terminal_half_width_kwh"] == 600, "emergency"].iloc[0]
     ax1.plot(terminal["terminal_half_width_kwh"], 100 * (terminal["cost"] / ref_cost - 1),
@@ -88,16 +88,16 @@ def plot_physical_sensitivity(results: dict) -> None:
     offsets = [(0, 8), (0, 8), (0, 8), (0, 8)]
     for xi, cost, saving, offset in zip(x, costs, 100 * eta["saving_rate"], offsets):
         ax2.annotate(f"节省{saving:.1f}%", (xi, cost), xytext=offset,
-                     textcoords="offset points", ha="center", va="bottom", fontsize=6.7)
+                     textcoords="offset points", ha="center", va="bottom", fontsize=8)
     span = float(costs.max() - costs.min())
     ax2.set_ylim(float(costs.min()) - 0.18 * span, float(costs.max()) + 0.26 * span)
-    fig.subplots_adjust(wspace=0.34)
+    fig.subplots_adjust(wspace=0.40)
     savefig(fig, OUT / "validation_fig02_physical_sensitivity.png")
 
 
 def plot_update_ablation(results: dict) -> None:
     source = results["v8_update_ablation"]["seasonal_risk_days"]
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.6), sharey=False)
+    fig, axes = plt.subplots(1, 2, figsize=(8.4, 4.2), sharey=False)
     for ax, problem in zip(axes, ("q3", "q4")):
         frame = pd.DataFrame(source[problem])
         grouped = frame.groupby("updates_used", as_index=False).agg(
@@ -115,8 +115,8 @@ def plot_update_ablation(results: dict) -> None:
         cost_change = 100 * (grouped["cost"].iloc[-1] / grouped["cost"].iloc[0] - 1)
         ax.text(0.98, 0.97, f"紧急购电 −{reduction:.1f}%\n费用 {cost_change:+.1f}%",
                 transform=ax.transAxes, ha="right", va="top", color=COLORS["green"],
-                fontsize=8, weight="bold")
-    fig.subplots_adjust(wspace=0.32)
+                fontsize=9, weight="bold")
+    fig.subplots_adjust(wspace=0.38)
     savefig(fig, OUT / "validation_fig03_update_ablation.png")
 
 
