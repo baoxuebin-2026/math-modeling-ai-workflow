@@ -47,8 +47,8 @@ def plot_revision_trajectory(result: dict) -> str:
     ax.set_ylabel("计划购电量 / kWh")
     polish_axes(ax)
     legend_above(ax, ncol=5)
-    ax.text(0.995, 0.98, day_text, transform=ax.transAxes, ha="right", va="top",
-            color=COLORS["gray"], fontsize=9)
+    ax.text(0.82, 0.98, day_text, transform=ax.transAxes, ha="right", va="top",
+            color=COLORS["gray"], fontsize=11)
     delta = final - original
     delta_ax.fill_between(x, 0, np.maximum(delta, 0), color=COLORS["green_light"],
                           edgecolor=COLORS["green"], linewidth=0.7,
@@ -99,9 +99,9 @@ def plot_q2_q3_comparison(q2: dict, q3: dict) -> None:
     cost_reduction = 100 * (1 - q3t["total_cny"] / q2t["total_cost_cny"])
     reduction = 100 * (1 - q3_values[1] / q2_values[1])
     ax1.text(0.5, 0.92, f"−{cost_reduction:.2f}%", transform=ax1.transAxes,
-             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=12)
+             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=14)
     ax2.text(0.5, 0.92, f"−{reduction:.2f}%", transform=ax2.transAxes,
-             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=12)
+             ha="center", va="top", color=COLORS["green"], weight="bold", fontsize=14)
     handles, legend_labels = ax1.get_legend_handles_labels()
     fig.legend(handles, legend_labels, loc="upper center", bbox_to_anchor=(0.5, 1.03),
                ncol=2, frameon=False)
