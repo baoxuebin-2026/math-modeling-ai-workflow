@@ -39,7 +39,7 @@ def plot_price_and_response(result: dict, snapshots: dict) -> str:
     q42_soc = 100 * np.asarray(day["q4_2"]["actual"]["soc_kwh"]) / 12000
     q43_soc = 100 * np.asarray(day["q4_3"]["actual"]["soc"]) / 12000
 
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.2, 4.9), sharex=True)
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8.8, 5.5), sharex=True)
     ax1.plot(x, price_actual, color=COLORS["primary"], label="实际电价")
     ax1.plot(x, price_forecast, color=COLORS["orange"], ls="--", label="00:00电价预测")
     ax1.fill_between(x, price_actual, price_forecast, color=COLORS["orange_light"], alpha=0.6)
@@ -65,8 +65,8 @@ def plot_price_and_response(result: dict, snapshots: dict) -> str:
     ax2.legend(handles1 + handles2, labels1 + labels2, loc="lower left",
                bbox_to_anchor=(0, 1.01), ncol=4, frameon=False, borderaxespad=0)
     ax2.text(0.995, 0.95, day_text, transform=ax2.transAxes, ha="right", va="top",
-             color=COLORS["gray"], fontsize=8)
-    fig.subplots_adjust(hspace=0.24)
+             color=COLORS["gray"], fontsize=9)
+    fig.subplots_adjust(hspace=0.32)
     savefig(fig, OUT / "q4_fig01_price_response.png")
     return day_text
 
@@ -76,7 +76,7 @@ def plot_q42_q43_comparison(result: dict) -> None:
     cost = np.array([a["total_cny"], b["total_cny"]]) / 10000
     emergency = np.array([a["emergency_kwh"], b["emergency_kwh"]]) / 1000
 
-    fig, ax = plt.subplots(figsize=(6.4, 3.9))
+    fig, ax = plt.subplots(figsize=(7.6, 4.5))
     ax.annotate("", xy=(cost[1], emergency[1]), xytext=(cost[0], emergency[0]),
                 arrowprops={"arrowstyle": "-|>", "color": COLORS["blue_light"],
                             "lw": 8, "shrinkA": 8, "shrinkB": 8}, zorder=1)
@@ -102,7 +102,7 @@ def plot_q42_q43_comparison(result: dict) -> None:
     reduction = 100 * (1 - emergency[1] / emergency[0])
     ax.text(0.98, 0.08, f"费用 −{cost_reduction:.2f}%\n紧急购电 −{reduction:.2f}%",
             transform=ax.transAxes, ha="right", va="bottom", color=COLORS["green"],
-            weight="bold", fontsize=9)
+            weight="bold", fontsize=10)
     savefig(fig, OUT / "q4_fig02_q42_q43_comparison.png")
 
 
