@@ -37,18 +37,22 @@ def setup_plot() -> None:
     plt.rcParams.update({
         "font.family": font_name,
         "font.sans-serif": [font_name],
-        "font.size": 13,
-        "axes.labelsize": 13,
-        "xtick.labelsize": 11,
-        "ytick.labelsize": 11,
-        "legend.fontsize": 11,
+        # Figures are inserted into Word at roughly 11--14 cm wide. These
+        # source sizes remain equivalent to about 10--11 pt after scaling.
+        "font.size": 18,
+        "axes.labelsize": 18,
+        "xtick.labelsize": 15,
+        "ytick.labelsize": 15,
+        "legend.fontsize": 15,
         "axes.edgecolor": "#9AA1A8",
         "axes.linewidth": 0.7,
         "figure.facecolor": "white",
         "axes.facecolor": "white",
         "savefig.facecolor": "white",
-        "savefig.dpi": 300,
-        "lines.linewidth": 1.5,
+        "savefig.dpi": 600,
+        "lines.linewidth": 1.8,
+        "svg.fonttype": "path",
+        "pdf.fonttype": 42,
         "axes.unicode_minus": False,
     })
 
@@ -77,7 +81,9 @@ def legend_above(ax, *, ncol: int = 3) -> None:
 
 def savefig(fig, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, bbox_inches="tight", pad_inches=0.14)
+    fig.savefig(path, dpi=600, bbox_inches="tight", pad_inches=0.16)
+    # SVG is preferred in Word because it remains sharp at any display size.
+    fig.savefig(path.with_suffix(".svg"), bbox_inches="tight", pad_inches=0.16)
     plt.close(fig)
 
 
