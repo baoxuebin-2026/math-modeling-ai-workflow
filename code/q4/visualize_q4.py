@@ -64,8 +64,8 @@ def plot_price_and_response(result: dict, snapshots: dict) -> str:
     handles2, labels2 = ax2b.get_legend_handles_labels()
     ax2.legend(handles1 + handles2, labels1 + labels2, loc="lower left",
                bbox_to_anchor=(0, 1.01), ncol=4, frameon=False, borderaxespad=0)
-    ax2.text(0.995, 0.95, day_text, transform=ax2.transAxes, ha="right", va="top",
-             color=COLORS["gray"], fontsize=9)
+    fig.text(0.98, 0.50, day_text, ha="right", va="bottom",
+             color=COLORS["gray"], fontsize=11)
     fig.subplots_adjust(hspace=0.32)
     savefig(fig, OUT / "q4_fig01_price_response.png")
     return day_text
@@ -102,7 +102,7 @@ def plot_q42_q43_comparison(result: dict) -> None:
     reduction = 100 * (1 - emergency[1] / emergency[0])
     ax.text(0.98, 0.08, f"费用 −{cost_reduction:.2f}%\n紧急购电 −{reduction:.2f}%",
             transform=ax.transAxes, ha="right", va="bottom", color=COLORS["green"],
-            weight="bold", fontsize=10)
+            weight="bold", fontsize=12)
     savefig(fig, OUT / "q4_fig02_q42_q43_comparison.png")
 
 
