@@ -56,8 +56,8 @@ def plot_forecast_and_execution(result: dict, snapshots: dict) -> str:
     polish_axes(ax2)
     hour_axis(ax2)
     legend_above(ax2, ncol=3)
-    ax2.text(0.995, 0.96, day, transform=ax2.transAxes, ha="right", va="top",
-             color=COLORS["gray"], fontsize=9)
+    ax2.text(0.82, 0.96, day, transform=ax2.transAxes, ha="right", va="top",
+             color=COLORS["gray"], fontsize=11)
     fig.subplots_adjust(hspace=0.30)
     savefig(fig, OUT / "q2_fig01_forecast_execution.png")
     return day
