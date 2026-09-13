@@ -39,7 +39,7 @@ def plot_forecast_and_execution(result: dict, snapshots: dict) -> str:
     emergency = np.asarray(selected["actual"]["emergency_kwh"])
     total_grid = plan + emergency
 
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.2, 4.7), sharex=True)
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8.4, 5.3), sharex=True)
     ax1.plot(x, actual_net, color=COLORS["primary"], label="实际净负荷")
     ax1.plot(x, forecast_net, color=COLORS["orange"], ls="--", label="日前预测")
     ax1.fill_between(x, forecast_net, actual_net, color=COLORS["orange_light"], alpha=0.55)
@@ -57,8 +57,8 @@ def plot_forecast_and_execution(result: dict, snapshots: dict) -> str:
     hour_axis(ax2)
     legend_above(ax2, ncol=3)
     ax2.text(0.995, 0.96, day, transform=ax2.transAxes, ha="right", va="top",
-             color=COLORS["gray"], fontsize=8)
-    fig.subplots_adjust(hspace=0.22)
+             color=COLORS["gray"], fontsize=9)
+    fig.subplots_adjust(hspace=0.30)
     savefig(fig, OUT / "q2_fig01_forecast_execution.png")
     return day
 
@@ -73,7 +73,7 @@ def plot_emergency_heatmap(detail: pd.DataFrame) -> None:
     ).reindex(index=range(2, 13), columns=range(24), fill_value=0)
     matrix = pivot.to_numpy() / 1000
 
-    fig, ax = plt.subplots(figsize=(7.2, 3.8))
+    fig, ax = plt.subplots(figsize=(8.4, 4.3))
     image = ax.imshow(matrix, aspect="auto", cmap="YlOrBr", interpolation="nearest")
     ax.set_xticks(np.arange(0, 24, 2), [f"{h:02d}" for h in range(0, 24, 2)])
     ax.set_yticks(np.arange(11), [f"{m:02d}" for m in range(2, 13)])
