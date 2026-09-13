@@ -31,7 +31,8 @@ $$
 
 \begin{cases}
 G_t^{\mathrm{base}}=\max(\ell_t-p_t,0),\\
-J_{\mathrm{base}}=\sum_{t=1}^{144}\pi_tG_t^{\mathrm{base}},
+W_t^{\mathrm{base}}=\max(p_t-\ell_t,0),\\
+J_{\mathrm{base}}=\sum_{t=1}^{144}\pi_tG_t^{\mathrm{base}}.
 \end{cases}
 
 $$
