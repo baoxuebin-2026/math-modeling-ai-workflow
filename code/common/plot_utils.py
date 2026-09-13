@@ -37,11 +37,11 @@ def setup_plot() -> None:
     plt.rcParams.update({
         "font.family": font_name,
         "font.sans-serif": [font_name],
-        "font.size": 9,
-        "axes.labelsize": 9,
-        "xtick.labelsize": 8,
-        "ytick.labelsize": 8,
-        "legend.fontsize": 8,
+        "font.size": 10.5,
+        "axes.labelsize": 10.5,
+        "xtick.labelsize": 9.5,
+        "ytick.labelsize": 9.5,
+        "legend.fontsize": 9,
         "axes.edgecolor": "#9AA1A8",
         "axes.linewidth": 0.7,
         "figure.facecolor": "white",
@@ -71,13 +71,13 @@ def hour_axis(ax, *, label: bool = True) -> None:
 def legend_above(ax, *, ncol: int = 3) -> None:
     ax.legend(
         loc="lower left", bbox_to_anchor=(0, 1.01), ncol=ncol,
-        frameon=False, borderaxespad=0, handlelength=2.0, columnspacing=1.2,
+        frameon=False, borderaxespad=0, handlelength=1.8, columnspacing=1.0,
     )
 
 
 def savefig(fig, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, bbox_inches="tight", pad_inches=0.08)
+    fig.savefig(path, bbox_inches="tight", pad_inches=0.12)
     plt.close(fig)
 
 
