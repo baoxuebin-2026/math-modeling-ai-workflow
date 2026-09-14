@@ -33,7 +33,7 @@ Use `assets/chart-templates/paper_style.py` for bespoke matplotlib figures when 
 - Prefer white background, light grid, restrained axes, and direct labels when series count is small.
 - Use blue/orange/teal/red/purple accents in that order; reserve red for warning, violation, or selected-risk marks.
 - Make the conclusion readable in grayscale and colorblind review; do not use color as the only carrier.
-- Export SVG/PDF first and PNG fallback at 300 dpi.
+- Export SVG/PDF first and a 600 DPI PNG fallback; inspect both at the intended final insertion size.
 
 ## Block conditions
 

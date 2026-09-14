@@ -74,8 +74,8 @@
 ```text
 data/              原始附件与清洗数据
 src/               可运行 Python 脚本
-outputs/tables/    论文和附录结果表
-outputs/figures/   可进论文的图
+results/qX/    论文和附录结果表
+figures/qX/   可进论文的图
 logs/              运行日志、警告和求解器信息
 paper/             论文源文件、最终图表副本和提交材料
 requirements.txt

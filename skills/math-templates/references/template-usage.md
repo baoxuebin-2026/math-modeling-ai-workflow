@@ -34,16 +34,16 @@
 ```text
 project/
   data/raw/
-  q1/src/
-  q1/tests/
+  code/q1/
   results/q1/
+  figures/q1/
   paper/fragments/
   logs/
   tmp/
-  run_record.csv
-  result_registry.csv
-  figure_evidence.csv
-  numerical_diagnostics.csv
+  registries/run_record.csv
+  registries/result_registry.csv
+  registries/figure_evidence.csv
+  registries/numerical_diagnostics.csv
   reproduce_all.py
 ```
 

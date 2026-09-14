@@ -1,18 +1,28 @@
 {
-  "gates": {
-    "data_preprocessing": "docs/workflow/data_preprocessing_gate.md",
-    "national_prize": "docs/workflow/national_prize_gate.md",
-    "modeling_decision": "docs/workflow/modeling_decision_gate.md",
-    "validation": "docs/workflow/validation_gate.md",
-    "materials": "docs/workflow/materials_gate.md",
-    "figure_planning": "docs/workflow/figure_planning_gate.md",
-    "visualization": "docs/workflow/05_visualization_rules.md",
-    "code_contract": "docs/workflow/code_contract.md"
+  "schema_version": 2,
+  "profiles": ["rapid", "full", "local_repair"],
+  "canonical_paths": {
+    "code": "code/qX",
+    "results": "results/qX",
+    "figures": "figures/qX",
+    "registries": "registries",
+    "paper": "paper"
   },
-  "questions": [
-    {"id": 1, "enabled": true, "result": "docs/results/q1_results.json"},
-    {"id": 2, "enabled": true, "result": "docs/results/q2_results.json"},
-    {"id": 3, "enabled": true, "result": "docs/results/q3_results.json"},
-    {"id": 4, "enabled": true, "result": "docs/results/q4_results.json"}
-  ]
+  "gates": {
+    "official_rules": "math-compliance",
+    "problem_lock": "math-problem-reader",
+    "model": "math-model",
+    "code": "math-code",
+    "verification": "math-verifier",
+    "figures": "math-figure",
+    "tables": "math-table",
+    "consistency": "math-consistency",
+    "review": "math-review",
+    "submission": "math-compliance"
+  },
+  "required_reading": [
+    "docs/workflow/competition_retrospective.md"
+  ],
+  "questions": []
 }
+

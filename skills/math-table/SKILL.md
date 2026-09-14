@@ -46,6 +46,8 @@ When auditing result tables as part of a paper pass, report `table_count` by sub
 
 Do not add tables just to show effort. If a result is exact, central, and short, prefer a table; if the table repeats a figure without adding exact values, remove, merge, or demote it. A main-body table is blocked when its units, source, or target subquestion are unknown.
 
+Officially required tables are hard deliverables: do not replace them with prose to save pages. The optional main-body table budget applies only to self-added tables. When a required table is wide, preserve all required fields and use compact `(a)(b)(c)` subtables, vertical restructuring, repeated headers, or an appendix split allowed by the official rule.
+
 ## 红线
 
 Stop and report a blocker when:

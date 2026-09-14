@@ -14,6 +14,8 @@ Read `math-hub/references/quality-contract.md` only when promoting a figure to p
 ## Figure First Principles
 
 - One main-body figure should prove one central claim.
+- Export SVG first and a 600 DPI PNG fallback unless the active toolchain requires another format.
+- Inspect the figure at its actual Word/LaTeX/PDF insertion size; source-canvas readability is not enough.
 - Prefer tables for exact values and figures for patterns, mechanisms, tradeoffs, and robustness.
 - Do not include every generated figure.
 - Write a caption, one post-figure conclusion, and one boundary/risk note near the figure.
@@ -25,7 +27,7 @@ Read `math-hub/references/quality-contract.md` only when promoting a figure to p
 
 The `validation_status` must be `paper_ready` before a figure supports abstract, conclusion, or final answer wording. Otherwise, keep it planned, generated, checked, blocked, or diagnostic.
 
-A `paper_ready` `figure_evidence.csv` row must include either `render_check_status=passed` or `human_visual_check=passed`, plus a final-size readability note. A generated file is not paper-ready simply because it exists in an experiment directory.
+A `paper_ready` `figure_evidence.csv` row must include either `render_check_status=passed` or `human_visual_check=passed`, plus a final-size readability note covering font size, clipping, SVG font compatibility, and raster fallback. A generated file is not paper-ready simply because it exists in an experiment directory.
 
 For simulation figures, raw traces stay appendix unless they directly prove a required mechanism or failure mode. A single-run screenshot is diagnostic, not a paper-ready simulation result.
 

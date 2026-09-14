@@ -1,49 +1,32 @@
-# 分问代码契约
+# 分问代码与结果契约
 
-## 基本结构
+## 唯一路径
+
+每一问使用：
 
 ```text
-code/q1/solve_q1.py
-code/q1/visualize_q1.py
-...
+code/qX/solve_qX.py
+code/qX/visualize_qX.py
+results/qX/
+figures/qX/
 ```
 
-问题数量和启用的问题由 `project_config.yaml` 与 `docs/workflow/tasks.json` 配置。AI 应先完成用户确认，再按配置新增或删减 `code/q*/`、`figures/q*/`、`docs/results/q*_results.json` 和 `docs/figures/q*_figures.md`。
+`solve_qX.py` 读取 `data/processed/`，实现已确认模型并输出结构化结果到 `results/qX/`；不得生成论文文字或直接绘图。
 
-## solve_qx.py 负责
+`visualize_qX.py` 只读取正式结果和必要数据，输出 SVG 与 600 DPI PNG 到 `figures/qX/`；不得重新实现求解逻辑或覆盖 Markdown 文档。
 
-- 读取 `data/processed/` 中的数据。
-- 实现该问的模型、算法和参数求解。
-- 输出结构化结果到 `docs/results/qx_results.json`。
-- 必要时输出中间表格到 `data/processed/` 或 `docs/results/`。
-- 不直接负责最终论文文字。
-- 只实现已经由 AI 解释并经用户确认的模型方案。
+## 正式结果条件
 
-## visualize_qx.py 负责
+一个数值进入论文前，必须同时具有：
 
-- 读取 `docs/results/qx_results.json` 和必要数据。
-- 生成该问所有图表到 `figures/qx/`。
-- 不重复实现核心求解逻辑。
-- 只生成已经由 AI 说明用途并经用户确认保留的图表。
-- 严格遵守 `docs/workflow/05_visualization_rules.md` 中的默认论文图风格。
-- 不写入或覆盖 `docs/*.md`；图表说明由 AI 使用人工式 patch 更新。
+- `registries/run_record.csv` 中成功的正式运行；
+- `registries/result_registry.csv` 中唯一结果 ID、值、单位、场景和来源；
+- 对应验证等级和通过状态；
+- 与工作簿、图表及正文一致的结果版本。
 
-## JSON 最低字段
+控制台输出、截图、旧 JSON、探索文件和失败运行只能作为诊断，不得成为论文真源。
 
-```json
-{
-  "question": "问题一",
-  "status": "已完成/待补充",
-  "paper_position": "问题一模型建立与求解",
-  "code": "code/q1/solve_q1.py",
-  "visualization_code": "code/q1/visualize_q1.py",
-  "input_files": [],
-  "model": {
-    "baseline": "",
-    "selected": "",
-    "reason": ""
-  },
-  "outputs": {},
-  "notes": []
-}
-```
+## 变更规则
+
+正式结果冻结后不得原地改值。需要修改时，新建结果 ID，标记旧行的 `superseded_by`，重跑受影响图表并重新进行全文一致性审查。
+

@@ -1,36 +1,45 @@
 # Skill 路由与职责
 
-本文件把项目工作流与专业 skill 对齐。`AI_WORKFLOW.md` 是唯一总入口；skill 只负责当前阶段的专业任务，不得改变阶段顺序、越权写入其他阶段产物或重新定义最终交付物。
+`AI_WORKFLOW.md` 是唯一总入口。本文件只决定当前阶段应加载哪个专业 skill；所有模块遵守同一比赛项目目录和同一结果登记协议。
 
-## 总路由
+## 启动必读
 
-| 工作流阶段 | 主 skill | 允许协作 skill | 核心输入 | 核心输出 |
-|---|---|---|---|---|
-| 启动与范围锁定 | `math-hub` | `math-problem-reader` | 赛题、附件、官方规则 | 状态、范围与阻塞项 |
-| 题面解读 | `math-problem-reader` | `math-hub` | 题面、附件、交付要求 | `docs/00_problem_extracted.md`、`docs/01_task_alignment.md` |
-| 文献与案例启发（可选） | `math-literature` | `math-hub` | 已锁定的问题和关键词 | 文献证据记录 |
-| 模型设计 | `math-model` | `math-literature`、`math-verifier` | 题意锁定、数据、候选方法 | `docs/02_model_plan.md`、模型交接和验证计划 |
-| 数据与代码 | `math-code` | `math-model`、`math-verifier` | 已确认模型交接、数据 | `docs/03_data_report.md`、代码、结果登记和运行记录 |
-| 图表证据 | `math-figure` | `math-code`、`math-table` | 已确认结果和 claim | 图表、`docs/05_visualization_plan.md`、图表证据记录 |
-| 数学与结果核验 | `math-verifier` | `math-consistency` | 公式、单位、约束、结果和边界案例 | `docs/06_validation_report.md`、核验记录 |
-| 结果汇总与素材包 | `math-hub` | `math-consistency`、`math-review` | 结果、图表、验证和证据链 | `docs/04_result_summary.md`、`docs/paper_materials.md` |
-| Markdown 论文写作 | `math-templates` | `math-abstract`、`math-consistency`、`math-review` | `docs/paper_materials.md` 和已确认证据 | `paper/sections/*.md`、`paper/drafts/final_paper_draft.md` |
+- `docs/workflow/competition_retrospective.md`
+- 当前比赛的 `project_config.yaml`
+- 当前项目的 `docs/hub_state.md`
 
-## 统一规则
+## 路由表
 
-1. `math-hub` 负责状态、阻塞项和下一模块；不替代建模、代码或写作。
-2. `math-problem-reader` 完成题意和交付物锁定后，才能进入 `math-model`。
-3. `math-model` 必须先形成模型交接；`math-code` 不得凭空补公式、参数、单位或阈值。
-4. `math-verifier` 是独立核验门，不参与模型发明；失败必须退回 `math-model` 或 `math-code`。
-5. `math-figure` 只能使用真实结果和已登记 claim；检查失败时退回 `math-code` 或降级为诊断图。
-6. `math-consistency`、`math-review` 只提出证据化修复意见，不直接改变主模型或强行推进阶段。
-7. 论文阶段按章节确认，全部章节合并并完成 Markdown 全文核对后停止。
-8. 本工作流不调用 Word、DOCX、LaTeX、PDF 排版或最终提交 skill。`math-compliance` 仅可在用户另行要求提交合规检查时单独调用。
+| 阶段 | 主 skill | 协作 skill | 主要产物 |
+|---|---|---|---|
+| 范围与官方规则 | `math-hub` | `math-compliance` | `docs/hub_state.md`、`docs/submission_checklist.md` |
+| 题面与交付物 | `math-problem-reader` | `math-hub` | `docs/problem_brief.md`、`docs/deliverable_matrix.csv` |
+| 文献与来源 | `math-literature` | `math-hub` | 引用登记与 claim 映射 |
+| 模型设计 | `math-model` | `math-verifier` | `docs/model_handoff.md`、验证等级 |
+| 数据、代码与结果 | `math-code` | `math-model` | `code/qX/`、`results/qX/`、运行与结果登记 |
+| 图表证据 | `math-figure` | `math-table` | `figures/qX/`、图表证据登记 |
+| 数学与结果核验 | `math-verifier` | `math-consistency` | 数学验证与数值诊断 |
+| 分章写作 | `math-templates` | `math-table`、`math-consistency` | `paper/sections/*.md` |
+| 摘要与评委审查 | `math-abstract` | `math-review`、`math-consistency` | 摘要、全文风险清单 |
+| 排版与提交 | `math-compliance` | `math-review`、`math-consistency` | 最终格式、页数、匿名与提交清单 |
 
-## C 题专项
+识别为本科组 C 题时，可额外加载 `cumcm-c-problem`，但其规则不得覆盖当年官方题面、统一目录协议和证据冻结规则。
 
-识别为国赛本科组 C 题时，可加载 `cumcm-c-problem` 作为领域参考。它必须服从本路由、统一证据链和 Markdown 终点，不得重新启用独立全流程或排版路径。
+## 四个硬确认点
 
-## 旧版兼容
+`rapid` 模式只保留：
 
-`math-modeling-skill` 和 `math-modeling-solver` 的内容仅作兼容参考。启用本路由后，不同时启动它们的总流程，避免重复生成交付物或覆盖阶段状态。
+1. 题意与官方规则锁定；
+2. 主模型路线；
+3. 正式结果、指定表和核心图；
+4. 最终论文与提交包冻结。
+
+局部、可逆、低风险操作不重复向用户索要确认；会改变题意、主模型、结果真源、指定交付或最终提交的操作必须停止确认。
+
+## 统一返回原则
+
+- 模块只修改自己负责的产物。
+- 发现上游缺口时返回 `math-hub`，不得猜测补齐。
+- `registries/result_registry.csv` 管数值，`registries/claim_ledger.csv` 管论文结论状态。
+- 任何 `paper_ready` 结果发生变化，都必须新建结果 ID 并重新做一致性核验。
+

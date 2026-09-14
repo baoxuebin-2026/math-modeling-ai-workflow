@@ -48,6 +48,7 @@ Open only the smallest relevant reference:
 | Paper style only, no project structure | [references/national-prize-style-profile.md](references/national-prize-style-profile.md) |
 | Section labels, bold subquestion labels, colon spacing, 总分 structure | [references/section-format-controls.md](references/section-format-controls.md) |
 | Assumptions, model evaluation, framework advantages, limitations, extension wording | [references/assumption-evaluation-controls.md](references/assumption-evaluation-controls.md) |
+| Equation grouping, model summaries, MathType/Word migration checks | [references/equation-format-controls.md](references/equation-format-controls.md) |
 | Plain contest prose, empty-phrase removal, numbers/units, judge readability | [references/contest-language-guardrails.md](references/contest-language-guardrails.md) |
 | Problem analysis, model-building, result, validation, and evaluation paragraph flow | [references/paragraph-flow.md](references/paragraph-flow.md) |
 
@@ -56,9 +57,9 @@ Open only the smallest relevant reference:
 Use this only when the user asks to build or reorganize a full contest project. If they only need writing style, paragraph phrases, paper skeletons, or chart templates, skip this section.
 
 1. Check the current problem statement, official rules, data files, and required subquestions.
-2. Create only needed folders such as `data/raw`, `q1/src`, `q1/tests`, `results/q1`, `paper/fragments`, `logs`, and `tmp`.
+2. Use the canonical project folders: `data/raw`, `code/q1`, `results/q1`, `figures/q1`, `paper/sections`, `registries`, `logs`, and `tmp`.
 3. Copy only the needed files from `assets/contest-project-template/`.
-4. Rename `problem_template` to the active subquestion folder, such as `q1` or `q2`.
+4. Copy the needed compute, plot, and test assets into the active `code/qX/` and test locations; do not preserve the asset library's internal folder names.
 5. Replace placeholder schemas with current data columns, units, constraints, and output tables.
 6. Add or update evidence registries: `run_record.csv`, `result_registry.csv`, `figure_evidence.csv`, and `numerical_diagnostics.csv`.
 7. Keep official outputs under `results/qX/`; exploratory files stay out of final registries unless promoted by `math-hub`.

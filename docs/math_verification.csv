@@ -1,9 +1,0 @@
-check_id,subquestion,artifact,location,claim_id,check_type,input_ref,expected_relation,observed,status,severity,minimum_fix,owner
-MV-001,Q1,docs/02_model_plan.md,Section 3,,unit,data/processed/attachment1_10min.csv,kW multiplied by 1/6 h equals kWh,预处理脚本逐格派生且抽查一致,passed,P1,,math-verifier
-MV-002,Q1,docs/results/q1_results.json,diagnostics,,balance,docs/results/q1_results.json,per-slot balance residual <= 1e-5 kWh,1.14e-13 kWh,passed,P1,,math-verifier
-MV-003,Q2-Q4,code/common/forecasting.py,feature cutoff,,information-set,feature audit,no feature timestamp later than decision timestamp,扩展窗训练与在线特征均截断至决策时刻,passed,P1,,math-verifier
-MV-004,Q2-Q4,docs/results/q2_results.json;docs/results/q3_results.json;docs/results/q4_results.json,annual diagnostics,,boundary,data/processed/q*_full_detail.csv,1200 <= SoC <= 10800 and cross-day continuity,最大跨日不连续1.82e-12 kWh且边界无违规,passed,P1,,math-verifier
-MV-005,Q3-Q4,docs/results/q3_results.json;docs/results/q4_results.json,totals,,accounting,data/processed/q3_full_detail.csv;data/processed/q4_3_full_detail.csv,total equals plan + adjustment + emergency components,独立费用复算差在浮点容差内,passed,P1,,math-verifier
-MV-006,Q2,docs/results/q2_results.json,annual diagnostics,,balance,data/processed/q2_full_detail.csv,per-slot balance residual <= 1e-5 kWh,4.55e-13 kWh,passed,P1,,math-verifier
-MV-007,Q3,docs/results/q3_results.json,annual diagnostics,,balance,data/processed/q3_full_detail.csv,per-slot balance residual <= 1e-5 kWh,6.82e-13 kWh,passed,P1,,math-verifier
-MV-008,Q4,docs/results/q4_results.json,annual diagnostics,,balance,data/processed/q4_2_full_detail.csv;data/processed/q4_3_full_detail.csv,per-slot balance residual <= 1e-5 kWh,6.82e-13 kWh,passed,P1,,math-verifier

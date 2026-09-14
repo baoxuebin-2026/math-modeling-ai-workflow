@@ -18,13 +18,14 @@
 | `math-consistency` | 跨正文、表图、代码和登记表的一致性检查 | 结果/写作 |
 | `math-review` | 评委视角风险、扣分点和最小修复 | 写作终检 |
 | `math-templates` | Markdown 章节、段落和证据资产 | 论文写作 |
+| `math-compliance` | 官方规则、页数、匿名、最终格式与提交包核验 | 启动锁定/最终提交 |
 | `cumcm-c-problem` | 国赛本科组 C 题专项参考 | 条件加载 |
 
 ## 不纳入
 
 - `math-modeling-skill`：旧版三角色总流程，职责与本工作流重复。
 - `math-modeling-solver` / `math-modeling-paper`：旧版解题—写作总流程，阶段门控和产物协议不同。
-- Word、DOCX、LaTeX、PDF 排版工具：本项目在 `paper/drafts/final_paper_draft.md` 生成后停止。
+- Word、DOCX、LaTeX、PDF 的内容生成不作为建模 skill 的默认职责；当 `project_config.yaml` 要求最终格式核验时，由 `math-compliance` 继续执行排版与提交门禁。
 
 ## 调用原则
 

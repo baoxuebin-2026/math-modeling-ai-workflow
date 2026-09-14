@@ -36,8 +36,8 @@ If any preflight item is missing, either stop with the blocker protocol or expli
 2. Validate schemas, units, ranges, timestamps, ids, and missing values.
 3. Fail loudly on missing required columns, impossible values, or inconsistent units.
 4. Compute reproducibly with recorded parameters and seeds.
-5. Export result tables under `outputs/tables/`.
-6. Export figures under `outputs/figures/` with stable descriptive names.
+5. Export structured results and formal tables under `results/qX/`.
+6. Export figures under `figures/qX/` with stable descriptive names.
 7. Write logs under `logs/`.
 8. Export robustness or sensitivity tables when the model marks a route `scenario-check` or `robustness-required`.
 9. Update `run_record.csv`, `result_registry.csv`, and when figures are used, `figure_evidence.csv`.
@@ -113,7 +113,7 @@ When a robustness check fails, downgrade the affected registry rows to `candidat
 
 ## 图表生产门禁
 
-Generate a paper figure package, not a pile of plots. Before plotting more than one candidate figure, create a compact figure plan table such as `outputs/tables/q1_figure_plan.csv` with:
+Generate a paper figure package, not a pile of plots. Before plotting more than one candidate figure, create a compact figure plan table such as `results/q1/q1_figure_plan.csv` with:
 
 - `figure_id`
 - `figure_path`

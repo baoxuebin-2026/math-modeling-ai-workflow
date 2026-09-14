@@ -1,6 +1,0 @@
-poc_id,problem_id,subquestion,candidate_id,model_version,script_or_command,source_data,source_slice,metric,value,unit,runtime,status,failure_reason,promoted_model_version
-POC-Q1-B1,C,Q1,B1,C-M1-v1,python code/q1/solve_q1.py,data/processed/attachment1_10min.csv,全日,总成本,35126.948589,CNY,秒级,passed,,C-M1-v1
-POC-Q2-B1,C,Q2,B1,C-M1-v1,python code/q2/poc_q2.py,data/processed/attachment2_10min.csv,指定日,实际成本,48827.573930,CNY,秒级,passed,,C-M1-v1
-POC-Q2-M1,C,Q2,M1,C-M1-v1,python code/q2/poc_q2.py,data/processed/attachment2_10min.csv,指定日,能量平衡最大残差,4.55e-13,kWh,秒级,passed,,C-M1-v1
-POC-Q3-M1,C,Q3,M1,C-M1-v1,python code/q3/poc_q3.py,data/processed/attachment3_hourly.csv,指定日,实际成本,45756.998071,CNY,秒级,passed,,C-M1-v1
-POC-Q4-M1,C,Q4,M1,C-M1-v1,python code/q4/poc_q4.py,data/processed/attachment4_10min.csv,指定日Q4-2/Q4-3成本,49676.970283/47530.138089,CNY,秒级,passed,,C-M1-v1

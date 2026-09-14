@@ -1,0 +1,5 @@
+interface:
+  display_name: "Contest Compliance"
+  short_description: "核验官方规则、页数、匿名、最终格式与提交材料"
+  default_prompt: "使用 $math-compliance 核验当前数学建模比赛的官方规则与最终提交文件，列出阻塞项和最小修复。"
+

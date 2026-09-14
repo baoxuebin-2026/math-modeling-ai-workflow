@@ -1,0 +1,54 @@
+schema_version: 2
+
+project:
+  name: "TODO"
+  language: "zh-CN"
+  mode: "rapid"  # rapid | full | local_repair
+
+competition:
+  name: "TODO"
+  year: null
+  problem_id: "TODO"
+  question_count: null
+  official_rules_url: "TODO"
+  rules_checked_at: null
+
+submission:
+  primary_format: "markdown"  # markdown | docx | latex | pdf
+  page_limit: null
+  page_scope: "TODO"
+  abstract_rule: "TODO"
+  filename_rule: "TODO"
+  anonymity_rule: "TODO"
+  support_material_rule: "TODO"
+  ai_disclosure_rule: "TODO"
+
+paths:
+  raw_data: "data/raw"
+  external_data: "data/external"
+  processed_data: "data/processed"
+  metadata: "data/metadata"
+  code: "code"
+  results: "results"
+  figures: "figures"
+  docs: "docs"
+  registries: "registries"
+  logs: "logs"
+  paper: "paper"
+  temp: "tmp"
+
+visualization:
+  vector_format: "svg"
+  raster_fallback: "png"
+  raster_dpi: 600
+  title_inside_figure: false
+  max_subplots_per_figure: 2
+  final_size_check_required: true
+
+workflow:
+  enabled_questions: []
+  require_official_rule_lock: true
+  require_result_registry: true
+  require_section_approval: true
+  require_final_submission_gate: true
+
